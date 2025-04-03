@@ -1,0 +1,13 @@
+package Tiquetes;
+
+import java.util.Date;
+
+public class TiqueteRegular extends Tiquete{
+	private Date fecha;
+
+	public TiqueteRegular(String idTiquete, String categoria, boolean usado,Date fecha) {
+		super(idTiquete, categoria, usado);
+		this.fecha = fecha;
+	}
+
+}
