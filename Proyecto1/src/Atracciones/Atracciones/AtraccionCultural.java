@@ -1,6 +1,9 @@
 package Atracciones;
 
+import java.time.LocalDate;
 import java.util.*;
+
+import Persona.Persona;
 
 public class AtraccionCultural extends Atraccion{
 	
@@ -53,10 +56,15 @@ public class AtraccionCultural extends Atraccion{
 				return false;
 				
 			}
+		}
 		
-	public boolean validarEdad() {
+	public boolean validarEdad(Persona persona) {
+
+		LocalDate fechaHoy = LocalDate.now();
 		
-		if (edadMin > 0 && edadMin <= usuario.getEdad()) {
+		int restaEdades = fechaHoy.getYear() - persona.getFechaNacimiento().getYear();
+
+		if (restaEdades >= edadMin) {
 			return true;
 		}
 		
@@ -65,7 +73,7 @@ public class AtraccionCultural extends Atraccion{
 	}
 	
 	
-	}
+	
 
 	@Override
 	public String toString() {

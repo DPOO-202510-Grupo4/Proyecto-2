@@ -1,15 +1,20 @@
 package Atracciones;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class AtraccionMecanica extends Atraccion{
+public class AtraccionMecanica extends Atraccion {
 
 	public String riesgo;
 	public String exclusividad;
-	public int pesoMin;
-	public int pesoMax;
-	public int alturaMin;
-	public int alturaMax;
+	public int pesoMin = 40;
+	public int pesoMax = 400;
+	public int alturaMin = 150;
+	public int alturaMax = 200;
+	private static final String NOMBREARCHIVO = "atracciones_mecanicas.txt";
 	
 	public AtraccionMecanica(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad,
 			int minEmpleados, int edadMin, String nombre, List<String> restriccionClima, boolean deTemporada,
@@ -72,6 +77,8 @@ public class AtraccionMecanica extends Atraccion{
 	public void setAlturaMax(int alturaMax) {
 		this.alturaMax = alturaMax;
 	}
+
+
 	
 	public boolean validarRestricciones() {
 		
@@ -112,10 +119,21 @@ public class AtraccionMecanica extends Atraccion{
 		
 	}
 	
-	public boolean puedeOperarSegunNumEmpleados() {
+	public boolean puedeOperarSegunNumEmpleados(int cantidadEmpleadosActuales) {
 		
-		return true;
+		if (cantidadEmpleadosActuales >= getMinEmpleados()){
+			return true;
+		}
 		
+		return false;
+	}
+
+	public boolean usarAtraccion(String tiquete, String clima, int altura, int peso){
+
+		if (validarRestricciones() && validarTiquete(tiquete) && validarAlturaYPeso(altura, peso) && puedeOperarSegunClima(clima) && puedeOperarSegunNumEmpleados())
+
+
+
 	}
 	
 	public String toString() {
@@ -124,6 +142,31 @@ public class AtraccionMecanica extends Atraccion{
 	               ", altura máxima =" + alturaMax + ", altura mínima =" + alturaMin + "]";
 		
 		}
+
+
 	
+
+
+	public void persistencia(String nombre, AtraccionMecanica persistirAtraccion){
+
+		crearArchivo(nombre);
+		guardarAtraccion(persistirAtraccion);
+	}
+
+	public void guardarAtraccion(AtraccionMecanica nombreAtraccionMecanica){
+
+		
+		try (BufferedWriter atraccionEscrita = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
+			String atraccionFormatoTexto = ubicacion + "," + cupoMax + ", " + restricciones + ", " + exclusividad + ", " + minEmpleados + ", " + edadMin + ", " + nombre + ", " + restriccionClima + ", " + deTemporada + ", " 
+			+ riesgo + ", " + pesoMin + ", " + pesoMax + ", " + alturaMin + ", " + String.valueOf(alturaMax);
+			atraccionEscrita.write(atraccionFormatoTexto);
+			atraccionEscrita.newLine();
+
+		} catch(IOException e){
+			System.err.println("No se puedo guardar la atracción");
+		}
+	}
+
+
 	}
 	
