@@ -12,4 +12,10 @@ public class FastPass {
 		this.usado = usado;
 	}
 
+
+
+
+
+
+	
 }
