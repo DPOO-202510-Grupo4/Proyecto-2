@@ -128,10 +128,13 @@ public class AtraccionMecanica extends Atraccion {
 		return false;
 	}
 
-	public boolean usarAtraccion(String tiquete, String clima, int altura, int peso){
+	public boolean usarAtraccion(String tiquete, String clima, int altura, int peso, int numEmpleados){
 
-		if (validarRestricciones() && validarTiquete(tiquete) && validarAlturaYPeso(altura, peso) && puedeOperarSegunClima(clima) && puedeOperarSegunNumEmpleados())
+		if (validarRestricciones() && validarTiquete(tiquete) && validarAlturaYPeso(altura, peso) && puedeOperarSegunClima(clima) && puedeOperarSegunNumEmpleados(numEmpleados)){
+			return true;
+		}
 
+		return false;
 
 
 	}
