@@ -29,7 +29,7 @@ public class Cliente extends Persona {
 			clienteEscrito.newLine();
 
 		} catch(IOException e){
-			System.err.println("No se puedo guardar el cliente");
+			System.err.println("No se pudo guardar el cliente");
 		}
 	}
 

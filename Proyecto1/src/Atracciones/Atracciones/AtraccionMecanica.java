@@ -165,7 +165,7 @@ public class AtraccionMecanica extends Atraccion {
 			atraccionEscrita.newLine();
 
 		} catch(IOException e){
-			System.err.println("No se puedo guardar la atracción");
+			System.err.println("No se pudo guardar la atracción");
 		}
 	}
 

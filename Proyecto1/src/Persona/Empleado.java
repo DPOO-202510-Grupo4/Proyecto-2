@@ -29,7 +29,7 @@ public abstract class Empleado extends Persona {
 			empleadoEscrito.newLine();
 
 		} catch(IOException e){
-			System.err.println("No se puedo guardar el empleado");
+			System.err.println("No se puddo guardar el empleado");
 		}
 	}
 

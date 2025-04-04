@@ -29,7 +29,7 @@ public class Administrador extends Persona {
 			administradorEscrito.newLine();
 
 		} catch(IOException e){
-			System.err.println("No se puedo guardar el administrador");
+			System.err.println("No se pudo guardar el administrador");
 		}
 	}
 
