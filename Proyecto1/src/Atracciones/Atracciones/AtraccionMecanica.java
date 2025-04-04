@@ -77,8 +77,39 @@ public class AtraccionMecanica extends Atraccion {
 		this.alturaMax = alturaMax;
 	}
 
+	public List<String> getRestricciones() {
+		return restricciones;
+	}
 
+	public void setRestricciones(List<String> restricciones){
+		this.restricciones = restricciones;
+	}
+
+	public int getEdadMin(){
+		return edadMin;
+	}
 	
+	public void setEdadMin(int edadMin){
+		this.edadMin = edadMin;
+	}
+
+	public String getNombre(){
+		return nombre;
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+
+	public List<String> getRestriccionClima(){
+		return restriccionClima;
+	}
+
+	public void setRestriccionClima(List<String> restriccionClima){
+		this.restriccionClima = restriccionClima;
+	}
+
+
 	public boolean validarRestricciones() {
 		
 		return false;
