@@ -1,5 +1,9 @@
 package Persona;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 public abstract class Persona {
@@ -7,6 +11,7 @@ public abstract class Persona {
  protected String login;
  protected String password;
  protected LocalDate fechaNacimiento;
+ private static final String PERSONAS_PERSISTENCIA = "persistencia/personas.txt";
 
 public Persona(String nombre, String login, String password, LocalDate fechaNacimiento) {
 	this.nombre = nombre;
@@ -48,8 +53,21 @@ public void setFechaNacimiento(LocalDate fechaNacimiento) {
 }
  
 
+    public void crearArchivo(String nombreArchivo){
+
+        try {
+            Files.createDirectories(Paths.get("persistencia"), null);
+            File archivo = new File(nombreArchivo);
+            if (!archivo.exists()){
+                archivo.createNewFile();
+            }
+
+        } catch(IOException e){
+            System.err.println("Error al crear el archivo: " + nombreArchivo + " " + e.getMessage());
+        }
 
 
 
+	}
 
 }
