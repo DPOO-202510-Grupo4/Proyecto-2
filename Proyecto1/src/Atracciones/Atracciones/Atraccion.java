@@ -13,7 +13,7 @@ public abstract class Atraccion {
 	protected String nombre;
 	protected List<String> restriccionClima;
 	protected boolean deTemporada;
-	private static final String ATRACCIONES_PERSISTENCIA = "persistencia/atracciones.txt";
+	
 	
 	public Atraccion(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad, int minEmpleados, int edadMin, 
 			String nombre, List<String> restriccionClima, boolean deTemporada) {
