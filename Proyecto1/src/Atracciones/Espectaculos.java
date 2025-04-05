@@ -1,11 +1,16 @@
 package Atracciones;
-import java.util.Date;
+import restricciones.Temporada;
+import java.util.ArrayList;
+
 public class Espectaculos {
-    private Date horario;
-    private Date fecha;
-    public Espectaculos(Date horario, Date fecha) {
-        this.horario = horario;
-        this.fecha = fecha;
-    }
+    private ArrayList<Temporada> horario;
+    private String empresaEncargada;
+
+	public Espectaculos(ArrayList<Temporada> horario, String empresaEncargada) {
+		this.horario = horario;
+		this.empresaEncargada = empresaEncargada;
+	}
+    
+    
 
 }
