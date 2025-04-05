@@ -52,22 +52,4 @@ public void setFechaNacimiento(LocalDate fechaNacimiento) {
 	this.fechaNacimiento = fechaNacimiento;
 }
  
-
-    public void crearArchivo(String nombreArchivo){
-
-        try {
-            Files.createDirectories(Paths.get("persistencia"), null);
-            File archivo = new File(nombreArchivo);
-            if (!archivo.exists()){
-                archivo.createNewFile();
-            }
-
-        } catch(IOException e){
-            System.err.println("Error al crear el archivo: " + nombreArchivo + " " + e.getMessage());
-        }
-
-
-
-	}
-
 }
