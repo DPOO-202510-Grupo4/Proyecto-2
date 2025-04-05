@@ -10,7 +10,7 @@ public class AtraccionMecanica extends Atraccion {
 	public int pesoMax = 400;
 	public int alturaMin = 150;
 	public int alturaMax = 200;
-	private static final String NOMBREARCHIVO = "atracciones_mecanicas.txt";
+	
 	
 	public AtraccionMecanica(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad,
 			int minEmpleados, int edadMin, String nombre, List<String> restriccionClima, boolean deTemporada,

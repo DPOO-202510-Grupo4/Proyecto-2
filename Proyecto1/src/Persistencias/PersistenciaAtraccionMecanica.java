@@ -10,7 +10,7 @@ import Atracciones.AtraccionMecanica;
 
 public class PersistenciaAtraccionMecanica {
 
-    private static final String ATRACCIONES_PERSISTENCIA = "persistencia/atracciones.txt";
+    //private static final String ATRACCIONES_PERSISTENCIA = "persistencia/atracciones.txt";
 	private static final String NOMBREARCHIVO = "atracciones_mecanicas.txt";
 
         public void crearArchivo(String nombreArchivo){
