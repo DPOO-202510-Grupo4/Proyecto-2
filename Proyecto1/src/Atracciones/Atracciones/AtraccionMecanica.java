@@ -185,29 +185,5 @@ public class AtraccionMecanica extends Atraccion {
 		}
 
 
-	
 
-
-	public void persistencia(String nombre, AtraccionMecanica persistirAtraccion){
-
-		crearArchivo(nombre);
-		guardarAtraccion(persistirAtraccion);
-	}
-
-	public void guardarAtraccion(AtraccionMecanica nombreAtraccionMecanica){
-
-		
-		try (BufferedWriter atraccionEscrita = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
-			String atraccionFormatoTexto = ubicacion + "," + cupoMax + ", " + restricciones + ", " + exclusividad + ", " + minEmpleados + ", " + edadMin + ", " + nombre + ", " + restriccionClima + ", " + deTemporada + ", " 
-			+ riesgo + ", " + pesoMin + ", " + pesoMax + ", " + alturaMin + ", " + String.valueOf(alturaMax);
-			atraccionEscrita.write(atraccionFormatoTexto);
-			atraccionEscrita.newLine();
-
-		} catch(IOException e){
-			System.err.println("No se pudo guardar la atracción");
-		}
-	}
-
-
-	}
 	
