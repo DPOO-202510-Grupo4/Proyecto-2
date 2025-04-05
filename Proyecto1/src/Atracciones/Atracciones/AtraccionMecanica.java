@@ -109,6 +109,14 @@ public class AtraccionMecanica extends Atraccion {
 		this.restriccionClima = restriccionClima;
 	}
 
+	public boolean getDeTemporada(){
+		return deTemporada;
+	}
+
+	public void setDeTemporada(boolean deTemporada){
+		this.deTemporada = deTemporada;
+	}
+
 
 	public boolean validarRestricciones() {
 		

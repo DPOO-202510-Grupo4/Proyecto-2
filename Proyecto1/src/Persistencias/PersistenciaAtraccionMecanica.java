@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import Atracciones.Atraccion;
 import Atracciones.AtraccionMecanica;
 
 public class PersistenciaAtraccionMecanica {
@@ -42,10 +41,12 @@ public class PersistenciaAtraccionMecanica {
 		
 		try (BufferedWriter atraccionEscrita = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
 			String atraccionFormatoTexto = nombreAtraccionMecanica.getUbicacion() + "," + nombreAtraccionMecanica.getCupoMax() + ", " + 
-			nombreAtraccionMecanica.getCupoMax() + ", " + nombreAtraccionMecanica.getRestricciones() + ", " + nombreAtraccionMecanica.getExclusividad() + ", " 
-			+ nombreAtraccionMecanica.getMinEmpleados() + ", " + nombreAtraccionMecanica.getEdadMin() + ", " + nombreAtraccionMecanica.getNombre() + ", " 
-			+ nombreAtraccionMecanica.getRestriccionClima() + ", " + deTemporada + ", " 
-			+ riesgo + ", " + pesoMin + ", " + pesoMax + ", " + alturaMin + ", " + String.valueOf(alturaMax);
+			nombreAtraccionMecanica.getCupoMax() + ", " + nombreAtraccionMecanica.getRestricciones() + ", " + 
+			nombreAtraccionMecanica.getExclusividad() + ", " + nombreAtraccionMecanica.getMinEmpleados() + ", " + 
+			nombreAtraccionMecanica.getEdadMin() + ", " + nombreAtraccionMecanica.getNombre() + ", " 
+			+ nombreAtraccionMecanica.getRestriccionClima() + ", " + nombreAtraccionMecanica.getDeTemporada() + ", " 
+			+ nombreAtraccionMecanica.getRiesgo() + ", " + nombreAtraccionMecanica.getPesoMin() + ", " + 
+			nombreAtraccionMecanica.getPesoMax() + ", " + nombreAtraccionMecanica.getAlturaMin();
 			atraccionEscrita.write(atraccionFormatoTexto);
 			atraccionEscrita.newLine();
 
