@@ -1,8 +1,5 @@
 package Atracciones;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 public class AtraccionMecanica extends Atraccion {
@@ -182,7 +179,9 @@ public class AtraccionMecanica extends Atraccion {
 	               ", peso máximo =" + pesoMax + ", peso mínimo =" + pesoMin + 
 	               ", altura máxima =" + alturaMax + ", altura mínima =" + alturaMin + "]";
 		
-		}
+	}
+
+}
 
 
 
