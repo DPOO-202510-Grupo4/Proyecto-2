@@ -49,6 +49,7 @@ public class PersistenciaAtraccionMecanica {
 			nombreAtraccionMecanica.getPesoMax() + ", " + nombreAtraccionMecanica.getAlturaMin();
 			atraccionEscrita.write(atraccionFormatoTexto);
 			atraccionEscrita.newLine();
+			atraccionEscrita.close();
 
 		} catch(IOException e){
 			System.err.println("No se pudo guardar la atracción");

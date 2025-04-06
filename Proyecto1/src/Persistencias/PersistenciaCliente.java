@@ -28,7 +28,7 @@ public class PersistenciaCliente {
 
 	}
 
-    		public void persistencia(String nombre, Persona persistirPersona){
+    public void persistencia(String nombre, Persona persistirPersona){
 
 		crearArchivo(nombre);
 		guardarCliente(persistirPersona);
@@ -43,6 +43,7 @@ public class PersistenciaCliente {
             + ", Password: " + nombreCliente.getPassword();
 			clienteEscrito.write(clienteFormatoTexto);
 			clienteEscrito.newLine();
+            clienteEscrito.close();
 
 		} catch(IOException e){
 			System.err.println("No se pudo guardar el cliente");

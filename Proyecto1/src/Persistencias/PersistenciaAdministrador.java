@@ -43,6 +43,7 @@ public class PersistenciaAdministrador {
             nombreAdministrador.getLogin() + ", Password: " + nombreAdministrador.getPassword();
 			administradorEscrito.write(administradorFormatoTexto);
 			administradorEscrito.newLine();
+            administradorEscrito.close();
 
 		} catch(IOException e){
 			System.err.println("No se pudo guardar el administrador");

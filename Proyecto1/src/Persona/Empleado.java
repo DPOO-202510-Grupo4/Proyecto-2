@@ -1,36 +1,73 @@
 package Persona;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.LocalDate;
 
 public abstract class Empleado extends Persona {
 	protected String turno;
-	private static final String NOMBREARCHIVO = "empleados.txt";
 
-	public Empleado(String nombre, String login, String password) {
-		super(nombre, login, password);
+	public Empleado(String nombre, String login, String password, LocalDate fechaNacimiento, String turno) {
+		super(nombre, login, password, fechaNacimiento);
+	}
+
+	@Override
+	public LocalDate getFechaNacimiento() {
+		// TODO Auto-generated method stub
+		return super.getFechaNacimiento();
+	}
+
+	@Override
+	public String getLogin() {
+		// TODO Auto-generated method stub
+		return super.getLogin();
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return super.getNombre();
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return super.getPassword();
+	}
+
+	@Override
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		// TODO Auto-generated method stub
+		super.setFechaNacimiento(fechaNacimiento);
+	}
+
+	@Override
+	public void setLogin(String login) {
+		// TODO Auto-generated method stub
+		super.setLogin(login);
+	}
+
+	@Override
+	public void setNombre(String nombre) {
+		// TODO Auto-generated method stub
+		super.setNombre(nombre);
+	}
+
+	@Override
+	public void setPassword(String password) {
+		// TODO Auto-generated method stub
+		super.setPassword(password);
+	}
+
+	//@Override
+	public String getTurno() {
+		// TODO Auto-generated method stub
+		return this.turno;
+	}
+
+	public void setTurno(String turno){
+		this.turno = turno;
 	}
 
 
-	public void persistencia(String nombre, Persona persistirPersona){
-
-		crearArchivo(nombre);
-		guardarEmpleado(persistirPersona);
-
-	}
-
-	public void guardarEmpleado(Persona nombreEmpleado){
-
-		
-		try (BufferedWriter empleadoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
-			String empleadoFormatoTexto = "Nombre: " + nombre + ", Login: " + login + ", Password: " + password;
-			empleadoEscrito.write(empleadoFormatoTexto);
-			empleadoEscrito.newLine();
-
-		} catch(IOException e){
-			System.err.println("No se puddo guardar el empleado");
-		}
 	}
 
 
@@ -39,6 +76,3 @@ public abstract class Empleado extends Persona {
 
 
 
-
-
-}
