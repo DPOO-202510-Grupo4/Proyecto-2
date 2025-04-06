@@ -42,7 +42,6 @@ public class PersistenciaEmpleado {
             if (nombreEmpleado instanceof Empleado) {
                 Empleado empleado = (Empleado) nombreEmpleado;
                 
-                // Corregido: Abrir y cerrar BufferedWriter correctamente
                 BufferedWriter empleadoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true));
                 String empleadoFormatoTexto = "Nombre: " + empleado.getNombre() + ", Login: " + empleado.getLogin()
                 + ", Password: " + empleado.getPassword() +  ", Turno: " + empleado.getTurno();
