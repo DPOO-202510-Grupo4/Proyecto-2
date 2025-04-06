@@ -32,11 +32,10 @@ public class PersistenciaTiqueteTemporada {
 
     public void guardarTiqueteTemporada(TiqueteTemporada nombreTiqueteTemporada) {
         try {
-            // Verificar si el objeto es una instancia de TiqueteTemporada
+
             if (nombreTiqueteTemporada instanceof TiqueteTemporada) {
                 TiqueteTemporada tiqueteTemporada = (TiqueteTemporada) nombreTiqueteTemporada;
     
-                // Bloque para escribir el tiquete en el archivo
                 try (BufferedWriter tiqueteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
                     String tiqueteFormatoTexto = tiqueteTemporada.getIdTiquete() + ","
                             + tiqueteTemporada.getCategoria() + ", "
@@ -52,7 +51,7 @@ public class PersistenciaTiqueteTemporada {
             } else {
                 System.err.println("El objeto no es un Tiquete Temporada, no se puede guardar.");
             }
-        } catch (Exception e) {  // Este bloque solo captura otros tipos de excepciones.
+        } catch (Exception e) { 
             System.err.println("Error general: " + e.getMessage());
         }
     }
