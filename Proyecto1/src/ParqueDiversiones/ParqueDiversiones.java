@@ -19,23 +19,22 @@ public class ParqueDiversiones {
 
 
         AtraccionMecanica atraccionMecanica = new AtraccionMecanica(
-            "Montaña Rusa",  // ubicacion
-            10,  // cupoMax
-            Arrays.asList("Seguridad"),  // restricciones
-            "Alta",  // exclusividad
-            5,  // minEmpleados
-            10,  // edadMin
-            "Montaña Rusa",  // nombre
-            Arrays.asList("Ninguna"),  // restriccionClima
-            true,  // deTemporada
-            "Alto",  // riesgo
-            50,  // pesoMin
-            200,  // pesoMax
-            150,  // alturaMin
-            180   // alturaMax
+            "Montaña Rusa",
+            10,  
+            Arrays.asList("Seguridad"),
+            "Alta",
+            5,
+            10,
+            "Montaña Rusa",
+            Arrays.asList("Ninguna"),
+            true,
+            "Alto",
+            50,
+            200,
+            150,
+            180   
         );
 
-        // Persistir atracción mecánica
         PersistenciaAtraccionMecanica persistenciaAtraccionMecanica = new PersistenciaAtraccionMecanica();
         persistenciaAtraccionMecanica.persistencia("atracciones_mecanicas.txt", atraccionMecanica);
     }
