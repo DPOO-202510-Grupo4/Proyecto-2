@@ -33,9 +33,9 @@ public class PersistenciaTiqueteRegular {
 
         if (nombreTiqueteRegular instanceof TiqueteRegular) {
             try (BufferedWriter tiqueteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
-                String tiqueteFormatoTexto = nombreTiqueteRegular.getIdTiquete() + "," 
-                    + nombreTiqueteRegular.getCategoria() + ", " 
-                    + nombreTiqueteRegular.isUsado() + ", " 
+                String tiqueteFormatoTexto = "Id del tiquete: " + nombreTiqueteRegular.getIdTiquete() + ", Categoria del tiquete: " 
+                    + nombreTiqueteRegular.getCategoria() + ", Fue Usado: " 
+                    + nombreTiqueteRegular.isUsado() + ", Fecha: " 
                     + nombreTiqueteRegular.getFecha();
                 
                 tiqueteEscrito.write(tiqueteFormatoTexto);

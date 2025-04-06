@@ -37,10 +37,10 @@ public class PersistenciaTiqueteTemporada {
                 TiqueteTemporada tiqueteTemporada = (TiqueteTemporada) nombreTiqueteTemporada;
     
                 try (BufferedWriter tiqueteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
-                    String tiqueteFormatoTexto = tiqueteTemporada.getIdTiquete() + ","
-                            + tiqueteTemporada.getCategoria() + ", "
-                            + tiqueteTemporada.isUsado() + ", "
-                            + tiqueteTemporada.getFechaInicio() + ", "
+                    String tiqueteFormatoTexto = "Id del tiquete: " + tiqueteTemporada.getIdTiquete() + ", Categoría: "
+                            + tiqueteTemporada.getCategoria() + ", Fue usado: "
+                            + tiqueteTemporada.isUsado() + ", Fecha de Inicio: "
+                            + tiqueteTemporada.getFechaInicio() + ", Fecha Final: "
                             + tiqueteTemporada.getFechaFinal();
     
                     tiqueteEscrito.write(tiqueteFormatoTexto);
