@@ -11,12 +11,12 @@ import Persona.Persona;
 
 public class PersistenciaCliente {
 
-    private static final String NOMBREARCHIVO = "clientes.txt";
+    private static final String NOMBREARCHIVO = "persistencia/clientes.txt";
 
     public void crearArchivo(String nombreArchivo){
 
         try {
-            Files.createDirectories(Paths.get("persistencia"), null);
+            Files.createDirectories(Paths.get("persistencia"));
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()){
                 archivo.createNewFile();

@@ -11,13 +11,13 @@ import Atracciones.AtraccionCultural;
 
 public class PersistenciaAtraccionCultural {
 
-    private static final String NOMBREARCHIVO = "atracciones_culturales.txt";
+    private static final String NOMBREARCHIVO = "persistencia/atracciones_culturales.txt";
 
 
     public void crearArchivo(String nombreArchivo){
 
         try {
-            Files.createDirectories(Paths.get("persistencia"), null);
+            Files.createDirectories(Paths.get("persistencia"));
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()){
                 archivo.createNewFile();

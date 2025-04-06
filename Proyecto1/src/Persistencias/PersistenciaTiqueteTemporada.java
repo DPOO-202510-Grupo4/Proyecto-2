@@ -11,11 +11,11 @@ import Tiquetes.TiqueteTemporada;
 
 public class PersistenciaTiqueteTemporada {
 
-    private static final String NOMBREARCHIVO = "tiquetes_temporada.txt";
+    private static final String NOMBREARCHIVO = "persistencia/tiquetes_temporada.txt";
 
     public void crearArchivo(String nombreArchivo) {
         try {
-            Files.createDirectories(Paths.get("persistencia"), null);
+            Files.createDirectories(Paths.get("persistencia"));
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()) {
                 archivo.createNewFile();
