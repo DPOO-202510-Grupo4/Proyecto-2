@@ -16,7 +16,7 @@ public class PersistenciaAtraccionMecanica {
         public void crearArchivo(String nombreArchivo){
 
         try {
-            Files.createDirectories(Paths.get("persistencia"), null);
+            Files.createDirectories(Paths.get("persistencia"));
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()){
                 archivo.createNewFile();

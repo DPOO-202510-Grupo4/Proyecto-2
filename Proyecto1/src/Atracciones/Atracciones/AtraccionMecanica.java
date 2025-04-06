@@ -14,12 +14,12 @@ public class AtraccionMecanica extends Atraccion {
 	
 	public AtraccionMecanica(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad,
 			int minEmpleados, int edadMin, String nombre, List<String> restriccionClima, boolean deTemporada,
-			String riesgo, String exclusividad2, int pesoMin, int pesoMax, int alturaMin, int alturaMax) {
+			String riesgo, int pesoMin, int pesoMax, int alturaMin, int alturaMax) {
 		super(ubicacion, cupoMax, restricciones, exclusividad, minEmpleados, edadMin, nombre, restriccionClima,
 				deTemporada);
 		
 		this.riesgo = riesgo;
-		exclusividad = exclusividad2;
+		this.exclusividad = exclusividad;
 		this.pesoMin = pesoMin;
 		this.pesoMax = pesoMax;
 		this.alturaMin = alturaMin;
