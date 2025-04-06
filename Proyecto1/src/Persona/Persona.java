@@ -4,6 +4,7 @@ public abstract class Persona {
  protected String nombre;
  protected String login;
  protected String password;
+ protected Date fechaNacimiento;
 public Persona(String nombre, String login, String password) {
 	this.nombre = nombre;
 	this.login = login;

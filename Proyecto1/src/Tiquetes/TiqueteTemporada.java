@@ -6,10 +6,15 @@ import restricciones.Temporada;
 
 public class TiqueteTemporada extends Tiquete {
 	private Temporada temporada;
-	public TiqueteTemporada(String idTiquete, String categoria, boolean usado, Date fechaInicio, Date fechaFinal) {
+
+	public TiqueteTemporada(String idTiquete, CategoriaTiquete categoria, boolean usado, Temporada temporada) {
 		super(idTiquete, categoria, usado);
-		this.fechaInicio = fechaInicio;
-		this.fechaFinal = fechaFinal;
+		this.temporada = temporada;
 	}
+	
+
+	
+
+	
 	
 }

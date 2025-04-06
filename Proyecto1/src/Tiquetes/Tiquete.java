@@ -6,7 +6,6 @@ public abstract class Tiquete {
 	protected boolean usado;
 	
 	public Tiquete(String idTiquete, CategoriaTiquete categoria, boolean usado) {
-		super();
 		this.idTiquete = idTiquete;
 		this.categoria = categoria;
 		this.usado = usado;
