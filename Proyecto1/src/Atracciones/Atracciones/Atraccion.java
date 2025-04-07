@@ -1,4 +1,4 @@
-package Atracciones;
+package Atracciones.Atracciones;
 
 import java.util.*;
 
@@ -8,11 +8,12 @@ public abstract class Atraccion {
 	protected int cupoMax;
 	protected List<String> restricciones;
 	protected String exclusividad;
-	protected int minEmpleados;
+	protected int minEmpleados = 3;
 	protected int edadMin;
 	protected String nombre;
 	protected List<String> restriccionClima;
 	protected boolean deTemporada;
+	
 	
 	public Atraccion(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad, int minEmpleados, int edadMin, 
 			String nombre, List<String> restriccionClima, boolean deTemporada) {
@@ -77,4 +78,13 @@ public abstract class Atraccion {
 	public void setEdadMin(int edadMin) {
 		this.edadMin = edadMin;
 	}
+
+
+	   
+
+
+
+
+
 }
+

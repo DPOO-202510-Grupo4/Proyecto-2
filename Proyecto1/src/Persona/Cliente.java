@@ -6,9 +6,18 @@ import java.util.List;
 import Tiquetes.Tiquete;
 import Tiquetes.FastPass;
 import Tiquetes.Factura;
+import java.time.LocalDate;
 
 public class Cliente extends Persona {
 
+	public Cliente(String nombre, String login, String password, LocalDate fechaNacimiento) {
+		super(nombre, login, password, fechaNacimiento);
+		
+	}
+
+
+
+}
 	public List<Factura> historialCompras;
 	public ArrayList<Tiquete> tiquetes;
 	public ArrayList<FastPass> fastPass;

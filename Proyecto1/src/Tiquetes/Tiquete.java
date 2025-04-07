@@ -15,6 +15,48 @@ public abstract class Tiquete {
 		this.categoria = categoria;
 		this.usado = usado;
 	}
+
+	public String getIdTiquete() {
+		return idTiquete;
+	}
+
+	public void setIdTiquete(String idTiquete) {
+		this.idTiquete = idTiquete;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public boolean isUsado() {
+		return usado;
+	}
+
+	public void setUsado(boolean usado) {
+		this.usado = usado;
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	public String getId() {
 		return idTiquete;
