@@ -1,6 +1,5 @@
+package Tiquetes;
 
-import Tiquetes.Tiquete;
-import Tiquetes.CategoriaTiquete;
 import Persona.Cliente;
 
 public class Factura {
