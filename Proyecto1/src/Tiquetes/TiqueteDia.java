@@ -10,6 +10,12 @@ public class TiqueteDia extends Tiquete {
 		Fecha = fecha;
 	}
 
+	public Date getFecha() {
+		return Fecha;
+	}
+
+
+
 	
 	
 }
