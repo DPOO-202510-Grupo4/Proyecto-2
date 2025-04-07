@@ -46,7 +46,7 @@ public class PersistenciaAdministrador {
             administradorEscrito.close();
 
 		} catch(IOException e){
-			System.err.println("No se pudo guardar el administrador");
+			System.err.println("No se pudo guardar el administrador.");
 		}
 	}
 
