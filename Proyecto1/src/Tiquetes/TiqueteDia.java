@@ -2,12 +2,14 @@ package Tiquetes;
 
 import java.util.Date;
 
-public class TiqueteDia {
+public class TiqueteDia extends Tiquete {
 	private Date Fecha;
 
-	public TiqueteDia(Date fecha) {
-		super();
+	public TiqueteDia(String idTiquete, CategoriaTiquete categoria, boolean usado, Date fecha) {
+		super(idTiquete, categoria, usado);
 		Fecha = fecha;
 	}
+
+	
 	
 }
