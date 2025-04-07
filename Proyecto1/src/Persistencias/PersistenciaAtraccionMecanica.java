@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import Atracciones.AtraccionMecanica;
+import Atracciones.Atracciones.AtraccionMecanica;
 
 public class PersistenciaAtraccionMecanica {
 
@@ -52,7 +52,7 @@ public class PersistenciaAtraccionMecanica {
 			atraccionEscrita.close();
 
 		} catch(IOException e){
-			System.err.println("No se pudo guardar la atracción");
+			System.err.println("No se pudo guardar la atracción mecánica");
 		}
 	}
 }
