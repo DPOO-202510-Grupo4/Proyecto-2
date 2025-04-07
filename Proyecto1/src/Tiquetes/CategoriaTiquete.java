@@ -10,6 +10,10 @@ public class CategoriaTiquete {
 		this.nombre = nombre;
 		this.atraccionesDisponibles = atraccionesDisponibles;
 	}
+	public String getNombre() {
+		
+		return this.nombre;
+	}
 	
 
 }

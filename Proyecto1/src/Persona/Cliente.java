@@ -1,4 +1,5 @@
 package Persona;
+import java.util.ArrayList;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class Cliente extends Persona {
 	public Cliente(String nombre, String login, String password, Date fechaNacimiento) {
 		this.tiquetes = new ArrayList<>();
 		super(nombre, login, password, fechaNacimiento);	
+		this.fastPass = fastPass;
 	}
 
 	public void agregarTiquete(Tiquete tiquete) {

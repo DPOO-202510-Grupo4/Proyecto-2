@@ -1,11 +1,20 @@
 package Persona;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class Empleado extends Persona {
-	protected String turno;
-
-	public Empleado(String nombre, String login, String password, LocalDate fechaNacimiento, String turno) {
+	private ArrayList<Turno> turnos;
+	private ArrayList<String> tareas;
+	private Capacitaciones capacitaciones;
+	private Rol rolActual; 
+	private LugarTrabajo lugarTrabajo;
+	public Empleado(String nombre, String login, String password, ArrayList<Turno> turnos, ArrayList<String> tareas,
+			Capacitaciones capacitaciones, Rol rolActual, LugarTrabajo lugarTrabajo) {
+		this.turnos = turnos;
+		this.tareas = tareas;
+		this.capacitaciones = capacitaciones;
+		this.rolActual = rolActual;
+		this.lugarTrabajo = lugarTrabajo;
 		super(nombre, login, password, fechaNacimiento);
 	}
 
@@ -73,6 +82,6 @@ public abstract class Empleado extends Persona {
 
 
 
-
-
-
+	
+	
+}

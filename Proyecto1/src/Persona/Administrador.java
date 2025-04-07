@@ -33,32 +33,8 @@ public class Administrador extends Persona {
 		// TODO Auto-generated method stub
 		return super.getPassword();
 	}
-
-	@Override
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		// TODO Auto-generated method stub
-		super.setFechaNacimiento(fechaNacimiento);
-	}
-
-	@Override
-	public void setLogin(String login) {
-		// TODO Auto-generated method stub
-		super.setLogin(login);
-	}
-
-	@Override
-	public void setNombre(String nombre) {
-		// TODO Auto-generated method stub
-		super.setNombre(nombre);
-	}
-
-	@Override
-	public void setPassword(String password) {
-		// TODO Auto-generated method stub
-		super.setPassword(password);
-	}
-
-	
-
-
+	public void modificarAtracciones() {}
+	public void asignarTurnos() {}
+	public void asignarRol() {}
+	public void asignarTarea() {}
 }

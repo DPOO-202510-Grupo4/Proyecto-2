@@ -2,7 +2,7 @@ package Tiquetes;
 
 import Persona.Cliente;
 
-public abstract class Tiquete {
+public abstract class Tiquete extends ItemVenta{
 	protected String idTiquete;
 	protected CategoriaTiquete categoria;
 	protected boolean usado;
@@ -10,7 +10,6 @@ public abstract class Tiquete {
 	private Cliente cliente;
 	
 	public Tiquete(String idTiquete, CategoriaTiquete categoria, boolean usado) {
-		super();
 		this.idTiquete = idTiquete;
 		this.categoria = categoria;
 		this.usado = usado;
