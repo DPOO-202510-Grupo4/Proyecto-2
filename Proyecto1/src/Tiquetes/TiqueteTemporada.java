@@ -1,6 +1,5 @@
 package Tiquetes;
 
-import java.util.Date;
 
 import restricciones.Temporada;
 

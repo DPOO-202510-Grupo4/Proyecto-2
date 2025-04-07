@@ -2,7 +2,7 @@ package Tiquetes;
 
 import Persona.Cliente;
 
-public abstract class Tiquete {
+public abstract class Tiquete extends ItemVenta{
 	protected String idTiquete;
 	protected CategoriaTiquete categoria;
 	protected boolean usado;
