@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Tiquetes.Tiquete;
 import Tiquetes.FastPass;
+import Tiquetes.Factura;
 
 public class Cliente extends Persona {
 
