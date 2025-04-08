@@ -1,5 +1,6 @@
 package Persona;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Empleado extends Persona {
