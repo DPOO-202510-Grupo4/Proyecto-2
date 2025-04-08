@@ -45,7 +45,14 @@ public ArrayList empleadosDisponibles(LocalDateTime fecha, String lugar) {
 		}
 	}
 	return empleadosDisponibles;
+}
 
-
+public void asignarTurno(Empleado empleado, Turno turno) {
+	if (empleado.getTurnos().contains(turno)) {
+		System.out.println("El empleado ya tiene un turno asignado en esa fecha.");
+	} else {
+		empleado.getTurnos().add(turno);
+	}
+}
 
 }
