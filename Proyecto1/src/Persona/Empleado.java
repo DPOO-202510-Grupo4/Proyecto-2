@@ -79,8 +79,8 @@ public abstract class Empleado extends Persona {
 		return this.turnos;
 	}
 
-	public ArrayList<LugarTrabajo> getLugarTrabajo() {
-		return this.lugarTrabajo;
+	public String getLugarTrabajo() {
+		return this.lugarTrabajo.toString();
 
 	}
 
