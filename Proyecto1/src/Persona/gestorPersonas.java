@@ -1,8 +1,7 @@
 package Persona;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class GestorPersonas {
 
@@ -34,14 +33,19 @@ public String obtenerEmpleadoPorID(String login) {
 }
 
 public ArrayList empleadosPorTipo(String tipo) {
-	// TODO
+	ArrayList empleadosTipo = new ArrayList<>();
+	//TODO
+	return empleadosTipo;
 }
 
 public ArrayList empleadosDisponibles(LocalDate fecha, String lugar) {
 	ArrayList<Empleado> empleadosDisponibles = new ArrayList<>();
 	for (Empleado empleado : this.empleados) {
-		if (!empleado.getTurnos().contains(fecha) && !empleado.getLugarTrabajo().equals(lugar)) {
-			empleadosDisponibles.add(empleado);
+		turnos = empleado.getTurnos();
+		for (Turno turno : turnos) {
+			if (!turno.getFecha().equals(fecha) && !turno.getLugarTrabajo().equals(lugar)) {
+				empleadosDisponibles.add(empleado);
+		}
 		}
 	}
 	return empleadosDisponibles;
