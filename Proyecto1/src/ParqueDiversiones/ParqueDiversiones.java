@@ -3,7 +3,7 @@ package ParqueDiversiones;
 import java.util.Arrays;
 
 //import Atracciones.AtraccionCultural;
-import Atracciones.AtraccionMecanica;
+import Atracciones.Atracciones.AtraccionMecanica;
 //import Persistencias.PersistenciaAtraccionCultural;
 import Persistencias.PersistenciaAtraccionMecanica;
 //import Persistencias.PersistenciaEmpleado;
