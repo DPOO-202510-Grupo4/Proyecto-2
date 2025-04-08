@@ -2,7 +2,7 @@ package Persona;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.LocalDate;
+import java.time.LocalDate;
 
 public class GestorPersonas {
 
@@ -37,7 +37,7 @@ public ArrayList empleadosPorTipo(String tipo) {
 	// TODO
 }
 
-public ArrayList empleadosDisponibles(LocalDateTime fecha, String lugar) {
+public ArrayList empleadosDisponibles(LocalDate fecha, String lugar) {
 	ArrayList<Empleado> empleadosDisponibles = new ArrayList<>();
 	for (Empleado empleado : this.empleados) {
 		if (!empleado.getTurnos().contains(fecha) && !empleado.getLugarTrabajo().equals(lugar)) {
