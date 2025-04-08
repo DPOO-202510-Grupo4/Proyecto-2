@@ -7,7 +7,7 @@ public abstract class Empleado extends Persona {
 
 	private ArrayList<Turno> turnos;
 	private ArrayList<String> tareas;
-	private Capacitaciones capacitaciones;
+	private ArrayList<Capacitaciones> capacitaciones;
 	private Rol rolActual; 
 	private LugarTrabajo lugarTrabajo;
 
@@ -16,7 +16,7 @@ public abstract class Empleado extends Persona {
 		super(nombre, login, password, fechaNacimiento);
 		this.turnos = new ArrayList<Turno>();
 		this.tareas = new ArrayList<String>();
-		this.capacitaciones = capacitaciones;
+		this.capacitaciones = new ArrayList<Capacitaciones>();
 		this.rolActual = rolActual;
 		this.lugarTrabajo = lugarTrabajo;
 	}
@@ -84,6 +84,10 @@ public abstract class Empleado extends Persona {
 
 	}
 
+	public ArrayList<Capacitaciones> getCapacitaciones() {
+		return this.capacitaciones;
+	}
+}
 
 
 

@@ -1,5 +1,6 @@
 package Persona;
 
+import Atracciones.Atraccion;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ public class GestorPersonas {
 private ArrayList<Empleado> empleados;
 private ArrayList<Turno> turnos;
 private Empleado empleado;
+private Atraccion atraccion;
 
 public GestorPersonas(ArrayList<Empleado> empleados, ArrayList<Turno> turnos) {
 	super();
@@ -57,6 +59,30 @@ public void asignarTurno(Empleado empleado, Turno turno) {
 	} else {
 		empleado.getTurnos().add(turno);
 	}
+}
+
+public ArrayList<Turno> turnosDeEmpleado(Empleado empleado) {
+	ArrayList<Turno> turnosEmpleado = new ArrayList<>();
+	for (Turno turno : empleado.getTurnos()) {
+		turnosEmpleado.add(turno);
+	}
+	return turnosEmpleado;
+}
+
+public ArrayList<Empleado> empleadosConCapacitacion(Capacitaciones capacitacion) {
+	ArrayList<Empleado> empleadosCapacitacion = new ArrayList<>();
+	for (Empleado empleado : this.empleados) {
+		if (empleado.getCapacitaciones().contains(capacitacion)) {
+			empleadosCapacitacion.add(empleado);
+		}
+	}
+	return empleadosCapacitacion;
+}
+
+public boolean verificarMinimosAtraccion(Atraccion atraccion, LocalDate fecha){
+	//TODO
+	//Verifica si la atraccion tiene los minimos de empleados asignados para la fecha
+	return false;
 }
 
 }
