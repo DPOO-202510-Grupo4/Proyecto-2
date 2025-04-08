@@ -1,6 +1,8 @@
 package Persona;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LocalDate;
 
 public class GestorPersonas {
 
@@ -15,17 +17,35 @@ public GestorPersonas(ArrayList<Empleado> empleados, ArrayList<Turno> turnos) {
 }
 
 public void registrarEmpleado(Empleado empleado) {
-	empleados.add(empleado);
+	this.empleados.add(empleado);
 }
 
 public void eliminarEmpleado(Empleado empleado) {
-	empleados.remove(empleado);
+	this.empleados.remove(empleado);
+}
 
-public void obtenerEmpleado(String login) {
-	for (Empleado empleado : empleados) {
-		if (empleado.getNombre().equals(login)) {
+public String obtenerEmpleadoPorID(String login) {
+	for (Empleado empleado : this.empleados) {
+		if (empleado.getLogin().equals(login)) {
 			System.out.println(empleado.toString());
 		}
 	}
+	return empleado.toString();
+}
+
+public ArrayList empleadosPorTipo(String tipo) {
+	// TODO
+}
+
+public ArrayList empleadosDisponibles(LocalDateTime fecha, String lugar) {
+	ArrayList<Empleado> empleadosDisponibles = new ArrayList<>();
+	for (Empleado empleado : this.empleados) {
+		if (!empleado.getTurnos().contains(fecha) && !empleado.getLugarTrabajo().equals(lugar)) {
+			empleadosDisponibles.add(empleado);
+		}
+	}
+	return empleadosDisponibles;
+
+
 
 }

@@ -4,19 +4,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Empleado extends Persona {
+
 	private ArrayList<Turno> turnos;
 	private ArrayList<String> tareas;
 	private Capacitaciones capacitaciones;
 	private Rol rolActual; 
 	private LugarTrabajo lugarTrabajo;
-	public Empleado(String nombre, String login, String password, ArrayList<Turno> turnos, ArrayList<String> tareas,
+
+	public Empleado(String nombre, String login, String password, LocalDate fechaNacimiento, ArrayList<Turno> turnos, ArrayList<String> tareas,
 			Capacitaciones capacitaciones, Rol rolActual, LugarTrabajo lugarTrabajo) {
-		this.turnos = turnos;
-		this.tareas = tareas;
+		super(nombre, login, password, fechaNacimiento);
+		this.turnos = new ArrayList<Turno>();
+		this.tareas = new ArrayList<String>();
 		this.capacitaciones = capacitaciones;
 		this.rolActual = rolActual;
 		this.lugarTrabajo = lugarTrabajo;
-		super(nombre, login, password, fechaNacimiento);
 	}
 
 	@Override
@@ -67,16 +69,18 @@ public abstract class Empleado extends Persona {
 		super.setPassword(password);
 	}
 
-	//@Override
-	public String getTurno() {
-		// TODO Auto-generated method stub
-		return this.turno;
+
+	public ArrayList<Turno> getTurnos() {
+		return this.turnos;
 	}
 
-	public void setTurno(String turno){
-		this.turno = turno;
+	public ArrayList<Turno> setTurno(Turno turno) {
+		turnos.add(turno);
+		return this.turnos;
 	}
 
+	public ArrayList<LugarTrabajo> getLugarTrabajo() {
+		return this.lugarTrabajo;
 
 	}
 
@@ -85,4 +89,4 @@ public abstract class Empleado extends Persona {
 
 	
 	
-}
+
