@@ -45,20 +45,19 @@ public class ParqueDiversiones {
     }
 
     AtraccionCultural atraccionCultural = new AtraccionCultural(
-        "Zona Colonial",                  // ubicacion
-        30,                               // cupoMax
-        Arrays.asList("Ninguna"),         // restricciones
-        "Media",                          // exclusividad
-        2,                                // minEmpleados
-        5,                                // edadMin
-        "Museo de Historia",              // nombre
-        Arrays.asList("Lluvia"),          // restriccionClima
-        false,                            // deTemporada
-        fecha,                            // fecha
-        horario                           // horario
+        "Zona Colonial",                  
+        30,                               
+        Arrays.asList("Ninguna"),         
+        "Media",                          
+        2,                               
+        5,                                
+        "Museo de Historia",              
+        Arrays.asList("Lluvia"),          
+        false,                            
+        fecha,                            
+        horario                           
     );
 
-        // Persistir atracción cultural
         PersistenciaAtraccionCultural persistencia = new PersistenciaAtraccionCultural();
         persistencia.persistencia("atracciones_culturales.txt", atraccionCultural);
     }
