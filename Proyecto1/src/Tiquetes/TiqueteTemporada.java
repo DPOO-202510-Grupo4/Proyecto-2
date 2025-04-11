@@ -20,6 +20,12 @@ public class TiqueteTemporada extends Tiquete {
 		this.temporada = temporada;
 	}
 
+	@Override
+	public double calcularPrecio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	
 

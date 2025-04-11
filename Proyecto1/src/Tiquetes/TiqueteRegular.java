@@ -6,8 +6,8 @@ public class TiqueteRegular extends Tiquete{
 	private Date fecha;
 	
 
-	public TiqueteRegular(String idTiquete, String categoria, boolean usado, Date fecha) {
-		super(idTiquete, categoria, usado);
+	public TiqueteRegular(String idTiquete, CategoriaTiquete categoria2, boolean usado, Date fecha) {
+		super(idTiquete, categoria2, usado);
 		this.fecha = fecha;
 	}
 
@@ -19,6 +19,13 @@ public class TiqueteRegular extends Tiquete{
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+
+	@Override
+	public double calcularPrecio() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

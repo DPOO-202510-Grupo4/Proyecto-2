@@ -9,9 +9,9 @@ public abstract class Tiquete extends ItemVenta{
 
 	private Cliente cliente;
 	
-	public Tiquete(String idTiquete, CategoriaTiquete categoria, boolean usado) {
+	public Tiquete(String idTiquete, CategoriaTiquete categoria2, boolean usado) {
 		this.idTiquete = idTiquete;
-		this.categoria = categoria;
+		this.categoria = categoria2;
 		this.usado = usado;
 	}
 
@@ -23,15 +23,15 @@ public abstract class Tiquete extends ItemVenta{
 		this.idTiquete = idTiquete;
 	}
 
-	public String getCategoria() {
+	public CategoriaTiquete getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(CategoriaTiquete categoria) {
 		this.categoria = categoria;
 	}
 
-	public boolean isUsado() {
+	public boolean isUsado1() {
 		return usado;
 	}
 
