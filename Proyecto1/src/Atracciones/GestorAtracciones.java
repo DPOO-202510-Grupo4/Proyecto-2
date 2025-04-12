@@ -2,6 +2,7 @@ package Atracciones;
 
 import java.util.ArrayList;
 import Persona.Empleado;
+import presentacion.Espectaculo;
 import restricciones.RestriccionesCultural;
 import restricciones.RestriccionesMecanica;
 import restricciones.Temporada;
@@ -106,5 +107,9 @@ registrarAtraccionCutlural(atraccion);
 			int minEmpleados, String riesgo, RestriccionesMecanica restricciones) {
 		AtraccionMecanica atraccion = new AtraccionMecanica(ubicacion, nombre, deTemporada, diponible, cupoMax, minEmpleados, riesgo, restricciones);
 		registrarAtraccionMecanica(atraccion);
+	}
+	public ArrayList<Espectaculo> obtenerEspectaculos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

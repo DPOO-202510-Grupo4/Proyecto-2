@@ -209,24 +209,7 @@ public class consolaAdministrador {
     }
 
     private static void registrarEspectaculo() {
-    	Scanner scanner = new Scanner(System.in);
-
-        System.out.println("--- CREAR ESPECTACULO ---");
-        System.out.print("Nombre: ");
-        String nombre = scanner.nextLine();
-
-        System.out.print("Ubicación: ");
-        String ubicacion = scanner.nextLine();
-
-        System.out.print("Capacidad máxima: ");
-        int capacidad = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Mínimo de empleados: ");
-        int minEmpleados = Integer.parseInt(scanner.nextLine());
-        
-        GestorAtracciones gestor = GestorAtracciones.getInstancia();
-        gestor.crearEspectaculo(nombre, ubicacion, capacidad, minEmpleados);
-        System.out.println("Atracción mecánica registrada con éxito.");
+    	//TODO por implementar
     }
 		
 	
@@ -361,6 +344,7 @@ public class consolaAdministrador {
     private static void verAtracciones() {
         System.out.println("Función para ver atracciones (a implementar)");
     }
+    //
 
     private static void crearCategoriaTiquete() {
         System.out.println("Función para crear categoría de tiquete (a implementar)");
