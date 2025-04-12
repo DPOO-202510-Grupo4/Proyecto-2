@@ -5,14 +5,16 @@ import java.util.*;
 public abstract class Atraccion {
 	
 	protected String ubicacion;
-	protected int cupoMax;
-	protected List<String> restricciones;
 	protected String exclusividad;
+	protected String nombre;
+	protected Boolean deTemporada;
+	protected Boolean diponible;
+	protected int cupoMax;
 	protected int minEmpleados = 3;
 	protected int edadMin;
-	protected String nombre;
+	protected List<String> restricciones;
 	protected List<String> restriccionClima;
-	protected boolean deTemporada;
+	
 	
 	
 	public Atraccion(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad, int minEmpleados, int edadMin, 

@@ -86,6 +86,19 @@ public class Empleado extends Persona {
 	public ArrayList<Capacitaciones> getCapacitaciones() {
 		return this.capacitaciones;
 	}
+
+	public ArrayList<String> getTareas() {
+		return tareas;
+	}
+
+	public void setTareas(ArrayList<String> tareas) {
+		this.tareas = tareas;
+	}
+
+	public Rol getRolActual() {
+		return rolActual;
+	}
+	
 }
 
 

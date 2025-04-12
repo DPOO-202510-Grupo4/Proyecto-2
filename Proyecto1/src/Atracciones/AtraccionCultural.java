@@ -153,6 +153,11 @@ public class AtraccionCultural extends Atraccion{
 	public String toString() {
 		return "AtraccionCultural [" + super.toString() + ", fecha = " + fecha + ", horario = " +  horario + "]";
 	}
+
+	public boolean estaDisponible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 	

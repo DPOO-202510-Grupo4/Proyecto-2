@@ -1,6 +1,7 @@
 package Atracciones;
 
 import java.util.ArrayList;
+import Persona.Empleado;
 import java.util.Date;
 
 import Atracciones.Atraccion;
@@ -16,16 +17,31 @@ public class GestorAtracciones {
 		this.atraccionesCulturales = atraccionesCulturales;
 	}
 	public void registrarAtraccionMecanica(AtraccionMecanica atraccionMecanica) {
-		
+	    this.atraccionesMecanicas.add(atraccionMecanica);
 	}
+
 	public void registrarAtraccionCutlural(AtraccionCultural atraccionCultural) {
-		
+	    this.atraccionesCulturales.add(atraccionCultural);
 	}
-	public ArrayList<AtraccionMecanica> atraccionesMecanicasPorUbicacion(String ubicacion){
-		return 0;
+
+	public ArrayList<AtraccionMecanica> atraccionesMecanicasPorUbicacion(String ubicacion) {
+	    ArrayList<AtraccionMecanica> resultado = new ArrayList<>();
+	    for (AtraccionMecanica a : atraccionesMecanicas) {
+	        if (a.getUbicacion().equalsIgnoreCase(ubicacion)) {
+	            resultado.add(a);
+	        }
+	    }
+	    return resultado;
 	}
-	public ArrayList<AtraccionCultural> atraccionesCulturalesPorUbicacion(String ubicacion){
-		return 0;
+
+	public ArrayList<AtraccionCultural> atraccionesCulturalesPorUbicacion(String ubicacion) {
+	    ArrayList<AtraccionCultural> resultado = new ArrayList<>();
+	    for (AtraccionCultural a : atraccionesCulturales) {
+	        if (a.getUbicacion().equalsIgnoreCase(ubicacion)) {
+	            resultado.add(a);
+	        }
+	    }
+	    return resultado;
 	}
 	public ArrayList<Atraccion> atraccionesPorUbicacion(String ubicacion) {
 	    ArrayList<Atraccion> todas = new ArrayList<>();
@@ -41,7 +57,7 @@ public class GestorAtracciones {
 	public Boolean puedeOperar(Atraccion atraccion, Date fecha) {
 		return false;
 	}
-	public List<Empleado> empleadosAsignados(){
+	public ArrayList<Empleado> empleadosAsignados(){
 		return 0;
 	}
 	

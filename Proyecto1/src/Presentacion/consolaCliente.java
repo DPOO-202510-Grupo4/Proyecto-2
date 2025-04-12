@@ -9,9 +9,10 @@ public class consolaCliente {
         while (!volver) {
             System.out.println("\n--- MENÚ CLIENTE ---");
             System.out.println("1. Comprar tiquete");
-            System.out.println("2. Usar FastPass");
-            System.out.println("3. Consultar atracciones");
-            System.out.println("4. Volver al menú principal");
+            System.out.println("2. Consultar historial de compras");
+            System.out.println("3. Consultar espectaculos");
+            System.out.println("4. Consultar atracciones");
+            System.out.println("5. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
             int opcion = Integer.parseInt(scanner.nextLine());

@@ -181,6 +181,11 @@ public class AtraccionMecanica extends Atraccion {
 		
 	}
 
+	public boolean estaDisponible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
 
 

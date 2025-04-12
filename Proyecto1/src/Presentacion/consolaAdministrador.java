@@ -1,5 +1,6 @@
 package presentacion;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -22,6 +23,7 @@ public class consolaAdministrador {
             System.out.println("3. Consultar empleados");
             System.out.println("4. Asignar turno");
             System.out.println("5. Asignar tarea");
+            System.out.println("6. Crear Rol");
 
             // Gestión de atracciones
             System.out.println("6. Registrar atracción");
@@ -138,7 +140,13 @@ public class consolaAdministrador {
         System.out.print("Fecha (YYYY-MM-DD): ");
         String inputFecha = scanner.nextLine();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fecha = sdf.parse(inputFecha);
+        Date fecha;
+		try {
+			fecha = sdf.parse(inputFecha);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         System.out.print("Turno Apertura: y/n ");
         String turnoAp = scanner.nextLine();
