@@ -3,37 +3,30 @@ package Atracciones;
 import java.util.*;
 
 import Persona.Empleado;
+import restricciones.RestriccionesCultural;
 
 public abstract class Atraccion {
 	
 	protected String ubicacion;
-	protected String exclusividad;
 	protected String nombre;
 	protected Boolean deTemporada;
 	protected Boolean diponible;
 	protected int cupoMax;
-	protected int minEmpleados = 3;
-	protected int edadMin;
-	protected List<String> restricciones;
-	protected List<String> restriccionClima;
+	protected int minEmpleados;
+
 	
-	
-	
-	public Atraccion(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad, int minEmpleados, int edadMin, 
-			String nombre, List<String> restriccionClima, boolean deTemporada) {
-		
+	public Atraccion(String ubicacion, String nombre, Boolean deTemporada, Boolean diponible, int cupoMax,
+			int minEmpleados) {
+		super();
 		this.ubicacion = ubicacion;
-		this.cupoMax = cupoMax;
-		this.restricciones = restricciones;
-		this.minEmpleados = minEmpleados;
-		this.edadMin = edadMin;
 		this.nombre = nombre;
-		this.restriccionClima = restriccionClima;
 		this.deTemporada = deTemporada;
+		this.diponible = diponible;
+		this.cupoMax = cupoMax;
+		this.minEmpleados = minEmpleados;
 		
 	}
-	
-	
+
 	public String getUbicacion() {
 		return ubicacion;
 	}
@@ -49,23 +42,6 @@ public abstract class Atraccion {
 	public void setCupoMax(int cupoMax) {
 		this.cupoMax = cupoMax;
 	}
-
-	public List<String> getRestricciones() {
-		return restricciones;
-	}
-
-	public void setRestricciones(List<String> restricciones) {
-		this.restricciones = restricciones;
-	}
-
-    public String getExclusividad() {
-        return exclusividad;
-    }
-    
-    public void setExclusividad(String exclusividad) {
-        this.exclusividad = exclusividad;
-    }
-    
 
 	public int getMinEmpleados() {
 		return minEmpleados;

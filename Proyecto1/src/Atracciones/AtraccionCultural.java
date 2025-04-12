@@ -4,111 +4,43 @@ package Atracciones;
 import java.time.LocalDate;
 import java.util.*;
 
+import Persona.Empleado;
 import Persona.Persona;
+import restricciones.RestriccionesCultural;
+import restricciones.Temporada;
 
 public class AtraccionCultural extends Atraccion{
 	
-	public Date fecha;
-	public Date horario;
+	private ArrayList<Temporada> disponibilidad;
+	private RestriccionesCultural restricciones;
 	
-	
-	AtraccionCultural(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad, int minEmpleados, int edadMin, 
-			String nombre, List<String> restriccionClima, boolean deTemporada, Date fecha, Date horario){
-		
-		super(ubicacion, cupoMax, restricciones, exclusividad, minEmpleados, edadMin, nombre, restriccionClima, deTemporada);
-		
-		this.fecha = fecha;
-		this.horario = horario;
-		
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public Date getHorario() {
-		return horario;
-	}
-
-	public void setHorario(Date horario) {
-		this.horario = horario;
-	}
-
-	public String getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-
-	public int getCupoMax() {
-		return cupoMax;
-	}
-
-	public void setCupoMax(int cupoMax) {
-		this.cupoMax = cupoMax;
-	}
-
-	public List<String> getRestricciones() {
-		return restricciones;
-	}
-
-	public void setRestricciones(List<String> restricciones) {
+	public AtraccionCultural(String ubicacion, String nombre, Boolean deTemporada, Boolean diponible, int cupoMax,
+			int minEmpleados, int edadMin, ArrayList<Temporada> disponibilidad, RestriccionesCultural restricciones) {
+		super(ubicacion, nombre, deTemporada, diponible, cupoMax, minEmpleados);
+		this.disponibilidad = disponibilidad;
 		this.restricciones = restricciones;
 	}
 
-	public String getExclusividad() {
-		return exclusividad;
-	}
-
-	public void setExclusividad(String exclusividad) {
-		this.exclusividad = exclusividad;
-	}
-
-	public int getMinEmpleados() {
-		return minEmpleados;
-	}
-
-	public void setMinEmpleados(int minEmpleados) {
-		this.minEmpleados = minEmpleados;
-	}
-
-	public int getEdadMin() {
-		return edadMin;
-	}
-
-	public void setEdadMin(int edadMin) {
-		this.edadMin = edadMin;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public List<String> getRestriccionClima() {
-		return restriccionClima;
-	}
-
-	public void setRestriccionClima(List<String> restriccionClima) {
-		this.restriccionClima = restriccionClima;
-	}
 	
-	public boolean getDeTemporada() {
-		return deTemporada;
+	public ArrayList<Temporada> getDisponibilidad() {
+		return disponibilidad;
 	}
 
-	public void setDeTemporada(boolean deTemporada) {
-		this.deTemporada = deTemporada;
+
+	public void setDisponibilidad(ArrayList<Temporada> disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
+
+
+	public RestriccionesCultural getRestricciones() {
+		return restricciones;
+	}
+
+
+	public void setRestricciones(RestriccionesCultural restricciones) {
+		this.restricciones = restricciones;
+	}
+
 
 	//@Override
 	public boolean validarRestricciones() {
@@ -157,6 +89,18 @@ public class AtraccionCultural extends Atraccion{
 	public boolean estaDisponible() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	protected boolean verificarMinimoEmpleados(Date fecha) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected ArrayList<Empleado> getEmpleadosAsignados() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

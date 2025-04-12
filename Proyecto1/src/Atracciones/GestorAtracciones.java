@@ -2,6 +2,10 @@ package Atracciones;
 
 import java.util.ArrayList;
 import Persona.Empleado;
+import restricciones.RestriccionesCultural;
+import restricciones.RestriccionesMecanica;
+import restricciones.Temporada;
+
 import java.util.Date;
 
 import Atracciones.Atraccion;
@@ -9,13 +13,19 @@ import Atracciones.Atraccion;
 public class GestorAtracciones {
 	private ArrayList<AtraccionMecanica> atraccionesMecanicas;
 	private ArrayList<AtraccionCultural> atraccionesCulturales;
+	private static GestorAtracciones instancia;
 	
-	public GestorAtracciones(ArrayList<AtraccionMecanica> atraccionesMecanicas,
-			ArrayList<AtraccionCultural> atraccionesCulturales) {
-		super();
-		this.atraccionesMecanicas = atraccionesMecanicas;
-		this.atraccionesCulturales = atraccionesCulturales;
+	public GestorAtracciones() {
+		this.atraccionesMecanicas = new ArrayList<>();;
+		this.atraccionesCulturales = new ArrayList<>();
 	}
+	public static GestorAtracciones getInstancia() {
+        if (instancia == null) {
+            instancia = new GestorAtracciones();
+        }
+        return instancia;
+    }
+	
 	public void registrarAtraccionMecanica(AtraccionMecanica atraccionMecanica) {
 	    this.atraccionesMecanicas.add(atraccionMecanica);
 	}
@@ -80,4 +90,21 @@ public class GestorAtracciones {
 	    }
 	    
 	    return empleados;
+
 	}
+	public void crearAtraccionCultural(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+            int capacidad, int minEmpleados, int edadMin, RestriccionesCultural restricciones) {
+
+ArrayList<Temporada> disponibilidad = new ArrayList<>();
+AtraccionCultural atraccion = new AtraccionCultural(ubicacion, nombre, deTemporada, disponible,
+capacidad, minEmpleados, edadMin, disponibilidad, restricciones);
+
+registrarAtraccionCutlural(atraccion);
+
+}
+	public void crearAtraccionMecanica(String ubicacion, String nombre, Boolean deTemporada, Boolean diponible, int cupoMax,
+			int minEmpleados, String riesgo, RestriccionesMecanica restricciones) {
+		AtraccionMecanica atraccion = new AtraccionMecanica(ubicacion, nombre, deTemporada, diponible, cupoMax, minEmpleados, riesgo, restricciones);
+		registrarAtraccionMecanica(atraccion);
+	}
+}

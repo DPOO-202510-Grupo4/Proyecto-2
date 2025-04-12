@@ -4,10 +4,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import Atracciones.GestorAtracciones;
+
+import java.util.ArrayList;
 import java.util.Date;
 import Persona.GestorPersonas;
 import Persona.Rol;
 import Persona.Turno;
+import restricciones.RestriccionesCultural;
+import restricciones.RestriccionesMecanica;
 
 public class consolaAdministrador {
 
@@ -140,7 +146,7 @@ public class consolaAdministrador {
         System.out.print("Fecha (YYYY-MM-DD): ");
         String inputFecha = scanner.nextLine();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fecha;
+        Date fecha = null;
 		try {
 			fecha = sdf.parse(inputFecha);
 		} catch (ParseException e) {
@@ -203,17 +209,144 @@ public class consolaAdministrador {
     }
 
     private static void registrarEspectaculo() {
-		// TODO Auto-generated method stub
-		
-	}
+    	Scanner scanner = new Scanner(System.in);
 
-	private static void registrarAtraccionCultural() {
-		// TODO Auto-generated method stub
+        System.out.println("--- CREAR ESPECTACULO ---");
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ubicación: ");
+        String ubicacion = scanner.nextLine();
+
+        System.out.print("Capacidad máxima: ");
+        int capacidad = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Mínimo de empleados: ");
+        int minEmpleados = Integer.parseInt(scanner.nextLine());
+        
+        GestorAtracciones gestor = GestorAtracciones.getInstancia();
+        gestor.crearEspectaculo(nombre, ubicacion, capacidad, minEmpleados);
+        System.out.println("Atracción mecánica registrada con éxito.");
+    }
 		
-	}
+	
+
+    private static void registrarAtraccionCultural() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("--- CREAR ATRACCIÓN CULTURAL ---");
+
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ubicación: ");
+        String ubicacion = scanner.nextLine();
+
+        System.out.print("¿Es de temporada? (y/n): ");
+        boolean deTemporada = scanner.nextLine().equalsIgnoreCase("y");
+
+        System.out.print("¿Está disponible? (y/n): ");
+        boolean disponible = scanner.nextLine().equalsIgnoreCase("y");
+
+        System.out.print("Capacidad máxima: ");
+        int capacidad = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Mínimo de empleados: ");
+        int minEmpleados = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("--- RESTRICCIONES ---");
+
+        ArrayList<String> salud = new ArrayList<>();
+        ArrayList<String> clima = new ArrayList<>();
+
+        System.out.print("Exclusividad: ");
+        String exclusividad = scanner.nextLine();
+
+        System.out.print("Edad mínima: ");
+        int edadMin = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("¿Desea agregar condiciones de salud? (y/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
+            String condicion;
+            do {
+                System.out.print("Condición de salud (escriba 'fin' para terminar): ");
+                condicion = scanner.nextLine();
+                if (!condicion.equalsIgnoreCase("fin")) {
+                    salud.add(condicion);
+                }
+            } while (!condicion.equalsIgnoreCase("fin"));
+        }
+
+        System.out.print("¿Desea agregar condiciones climáticas? (y/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
+            String condicion;
+            do {
+                System.out.print("Condición climática (escriba 'fin' para terminar): ");
+                condicion = scanner.nextLine();
+                if (!condicion.equalsIgnoreCase("fin")) {
+                    clima.add(condicion);
+                }
+            } while (!condicion.equalsIgnoreCase("fin"));
+        }
+
+        RestriccionesCultural restricciones = new RestriccionesCultural(clima ,exclusividad, edadMin);
+
+        GestorAtracciones gestor = GestorAtracciones.getInstancia();
+        gestor.crearAtraccionCultural(ubicacion, nombre, deTemporada, disponible, capacidad, minEmpleados, edadMin, restricciones);
+
+        System.out.println("Atracción cultural registrada con éxito.");
+    }
+		
+	
 
 	private static void registrarAtraccionMecanica() {
-		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		Boolean deTemporada = false;
+		Boolean disponible = false;
+	    System.out.println("--- CREAR ATRACCIÓN MECÁNICA ---");
+	    System.out.print("Nombre: ");
+	    String nombre = scanner.nextLine();
+
+	    System.out.print("Ubicación: ");
+	    String ubicacion = scanner.nextLine();
+	    System.out.print("Riesgo: ");
+	    String riesgo = scanner.nextLine();
+	    
+	    System.out.print("Es de temporada? y/n ");
+        String deTemp = scanner.nextLine();
+        if (deTemp.equalsIgnoreCase("y")) {
+        	deTemporada = true;
+        }
+        System.out.print("Esta disponible? y/n ");
+        String disp = scanner.nextLine();
+        if (disp.equalsIgnoreCase("y")) {
+        	disponible = true;
+        }
+
+	    System.out.print("Capacidad máxima: ");
+	    int capacidad = Integer.parseInt(scanner.nextLine());
+	    
+	    System.out.print("Mínimo de empleados: ");
+	    int minEmpleados = Integer.parseInt(scanner.nextLine());
+	    System.out.println("--- RESTRICCIONES ---");
+	    ArrayList<String> salud = new ArrayList<>();
+	    ArrayList<String> clima = new ArrayList<>();
+	    System.out.print("Exclusividad: ");
+	    String exclusividad = scanner.nextLine();
+	    System.out.print("altura máxima: ");
+	    int alturaMax = Integer.parseInt(scanner.nextLine());
+	    System.out.print("altura minima: ");
+	    int alturaMin = Integer.parseInt(scanner.nextLine());
+	    System.out.print("peso máximo: ");
+	    int pesoMax = Integer.parseInt(scanner.nextLine());
+	    System.out.print("peso minimo: ");
+	    int pesoMin = Integer.parseInt(scanner.nextLine());
+	    RestriccionesMecanica restricciones = new RestriccionesMecanica(clima, exclusividad, alturaMin, alturaMax,pesoMin,pesoMax,salud );
+	    
+	    GestorAtracciones gestor = GestorAtracciones.getInstancia();
+	    gestor.crearAtraccionMecanica(ubicacion, nombre, deTemporada, disponible, capacidad, minEmpleados, riesgo, restricciones);
+	    System.out.println("Atracción mecánica registrada con éxito.");
+	
 		
 	}
 

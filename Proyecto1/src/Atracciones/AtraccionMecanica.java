@@ -1,29 +1,23 @@
 package Atracciones;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import Persona.Empleado;
+import restricciones.RestriccionesMecanica;
 
 public class AtraccionMecanica extends Atraccion {
 
-	public String riesgo;
-	public String exclusividad;
-	public int pesoMin = 40;
-	public int pesoMax = 400;
-	public int alturaMin = 150;
-	public int alturaMax = 200;
+	private String riesgo;
+	private RestriccionesMecanica restricciones;
 	
-	
-	public AtraccionMecanica(String ubicacion, int cupoMax, List<String> restricciones, String exclusividad,
-			int minEmpleados, int edadMin, String nombre, List<String> restriccionClima, boolean deTemporada,
-			String riesgo, int pesoMin, int pesoMax, int alturaMin, int alturaMax) {
-		super(ubicacion, cupoMax, restricciones, exclusividad, minEmpleados, edadMin, nombre, restriccionClima,
-				deTemporada);
-		
+
+	public AtraccionMecanica(String ubicacion, String nombre, Boolean deTemporada, Boolean diponible, int cupoMax,
+			int minEmpleados, String riesgo, RestriccionesMecanica restricciones) {
+		super(ubicacion, nombre, deTemporada, diponible, cupoMax, minEmpleados);
 		this.riesgo = riesgo;
-		this.exclusividad = exclusividad;
-		this.pesoMin = pesoMin;
-		this.pesoMax = pesoMax;
-		this.alturaMin = alturaMin;
-		this.alturaMax = alturaMax;
+		this.restricciones = restricciones;
 	}
 
 	public String getRiesgo() {
@@ -184,6 +178,18 @@ public class AtraccionMecanica extends Atraccion {
 	public boolean estaDisponible() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	protected boolean verificarMinimoEmpleados(Date fecha) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected ArrayList<Empleado> getEmpleadosAsignados() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
