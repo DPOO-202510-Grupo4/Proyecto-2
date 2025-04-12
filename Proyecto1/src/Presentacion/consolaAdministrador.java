@@ -157,7 +157,18 @@ public class consolaAdministrador {
     }
 
     private static void asignarTarea() {
-        System.out.println("Función para asignar tarea (a implementar)");
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	System.out.println("--- Asignar TAREA ---");
+    	
+    	System.out.print("Login: ");
+        String login = scanner.nextLine();
+        System.out.print("Tarea: ");
+        String tarea = scanner.nextLine();
+        GestorPersonas gestor = GestorPersonas.getInstance();
+        
+        gestor.asignarTarea(login, tarea);
+        
     }
 
     private static void registrarAtraccion() {

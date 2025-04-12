@@ -78,7 +78,7 @@ public ArrayList empleadosDisponibles(LocalDate fecha, String lugar) {
 	return empleadosDisponibles;
 }
 
-public void asignarTurno(Empleado empleado, Turno turno) {
+public void asignarTurno(String login, Turno turno) {
 	if (empleado.getTurnos().contains(turno)) {
 		System.out.println("El empleado ya tiene un turno asignado en esa fecha.");
 	} else {
@@ -103,6 +103,14 @@ public ArrayList<Empleado> empleadosConCapacitacion(Capacitaciones capacitacion)
 	}
 	return empleadosCapacitacion;
 }
+public void asignarTarea(String login, String Tarea){
+	if (empleado.getTareas().contains(Tarea)) {
+		System.out.println("El empleado ya tiene esta tarea asignada.");
+	} else {
+		empleado.getTareas().add(Tarea);
+	}
+}
+
 
 public boolean verificarMinimosAtraccion(Atraccion atraccion, LocalDate fecha){
 	//TODO
