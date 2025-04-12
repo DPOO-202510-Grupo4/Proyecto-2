@@ -3,7 +3,7 @@ package Persona;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Empleado extends Persona {
+public class Empleado extends Persona {
 
 	private ArrayList<Turno> turnos;
 	private ArrayList<String> tareas;
@@ -11,14 +11,13 @@ public abstract class Empleado extends Persona {
 	private Rol rolActual; 
 	private LugarTrabajo lugarTrabajo;
 
-	public Empleado(String nombre, String login, String password, LocalDate fechaNacimiento, ArrayList<Turno> turnos, ArrayList<String> tareas,
-			Capacitaciones capacitaciones, Rol rolActual, LugarTrabajo lugarTrabajo) {
-		super(nombre, login, password, fechaNacimiento);
-		this.turnos = new ArrayList<Turno>();
-		this.tareas = new ArrayList<String>();
-		this.capacitaciones = new ArrayList<Capacitaciones>();
-		this.rolActual = rolActual;
-		this.lugarTrabajo = lugarTrabajo;
+	public Empleado(String nombre, String login, String password, LocalDate fechaNacimiento) {
+	    super(nombre, login, password, fechaNacimiento);
+	    this.turnos = new ArrayList<>();
+	    this.tareas = new ArrayList<>();
+	    this.capacitaciones = new ArrayList<>();
+	    this.rolActual = null;
+	    this.lugarTrabajo = null;
 	}
 
 	@Override

@@ -5,24 +5,50 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GestorPersonas {
-
+	
+private static GestorPersonas instanciaUnica;
 private ArrayList<Empleado> empleados;
 private ArrayList<Turno> turnos;
 private Empleado empleado;
 private Atraccion atraccion;
 
-public GestorPersonas(ArrayList<Empleado> empleados, ArrayList<Turno> turnos) {
-	super();
-	this.empleados = empleados;
-	this.turnos = turnos;
+private GestorPersonas() {
+	this.empleados = new ArrayList<>();
+    this.turnos = new ArrayList<>();
 }
 
+public static GestorPersonas getInstance() {
+    if (instanciaUnica == null) {
+        instanciaUnica = new GestorPersonas(); 
+    }
+    return instanciaUnica;
+}
+
+public Empleado crearEmpleadoBasico(String nombre, String login, String password, LocalDate fechaNacimiento) {
+    Empleado nuevo = new Empleado(nombre, login, password, fechaNacimiento);
+    registrarEmpleado(nuevo);
+    return nuevo;
+}
 public void registrarEmpleado(Empleado empleado) {
 	this.empleados.add(empleado);
 }
 
-public void eliminarEmpleado(Empleado empleado) {
-	this.empleados.remove(empleado);
+public void eliminarEmpleado(String login) {
+    Empleado empleadoAEliminar = null;
+    
+    for (Empleado empleado : this.empleados) {
+        if (empleado.getLogin().equals(login)) {
+            empleadoAEliminar = empleado;
+            break;  
+        }
+    }
+    
+    if (empleadoAEliminar != null) {
+        this.empleados.remove(empleadoAEliminar);
+        System.out.println("Empleado con login '" + login + "' eliminado exitosamente.");
+    } else {
+        System.out.println("Empleado con login '" + login + "' no encontrado.");
+    }
 }
 
 public String obtenerEmpleadoPorID(String login) {
