@@ -2,6 +2,8 @@ package Atracciones;
 
 import java.util.*;
 
+import Persona.Empleado;
+
 public abstract class Atraccion {
 	
 	protected String ubicacion;
@@ -80,6 +82,14 @@ public abstract class Atraccion {
 	public void setEdadMin(int edadMin) {
 		this.edadMin = edadMin;
 	}
+
+
+	protected abstract boolean verificarMinimoEmpleados(Date fecha);
+
+
+	protected abstract boolean estaDisponible();
+	
+	protected abstract ArrayList<Empleado> getEmpleadosAsignados();
 
 
 	   

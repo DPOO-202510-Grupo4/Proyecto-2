@@ -67,11 +67,20 @@ public class GestorAtracciones {
 	    return disponibles;
 	}
 	public Boolean puedeOperar(Atraccion atraccion, Date fecha) {
-		return false;
+	    return atraccion.estaDisponible() && atraccion.verificarMinimoEmpleados(fecha);
 	}
-	public ArrayList<Empleado> empleadosAsignados(){
-		return 0;
-	}
+	public ArrayList<Empleado> empleadosAsignados() {
+	    ArrayList<Empleado> empleados = new ArrayList<>();
+
+	    for (AtraccionMecanica a : atraccionesMecanicas) {
+	        empleados.addAll(a.getEmpleadosAsignados());
+	    }
+	    for (AtraccionCultural a : atraccionesCulturales) {
+	        empleados.addAll(a.getEmpleadosAsignados());
+	    }
+	    
+	    return empleados;
+	}}
 	
 	
 	
