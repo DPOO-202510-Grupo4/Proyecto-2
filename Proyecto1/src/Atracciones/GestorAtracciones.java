@@ -80,8 +80,4 @@ public class GestorAtracciones {
 	    }
 	    
 	    return empleados;
-	}}
-	
-	
-	
-}
+	}

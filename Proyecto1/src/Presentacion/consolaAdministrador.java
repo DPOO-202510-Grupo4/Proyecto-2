@@ -180,10 +180,44 @@ public class consolaAdministrador {
     }
 
     private static void registrarAtraccion() {
-        System.out.println("Función para registrar atracción (a implementar)");
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	System.out.println("--- Asignar TAREA ---");
+    	System.out.println("1. Registar Atracción Mecánica: ");
+    	System.out.println("2. Registar Atracción Cultural: ");
+    	System.out.println("3. Registar Espectáculo: ");
+    	
+    	 int opcion = Integer.parseInt(scanner.nextLine());
+
+         switch (opcion) {
+             case 1:
+            	 registrarAtraccionMecanica();
+                 break;
+             case 2:
+            	 registrarAtraccionCultural();
+                 break;
+             case 3:
+            	 registrarEspectaculo();
+                 break;
+         }
     }
 
-    private static void modificarAtraccion() {
+    private static void registrarEspectaculo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void registrarAtraccionCultural() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void registrarAtraccionMecanica() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void modificarAtraccion() {
         System.out.println("Función para modificar atracción (a implementar)");
     }
 
