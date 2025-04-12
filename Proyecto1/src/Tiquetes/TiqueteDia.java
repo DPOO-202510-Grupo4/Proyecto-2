@@ -14,6 +14,12 @@ public class TiqueteDia extends Tiquete {
 		return Fecha;
 	}
 
+	@Override
+	public double calcularPrecio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 	

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import Atracciones.Atracciones.AtraccionCultural;
+import Atracciones.AtraccionCultural;
 
 public class PersistenciaAtraccionCultural {
 

@@ -1,4 +1,4 @@
-package Atracciones.Atracciones;
+package Atracciones;
 
 import java.util.List;
 

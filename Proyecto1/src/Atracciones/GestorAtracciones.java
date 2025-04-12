@@ -3,6 +3,8 @@ package Atracciones;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Atracciones.Atraccion;
+
 public class GestorAtracciones {
 	private ArrayList<AtraccionMecanica> atraccionesMecanicas;
 	private ArrayList<AtraccionCultural> atraccionesCulturales;
