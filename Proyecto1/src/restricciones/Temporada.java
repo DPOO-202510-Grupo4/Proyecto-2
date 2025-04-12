@@ -12,5 +12,23 @@ public class Temporada {
 		this.fechaFinal = fechaFinal;
 		this.name = name;
 	}
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
  
 }

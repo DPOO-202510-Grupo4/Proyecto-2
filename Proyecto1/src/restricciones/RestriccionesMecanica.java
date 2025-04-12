@@ -19,6 +19,46 @@ public class RestriccionesMecanica extends Restricciones {
 		this.salud = salud;
 		
 	}
+
+	public int getAlturaMin() {
+		return alturaMin;
+	}
+
+	public void setAlturaMin(int alturaMin) {
+		this.alturaMin = alturaMin;
+	}
+
+	public int getAlturaMax() {
+		return alturaMax;
+	}
+
+	public void setAlturaMax(int alturaMax) {
+		this.alturaMax = alturaMax;
+	}
+
+	public int getPesoMin() {
+		return pesoMin;
+	}
+
+	public void setPesoMin(int pesoMin) {
+		this.pesoMin = pesoMin;
+	}
+
+	public int getPesoMax() {
+		return pesoMax;
+	}
+
+	public void setPesoMax(int pesoMax) {
+		this.pesoMax = pesoMax;
+	}
+
+	public ArrayList<String> getSalud() {
+		return salud;
+	}
+
+	public void setSalud(ArrayList<String> salud) {
+		this.salud = salud;
+	}
 	
 	
 	

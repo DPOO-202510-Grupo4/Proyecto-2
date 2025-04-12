@@ -9,6 +9,14 @@ public class RestriccionesCultural extends Restricciones {
 		super(clima, exclusividad);
 		this.edad = edad;
 	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
 	
 
 }
