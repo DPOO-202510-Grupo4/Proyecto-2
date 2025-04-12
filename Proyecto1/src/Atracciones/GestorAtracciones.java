@@ -43,6 +43,7 @@ public class GestorAtracciones {
 	    }
 	    return resultado;
 	}
+	
 	public ArrayList<Atraccion> atraccionesPorUbicacion(String ubicacion) {
 	    ArrayList<Atraccion> todas = new ArrayList<>();
 
@@ -52,7 +53,18 @@ public class GestorAtracciones {
 	    return todas;
 	}
 	public ArrayList<Atraccion> atraccionesDisponibles(String ubicacion){
-		return 0;
+	    ArrayList<Atraccion> disponibles = new ArrayList<>();
+	    for (AtraccionMecanica a : atraccionesMecanicas) {
+	        if (a.getUbicacion().equalsIgnoreCase(ubicacion) && a.estaDisponible()) {
+	            disponibles.add(a);
+	        }
+	    }
+	    for (AtraccionCultural a : atraccionesCulturales) {
+	        if (a.getUbicacion().equalsIgnoreCase(ubicacion) && a.estaDisponible()) {
+	            disponibles.add(a);
+	        }
+	    }
+	    return disponibles;
 	}
 	public Boolean puedeOperar(Atraccion atraccion, Date fecha) {
 		return false;
