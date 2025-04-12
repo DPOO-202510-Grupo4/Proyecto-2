@@ -42,7 +42,6 @@ public void eliminarEmpleado(String login) {
             break;  
         }
     }
-    
     if (empleadoAEliminar != null) {
         this.empleados.remove(empleadoAEliminar);
         System.out.println("Empleado con login '" + login + "' eliminado exitosamente.");
@@ -109,6 +108,10 @@ public boolean verificarMinimosAtraccion(Atraccion atraccion, LocalDate fecha){
 	//TODO
 	//Verifica si la atraccion tiene los minimos de empleados asignados para la fecha
 	return false;
+}
+
+public ArrayList<Empleado> getEmpleados() {
+	return empleados;
 }
 
 }

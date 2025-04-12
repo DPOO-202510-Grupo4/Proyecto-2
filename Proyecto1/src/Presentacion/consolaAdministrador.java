@@ -1,10 +1,12 @@
 package Presentacion;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
-
+import java.util.Date;
 import Persona.GestorPersonas;
 import Persona.Rol;
+import Persona.Turno;
 
 public class consolaAdministrador {
 
@@ -118,11 +120,40 @@ public class consolaAdministrador {
     }
 
     private static void consultarEmpleados() {
-        System.out.println("Función para consultar empleados (a implementar)");
+    	 System.out.println("--- CONSULTAR EMPLEADOS ---");
+    	 GestorPersonas gestor = GestorPersonas.getInstance();
+    	 //TODO Corregir funcion getEmpleados para imprimir correctamente la lista
+    	 System.out.println(gestor.getEmpleados());
     }
 
     private static void asignarTurno() {
-        System.out.println("Función para asignar turno (a implementar)");
+    	Scanner scanner = new Scanner(System.in);
+    	Boolean turnoApertura = false;
+    	Boolean turnoCierre = false;
+    	System.out.println("--- Asignar Turno ---");
+    	
+    	System.out.print("Login: ");
+        String login = scanner.nextLine();
+        
+        System.out.print("Fecha (YYYY-MM-DD): ");
+        String inputFecha = scanner.nextLine();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = sdf.parse(inputFecha);
+        
+        System.out.print("Turno Apertura: y/n ");
+        String turnoAp = scanner.nextLine();
+        System.out.print("Turno Cierre: y/n ");
+        String turnoCie = scanner.nextLine();
+        if (turnoAp.equalsIgnoreCase("y")) {
+        	turnoApertura = true;
+        }
+        if (turnoCie.equalsIgnoreCase("y")) {
+        	 turnoCierre = true;
+        }
+        GestorPersonas gestor = GestorPersonas.getInstance();
+        
+        Turno turno = new Turno(fecha, turnoApertura, turnoCierre, login);
+        gestor.asignarTurno(login, turno);
     }
 
     private static void asignarTarea() {
