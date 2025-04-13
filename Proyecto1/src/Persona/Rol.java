@@ -5,12 +5,12 @@ import java.util.Set;
 public class Rol {
     private String nombre;
     private Set<String> permisosPermitidos;
-    private LugarTrabajo lugar;
-
-    public Rol(String nombre, Set<String> permisosPermitidos, LugarTrabajo lugar) {
+ 
+//IDEA DE QUITAR LUGAR TRABAJO DE ROL
+    public Rol(String nombre, Set<String> permisosPermitidos) {
         this.nombre = nombre;
         this.permisosPermitidos = permisosPermitidos;
-        this.lugar = lugar;
+
     }
 
     public boolean tienePermiso(String permiso) {
@@ -33,12 +33,13 @@ public class Rol {
 		this.permisosPermitidos = permisosPermitidos;
 	}
 
-	public LugarTrabajo getLugar() {
-		return lugar;
-	}
 
-	public void setLugar(LugarTrabajo lugar) {
-		this.lugar = lugar;
-	}
-
+	@Override
+    public String toString() {
+        String str = nombre + " - Permisos: ";
+        for (String permiso: this.permisosPermitidos) {
+            str += permiso.toString() + ", ";
+        }
+        return str;
+    }
 }

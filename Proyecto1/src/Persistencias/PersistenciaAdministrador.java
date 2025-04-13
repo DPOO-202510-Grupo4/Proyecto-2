@@ -6,49 +6,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import Persona.Persona;
+import Persona.Administrador;
 
 public class PersistenciaAdministrador {
 
-    private static final String NOMBREARCHIVO = "persistencia/administradores.txt";
+    private static final String RUTA_ARCHIVO = "persistencia/personas/administradores.txt";
 
-    public void crearArchivo(String nombreArchivo){
-
+    private void crearArchivoSiNoExiste() {
         try {
-            Files.createDirectories(Paths.get("persistencia"));
-            File archivo = new File(nombreArchivo);
-            if (!archivo.exists()){
+            Files.createDirectories(Paths.get("persistencia/personas"));
+            File archivo = new File(RUTA_ARCHIVO);
+            if (!archivo.exists()) {
                 archivo.createNewFile();
             }
-
-        } catch(IOException e){
-            System.err.println("Error al crear el archivo: " + nombreArchivo + " " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al crear el archivo: " + e.getMessage());
         }
+    }
 
-	}
+    public void guardarAdministrador(Administrador admin) {
+        crearArchivoSiNoExiste();
 
-    public void persistencia(String nombre, Persona persistirPersona){
-
-		crearArchivo(nombre);
-		guardarAdministrador(persistirPersona);
-
-	}
-
-	public void guardarAdministrador(Persona nombreAdministrador){
-
-		
-		try (BufferedWriter administradorEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
-			String administradorFormatoTexto = "Nombre: " + nombreAdministrador.getNombre() + ", Login: " + 
-            nombreAdministrador.getLogin() + ", Password: " + nombreAdministrador.getPassword();
-			administradorEscrito.write(administradorFormatoTexto);
-			administradorEscrito.newLine();
-            administradorEscrito.close();
-
-		} catch(IOException e){
-			System.err.println("No se pudo guardar el administrador.");
-		}
-	}
-
-
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(RUTA_ARCHIVO, true))) {
+            String linea = String.format(
+                "Nombre: %s, Login: %s, Password: %s, FechaNacimiento: %s",
+                admin.getNombre(), admin.getLogin(), admin.getPassword(), admin.getFechaNacimiento()
+            );
+            escritor.write(linea);
+            escritor.newLine();
+        } catch (IOException e) {
+            System.err.println("Error al guardar el administrador: " + e.getMessage());
+        }
+    }
 }

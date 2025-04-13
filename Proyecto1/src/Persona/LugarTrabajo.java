@@ -24,4 +24,12 @@ public class LugarTrabajo {
     public Set<Rol> getRolesPermitidos() {
         return rolesPermitidos;
     }
+    @Override
+    public String toString() {
+        String str = nombre + " - " + ubicacion + " - Roles: ";
+        for (Rol rol : this.rolesPermitidos) {
+            str += rol.getNombre() + ", ";
+        }
+        return str;
+    }
 }

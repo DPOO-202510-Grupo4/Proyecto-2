@@ -7,11 +7,10 @@ import Tiquetes.Factura;
 import java.time.LocalDate;
 
 public class Cliente extends Persona {
-
 	public List<Factura> historialCompras;
 	public ArrayList<Tiquete> tiquetes;
 	public ArrayList<FastPass> fastPass;
-
+	
 	public Cliente(String nombre, String login, String password, LocalDate fechaNacimiento,
 			List<Factura> historialCompras, ArrayList<Tiquete> tiquetes, ArrayList<FastPass> fastPass) {
 		super(nombre, login, password, fechaNacimiento);
@@ -19,7 +18,6 @@ public class Cliente extends Persona {
 		this.tiquetes = tiquetes;
 		this.fastPass = fastPass;
 	}
-
 	public void agregarTiquete(Tiquete tiquete) {
 		this.tiquetes.add(tiquete);
 	}
@@ -31,6 +29,6 @@ public class Cliente extends Persona {
 	public void agregarFactura(Factura factura) {
 		this.historialCompras.add(factura);
 	}
-
 }
+
 

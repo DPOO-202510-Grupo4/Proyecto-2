@@ -12,48 +12,46 @@ import Persona.Persona;
 
 public class PersistenciaEmpleado {
 
-    private static final String NOMBREARCHIVO = "persistencia/empleados.txt";
+    private static final String NOMBREARCHIVO = "persistencia/personas/empleados.txt";
 
     public void crearArchivo(String nombreArchivo){
-
         try {
-            Files.createDirectories(Paths.get("persistencia"));
+            Files.createDirectories(Paths.get("persistencia/personas"));
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()){
                 archivo.createNewFile();
             }
-
         } catch(IOException e){
             System.err.println("Error al crear el archivo: " + nombreArchivo + " " + e.getMessage());
         }
-
     }
 
     public void persistencia(String nombre, Persona persistirPersona){
-
-        crearArchivo(nombre);
+        crearArchivo(NOMBREARCHIVO);
         guardarEmpleado(persistirPersona);
-
     }
 
-    public void guardarEmpleado(Persona nombreEmpleado){
+    public void guardarEmpleado(Persona persona){
+        if (!(persona instanceof Empleado)) {
+            System.err.println("El objeto no es un empleado, no se puede guardar.");
+            return;
+        }
 
-        try {
-            if (nombreEmpleado instanceof Empleado) {
-                Empleado empleado = (Empleado) nombreEmpleado;
-                
-                BufferedWriter empleadoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true));
-                String empleadoFormatoTexto = "Nombre: " + empleado.getNombre() + ", Login: " + empleado.getLogin()
-                + ", Password: " + empleado.getPassword() +  ", Turno: " + empleado.getTurno();
-                
-                empleadoEscrito.write(empleadoFormatoTexto);
-                empleadoEscrito.newLine();
-                empleadoEscrito.close();
-            } else {
-                System.err.println("El objeto no es un empleado, no se puede guardar.");
-            }
+        Empleado empleado = (Empleado) persona;
+
+        try (BufferedWriter empleadoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
+            String empleadoFormatoTexto = "Nombre: " + empleado.getNombre()
+                + ", Login: " + empleado.getLogin()
+                + ", Password: " + empleado.getPassword()
+                + ", Turnos: " + empleado.getTurnos().toString()
+                + ", LugarTrabajo: " + empleado.getLugarTrabajo().toString()
+                + ", RolActual: " + empleado.getRolActual().toString();
+
+            empleadoEscrito.write(empleadoFormatoTexto);
+            empleadoEscrito.newLine();
+
         } catch(IOException e){
-            System.err.println("No se pudo guardar el empleado");
+            System.err.println("No se pudo guardar el empleado: " + e.getMessage());
         }
     }
 }

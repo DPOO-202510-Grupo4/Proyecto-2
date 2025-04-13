@@ -1,5 +1,6 @@
 package Persona;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Turno {
@@ -21,5 +22,14 @@ public Date getFecha() {
 
 public String getLugarTrabajo() {
     return lugarTrabajo;
+}
+
+@Override
+public String toString() {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    return "Fecha: " + sdf.format(fecha)
+           + ", Apertura: " + turnoApertura
+           + ", Cierre: " + turnoCierre
+           + ", Lugar: " + lugarTrabajo;
 }
 }

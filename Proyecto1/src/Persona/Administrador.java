@@ -33,8 +33,5 @@ public class Administrador extends Persona {
 		// TODO Auto-generated method stub
 		return super.getPassword();
 	}
-	public void modificarAtracciones() {}
-	public void asignarTurnos() {}
-	public void asignarRol() {}
-	public void asignarTarea() {}
+
 }
