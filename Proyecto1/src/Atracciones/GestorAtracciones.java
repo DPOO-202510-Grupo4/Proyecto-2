@@ -17,7 +17,7 @@ public class GestorAtracciones {
 	private static GestorAtracciones instancia;
 	
 	public GestorAtracciones() {
-		this.atraccionesMecanicas = new ArrayList<>();;
+		this.atraccionesMecanicas = new ArrayList<>();
 		this.atraccionesCulturales = new ArrayList<>();
 	}
 	public static GestorAtracciones getInstancia() {
@@ -112,4 +112,11 @@ registrarAtraccionCutlural(atraccion);
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public ArrayList<AtraccionMecanica> getAtraccionesMecanicas() {
+		return atraccionesMecanicas;
+	}
+	public ArrayList<AtraccionCultural> getAtraccionesCulturales() {
+		return atraccionesCulturales;
+	}
+	
 }

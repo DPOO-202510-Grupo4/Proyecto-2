@@ -4,89 +4,46 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
-
-import Atracciones.GestorAtracciones;
-
 import java.util.ArrayList;
 import java.util.Date;
+
+import Atracciones.Atraccion;
+import Atracciones.GestorAtracciones;
 import Persona.GestorPersonas;
 import Persona.Rol;
 import Persona.Turno;
+import Tiquetes.CategoriaTiquete;
+import Tiquetes.GestorTiquetes;
 import restricciones.RestriccionesCultural;
 import restricciones.RestriccionesMecanica;
 
 public class consolaAdministrador {
 
     public static void menuAdministrador(Scanner scanner) {
-        boolean volver = false;
+        boolean salir = false;
 
-        while (!volver) {
-            System.out.println("\n--- MENÚ ADMINISTRADOR ---");
-
-            // Gestión de empleados
-            System.out.println("1. Registrar empleado");
-            System.out.println("2. Eliminar empleado");
-            System.out.println("3. Consultar empleados");
-            System.out.println("4. Asignar turno");
-            System.out.println("5. Asignar tarea");
-            System.out.println("6. Crear Rol");
-
-            // Gestión de atracciones
-            System.out.println("6. Registrar atracción");
-            System.out.println("7. Modificar atracción");
-            System.out.println("8. Modificar restricciones");
-            System.out.println("9. Ver atracciones");
-
-            // Gestión de tiquetes y temporadas
-            System.out.println("10. Crear categoría de tiquete");
-            System.out.println("11. Consultar categorías de tiquete");
-            System.out.println("12. Crear temporada");
-
-            // Salida
-            System.out.println("13. Volver al menú principal");
+        while (!salir) {
+            System.out.println("\n--- MENÚ PRINCIPAL ADMINISTRADOR ---");
+            System.out.println("1. Gestión de empleados");
+            System.out.println("2. Gestión de atracciones");
+            System.out.println("3. Gestión de tiquetes y temporadas");
+            System.out.println("4. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
             int opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
                 case 1:
-                    registrarEmpleado();
+                    menuEmpleados(scanner);
                     break;
                 case 2:
-                    eliminarEmpleado();
+                    menuAtracciones(scanner);
                     break;
                 case 3:
-                    consultarEmpleados();
+                    menuTiquetesTemporadas(scanner);
                     break;
                 case 4:
-                    asignarTurno();
-                    break;
-                case 5:
-                    asignarTarea();
-                    break;
-                case 6:
-                    registrarAtraccion();
-                    break;
-                case 7:
-                    modificarAtraccion();
-                    break;
-                case 8:
-                    modificarRestricciones();
-                    break;
-                case 9:
-                    verAtracciones();
-                    break;
-                case 10:
-                    crearCategoriaTiquete();
-                    break;
-                case 11:
-                    consultarCategoriasTiquete();
-                    break;
-                case 12:
-                    crearTemporada();
-                    break;
-                case 13:
-                    volver = true;
+                    salir = true;
                     break;
                 default:
                     System.out.println("Opción no válida.");
@@ -94,6 +51,83 @@ public class consolaAdministrador {
         }
     }
 
+    // ------------------------ SUBMENÚ EMPLEADOS ------------------------
+
+    private static void menuEmpleados(Scanner scanner) {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\n--- GESTIÓN DE EMPLEADOS ---");
+            System.out.println("1. Registrar empleado");
+            System.out.println("2. Eliminar empleado");
+            System.out.println("3. Consultar empleados");
+            System.out.println("4. Asignar turno");
+            System.out.println("5. Asignar tarea");
+            System.out.println("6. Volver");
+            System.out.print("Seleccione una opción: ");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion) {
+                case 1 -> registrarEmpleado();
+                case 2 -> eliminarEmpleado();
+                case 3 -> consultarEmpleados();
+                case 4 -> asignarTurno();
+                case 5 -> asignarTarea();
+                case 6 -> volver = true;
+                default -> System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+    // ------------------------ SUBMENÚ ATRACCIONES ------------------------
+
+    private static void menuAtracciones(Scanner scanner) {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\n--- GESTIÓN DE ATRACCIONES ---");
+            System.out.println("1. Registrar atracción");
+            System.out.println("2. Modificar atracción");
+            System.out.println("3. Modificar restricciones");
+            System.out.println("4. Ver atracciones");
+            System.out.println("5. Volver");
+            System.out.print("Seleccione una opción: ");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion) {
+                case 1 -> registrarAtraccion();
+                case 2 -> modificarAtraccion();
+                case 3 -> modificarRestricciones();
+                case 4 -> verAtracciones();
+                case 5 -> volver = true;
+                default -> System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+    // ------------------------ SUBMENÚ TIQUETES Y TEMPORADAS ------------------------
+
+    private static void menuTiquetesTemporadas(Scanner scanner) {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\n--- GESTIÓN DE TIQUETES Y TEMPORADAS ---");
+            System.out.println("1. Crear categoría de tiquete");
+            System.out.println("2. Consultar categorías de tiquete");
+            System.out.println("3. Crear temporada");
+            System.out.println("4. Volver");
+            System.out.print("Seleccione una opción: ");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion) {
+                case 1 -> crearCategoriaTiquete();
+                case 2 -> consultarCategoriasTiquete();
+                case 3 -> crearTemporada();
+                case 4 -> volver = true;
+                default -> System.out.println("Opción no válida.");
+            }
+        }
+    }
+    
+    // ------------------------ METODOS ------------------------
+    
     private static void registrarEmpleado() {
         Scanner scanner = new Scanner(System.in);
 
@@ -344,17 +378,72 @@ public class consolaAdministrador {
     private static void verAtracciones() {
         System.out.println("Función para ver atracciones (a implementar)");
     }
-    //
 
     private static void crearCategoriaTiquete() {
-        System.out.println("Función para crear categoría de tiquete (a implementar)");
+    	Scanner scanner = new Scanner(System.in);
+    	System.out.println("Ingrese el nombre de la categoría de tiquete:");
+        String nombre = scanner.nextLine();
+        System.out.println("Ingrese el precio base del tiquete:");
+        Double precioBase = null;
+        GestorAtracciones gestor = GestorAtracciones.getInstancia();
+        ArrayList<Atraccion> atraccionesSeleccionadas = new ArrayList<>();
+        System.out.println("Seleccione las atracciones mecanicas que incluirá en esta categoría:");
+        for (int i = 0; i < gestor.getAtraccionesMecanicas().size(); i++) {
+            Atraccion a = gestor.getAtraccionesMecanicas().get(i);
+            System.out.println((i + 1) + ". " + a.getNombre());
+        }
+        System.out.println("Seleccione las atracciones culturales que incluirá en esta categoría:");
+        for (int i = 0; i < gestor.getAtraccionesCulturales().size(); i++) {
+            Atraccion a = gestor.getAtraccionesCulturales().get(i);
+            System.out.println((i + 1) + ". " + a.getNombre());
+        }
+        
     }
 
     private static void consultarCategoriasTiquete() {
-        System.out.println("Función para consultar categorías de tiquete (a implementar)");
+        try {
+  
+            GestorTiquetes gestor = GestorTiquetes.getInstancia();
+
+            ArrayList<CategoriaTiquete> categorias = gestor.getCategoriasDisponibles();
+
+            if (categorias == null || categorias.isEmpty()) {
+                System.out.println("No hay categorías disponibles en este momento.");
+            } else {
+            	
+                for (CategoriaTiquete categoria : categorias) {
+                    System.out.println(categoria.getNombre());
+            }
+            }
+            }catch (Exception e) {
+
+            System.err.println("Ocurrió un error al consultar las categorías de tiquetes: " + e.getMessage());
+        }
     }
 
     private static void crearTemporada() {
-        System.out.println("Función para crear temporada (a implementar)");
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            System.out.print("Nombre de la temporada: ");
+            String nombre = scanner.nextLine();
+
+            System.out.print("Fecha de inicio (dd/MM/yyyy): ");
+            String fechaInicioStr = scanner.nextLine();
+            Date fechaInicio = sdf.parse(fechaInicioStr);
+
+            System.out.print("Fecha de finalización (dd/MM/yyyy): ");
+            String fechaFinalStr = scanner.nextLine();
+            Date fechaFinal = sdf.parse(fechaFinalStr);
+
+            GestorTiquetes gestor = GestorTiquetes.getInstancia();
+            gestor.crearTemporada(fechaInicio, fechaFinal, nombre);
+
+        } catch (ParseException e) {
+            System.out.println("Formato de fecha inválido. Usa dd/MM/yyyy.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

@@ -67,6 +67,8 @@ public abstract class Atraccion {
 	
 	protected abstract ArrayList<Empleado> getEmpleadosAsignados();
 
+	public abstract int getNombre();
+
 
 	   
 

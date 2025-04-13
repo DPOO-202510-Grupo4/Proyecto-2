@@ -6,14 +6,18 @@ public class CategoriaTiquete {
 	private String nombre;
 	private ArrayList<Atraccion> atraccionesDisponibles;
 	private Double precioBase;
-	public CategoriaTiquete(String nombre, ArrayList<Atraccion> atraccionesDisponibles) {
-		super();
-		this.nombre = nombre;
-		this.atraccionesDisponibles = atraccionesDisponibles;
+	public CategoriaTiquete(String nombre, ArrayList<Atraccion> atraccionesDisponibles, Double precioBase) {
+	    this.nombre = nombre;
+	    this.atraccionesDisponibles = atraccionesDisponibles;
+	    this.precioBase = precioBase;
 	}
+
+	public Double getPrecioBase() {
+	    return precioBase;
+	}
+
 	public String getNombre() {
-		
-		return this.nombre;
+		return nombre;
 	}
 	
 
