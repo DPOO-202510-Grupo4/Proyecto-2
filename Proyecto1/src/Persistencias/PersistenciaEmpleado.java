@@ -46,7 +46,7 @@ public class PersistenciaEmpleado {
                 + ", Turnos: " + empleado.getTurnos().toString();
                 //+ ", LugarTrabajo: " + empleado.getLugarTrabajo().toString()
                 //+ ", RolActual: " + empleado.getRolActual().toString();
-
+            //TODO revisar manejo de asignacion de Lugar de trabajo y rolActual porque cuando el admin los crea no se les asigna nada.
             empleadoEscrito.write(empleadoFormatoTexto);
             empleadoEscrito.newLine();
 

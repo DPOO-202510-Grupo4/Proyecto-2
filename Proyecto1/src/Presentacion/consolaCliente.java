@@ -3,8 +3,9 @@ package presentacion;
 import java.util.Scanner;
 import Atracciones.GestorAtracciones;
 import Atracciones.Atraccion;
-import Espectaculos.GestorEspectaculos;
-import Espectaculos.Espectaculo;
+import Atracciones.AtraccionCultural;
+import Atracciones.AtraccionMecanica;
+//import Espectaculos.Espectaculo;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class consolaCliente {
                     consultarHistorial(scanner);
                     break;
                 case 3:
-                    consultarEspectaculos();
+                    //consultarEspectaculos();
                     break;
                 case 4:
                     consultarAtracciones(scanner);
@@ -55,7 +56,7 @@ public class consolaCliente {
         System.out.println("\nFunción para consultar historial de compras (por implementar)");
     }
 
-    private static void consultarEspectaculos() {
+    /*private static void consultarEspectaculos() {
         System.out.println("\n--- ESPECTÁCULOS DISPONIBLES ---");
         GestorAtracciones gestor = GestorAtracciones.getInstancia();
 
@@ -67,20 +68,26 @@ public class consolaCliente {
                 System.out.println(e.toString());
             }
         }
-    }
+    }*/
 
 
-        private static void consultarAtracciones() {
+        private static void consultarAtracciones(Scanner scanner) {
         System.out.println("\n--- TODAS LAS ATRACCIONES DEL PARQUE ---");
-
+        int i = 1;
         GestorAtracciones gestor = GestorAtracciones.getInstancia();
-        ArrayList<Atraccion> atracciones = gestor.getAtracciones();
+        ArrayList<AtraccionMecanica> atraccionesMecanicas = gestor.getAtraccionesMecanicas();
+        ArrayList<AtraccionCultural> atraccionesCulturales = gestor.getAtraccionesCulturales();
 
-        if (atracciones.isEmpty()) {
+        if (atraccionesMecanicas.isEmpty() && atraccionesCulturales.isEmpty()) {
             System.out.println("No hay atracciones registradas en el sistema.");
         } else {
-            for (Atraccion a : atracciones) {
-                System.out.println(a.toString());
+            for (AtraccionMecanica am : atraccionesMecanicas) {
+                System.out.println(i + "." + am.toString());
+                i++;
+            for (AtraccionMecanica ac : atraccionesMecanicas) {
+                System.out.println(i + "." + ac.toString());
+                i++;
+                }    
         }
       }
     }

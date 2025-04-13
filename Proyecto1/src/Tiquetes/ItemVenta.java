@@ -35,6 +35,11 @@ public void setEstrategiaPrecio(EstrategiaPrecio estrategiaPrecio) {
 	this.estrategiaPrecio = estrategiaPrecio;
 }
 
+public double calcularPrecio() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
 
 
 }

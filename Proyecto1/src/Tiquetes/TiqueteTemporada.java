@@ -1,14 +1,12 @@
 package Tiquetes;
-
-
+import Persona.Cliente;
 import restricciones.Temporada;
 
 public class TiqueteTemporada extends Tiquete {
 	private Temporada temporada;
-
-	
-	public TiqueteTemporada(String idTiquete, CategoriaTiquete categoria, boolean usado, Temporada temporada) {
-		super(idTiquete, categoria, usado);
+	public TiqueteTemporada(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio, String idTiquete,
+			CategoriaTiquete categoria, boolean usado, Cliente cliente, Temporada temporada) {
+		super(nombre, precioBase, estrategiaPrecio, idTiquete, categoria, usado, cliente);
 		this.temporada = temporada;
 	}
 
@@ -19,7 +17,6 @@ public class TiqueteTemporada extends Tiquete {
 	public void setTemporada(Temporada temporada) {
 		this.temporada = temporada;
 	}
-
 	@Override
 	public double calcularPrecio() {
 		// TODO Auto-generated method stub
