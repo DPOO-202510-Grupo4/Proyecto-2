@@ -168,14 +168,14 @@ public class consolaCliente {
         Cliente cliente = gestorPersonas.buscarCliente(login);
 
         if (cliente == null) {
-            System.out.println("❌ Cliente no encontrado. Verifique el login e intente nuevamente.");
+            System.out.println("Cliente no encontrado. Verifique el login e intente nuevamente.");
             return;
         }
 
         ArrayList<Factura> historial = cliente.getHistorialCompras();
 
         if (historial == null || historial.isEmpty()) {
-            System.out.println("ℹ️ El cliente no tiene historial de compras.");
+            System.out.println("El cliente no tiene historial de compras.");
             return;
         }
 

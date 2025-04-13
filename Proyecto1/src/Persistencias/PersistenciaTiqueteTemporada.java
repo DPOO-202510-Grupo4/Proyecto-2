@@ -1,21 +1,20 @@
 package Persistencias;
 
+import Tiquetes.TiqueteTemporada;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import Tiquetes.TiqueteTemporada;
+import java.nio.file.*;
 
 public class PersistenciaTiqueteTemporada {
 
-    private static final String NOMBREARCHIVO = "persistencia/tiquetes/tiquetes_temporada.txt";
+    private static final String NOMBRE_ARCHIVO = "persistencia/tiquetes/tiquetes_temporada.csv";
 
-    public void crearArchivo(String nombreArchivo) {
+    public static void crearArchivo(String nombreArchivo) {
         try {
-            Files.createDirectories(Paths.get("persistencia"));
+            Files.createDirectories(Paths.get("persistencia/tiquetes"));
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()) {
                 archivo.createNewFile();
@@ -25,35 +24,26 @@ public class PersistenciaTiqueteTemporada {
         }
     }
 
-    public void persistencia(String nombre, TiqueteTemporada persistirTiqueteTemporada) {
-        crearArchivo(nombre);
-        guardarTiqueteTemporada(persistirTiqueteTemporada);
+    public static void persistencia(TiqueteTemporada tiquete) {
+        crearArchivo(NOMBRE_ARCHIVO);
+        guardarTiquete(tiquete);
     }
 
-    public void guardarTiqueteTemporada(TiqueteTemporada nombreTiqueteTemporada) {
-        try {
+    public static void guardarTiquete(TiqueteTemporada t) {
+        if (t == null) {
+            System.err.println("El tiquete es nulo, no se puede guardar.");
+            return;
+        }
 
-            if (nombreTiqueteTemporada instanceof TiqueteTemporada) {
-                TiqueteTemporada tiqueteTemporada = (TiqueteTemporada) nombreTiqueteTemporada;
-    
-                try (BufferedWriter tiqueteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
-                    String tiqueteFormatoTexto = "Id del tiquete: " + tiqueteTemporada.getIdTiquete() + ", Categoría: "
-                            + tiqueteTemporada.getCategoria() + ", Fue usado: "
-                            + tiqueteTemporada.isUsado() + ", Temporada: "
-                            + tiqueteTemporada.getTemporada();
-    
-                    tiqueteEscrito.write(tiqueteFormatoTexto);
-                    tiqueteEscrito.newLine();
-                } catch (IOException e) {
-                    System.err.println("Error al escribir en el archivo: " + e.getMessage());
-                }
-            } else {
-                System.err.println("El objeto no es un Tiquete Temporada, no se puede guardar.");
-            }
-        } catch (Exception e) { 
-            System.err.println("Error general: " + e.getMessage());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, true))) {
+            String linea = t.getIdTiquete() + "," +
+                           t.getCategoria().getNombre() + "," +
+                           t.isUsado() + "," +
+                           t.getTemporada();
+            writer.write(linea);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Error al guardar el tiquete: " + e.getMessage());
         }
     }
-    
 }
-
