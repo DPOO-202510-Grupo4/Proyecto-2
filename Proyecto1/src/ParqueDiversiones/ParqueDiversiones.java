@@ -11,7 +11,7 @@ import Persistencias.PersistenciaAtraccionCultural;
 import Persistencias.PersistenciaAtraccionMecanica;
 //import Persistencias.PersistenciaEmpleado;
 //import Persona.Empleado;
-
+//Nota en commits
 public class ParqueDiversiones {
 
     public static void main(String[] args) {
