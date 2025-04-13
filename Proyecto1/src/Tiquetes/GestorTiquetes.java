@@ -174,7 +174,7 @@ public class GestorTiquetes {
 	}
 
 
-	public HashMap<String, List<Tiquete>> getTiquetesVendidos() {
+	public HashMap<String, ArrayList<Tiquete>> getTiquetesVendidos() {
 		return tiquetesVendidos;
 	}
     
