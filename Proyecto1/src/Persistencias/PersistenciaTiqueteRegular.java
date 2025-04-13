@@ -10,7 +10,7 @@ import Tiquetes.TiqueteRegular;
 
 public class PersistenciaTiqueteRegular {
 
-    private static final String NOMBREARCHIVO = "persistencia/tiquetes_regulares.txt";
+    private static final String NOMBREARCHIVO = "persistencia/tiquetes/tiquetes_regulares.txt";
 
     public void crearArchivo(String nombreArchivo) {
         try {

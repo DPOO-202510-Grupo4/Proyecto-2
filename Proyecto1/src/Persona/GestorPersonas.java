@@ -3,12 +3,13 @@ package Persona;
 import Atracciones.Atraccion;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import Persistencias.*;
 public class GestorPersonas {
 	
 private static GestorPersonas instanciaUnica;
 private ArrayList<Empleado> empleados;
 private ArrayList<Turno> turnos;
+private ArrayList<Cliente> clientes;
 private Empleado empleado;
 private Atraccion atraccion;
 
@@ -31,6 +32,8 @@ public Empleado crearEmpleadoBasico(String nombre, String login, String password
 }
 public void registrarEmpleado(Empleado empleado) {
 	this.empleados.add(empleado);
+	PersistenciaEmpleado.persistencia(empleado);
+	
 }
 
 public void eliminarEmpleado(String login) {

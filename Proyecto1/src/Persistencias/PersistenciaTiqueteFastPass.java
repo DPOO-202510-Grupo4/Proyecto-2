@@ -11,7 +11,7 @@ import Tiquetes.FastPass;
 
 public class PersistenciaTiqueteFastPass {
 
-    private static final String NOMBREARCHIVO = "persistencia/tiquetes_fastpass.txt";
+    private static final String NOMBREARCHIVO = "persistencia/tiquetes/tiquetes_fastpass.txt";
 
         public void crearArchivo(String nombreArchivo) {
         try {

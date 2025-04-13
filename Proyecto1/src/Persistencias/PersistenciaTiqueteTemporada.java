@@ -11,7 +11,7 @@ import Tiquetes.TiqueteTemporada;
 
 public class PersistenciaTiqueteTemporada {
 
-    private static final String NOMBREARCHIVO = "persistencia/tiquetes_temporada.txt";
+    private static final String NOMBREARCHIVO = "persistencia/tiquetes/tiquetes_temporada.txt";
 
     public void crearArchivo(String nombreArchivo) {
         try {

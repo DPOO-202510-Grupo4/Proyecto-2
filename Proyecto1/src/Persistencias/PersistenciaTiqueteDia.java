@@ -9,9 +9,10 @@ import java.nio.file.Paths;
 import Tiquetes.TiqueteDia;
 
 
+
 public class PersistenciaTiqueteDia {
 
-        private static final String NOMBREARCHIVO = "persistencia/tiquetes_dia.txt";
+        private static final String NOMBREARCHIVO = "persistencia/tiquetes/tiquetes_dia.txt";
 
     public void crearArchivo(String nombreArchivo) {
         try {
