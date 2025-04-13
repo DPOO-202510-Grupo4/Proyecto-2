@@ -35,7 +35,6 @@ public class AtraccionCultural extends Atraccion {
             return temporada.estaDentroDeTemporada(fecha);
         }
 
-        // Si no es de temporada, revisa si la fecha está en alguna temporada disponible
         for (Temporada t : disponibilidad) {
             if (t.estaDentroDeTemporada(fecha)) {
                 return true;
@@ -91,6 +90,7 @@ public class AtraccionCultural extends Atraccion {
     public void setEmpleadosAsignados(ArrayList<Empleado> empleadosAsignados) {
         this.empleadosAsignados = empleadosAsignados;
     }
+    
 
     @Override
     public String toString() {

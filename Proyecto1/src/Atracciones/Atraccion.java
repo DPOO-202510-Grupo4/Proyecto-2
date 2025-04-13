@@ -30,12 +30,58 @@ public abstract class Atraccion {
 
 
     public boolean esDisponible(Date fecha) {
-    	//TODO Implementar usando temporadas y fecha actual
-
         return true;
     }
 
-    public boolean verificarEmpleados() {
+    public int getCupoMax() {
+		return cupoMax;
+	}
+
+
+
+	public void setCupoMax(int cupoMax) {
+		this.cupoMax = cupoMax;
+	}
+
+
+
+	public int getMinEmpleados() {
+		return minEmpleados;
+	}
+
+
+
+	public void setMinEmpleados(int minEmpleados) {
+		this.minEmpleados = minEmpleados;
+	}
+
+
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public void setTemporada(Temporada temporada) {
+		this.temporada = temporada;
+	}
+
+
+
+	public void setDeTemporada(boolean deTemporada) {
+		this.deTemporada = deTemporada;
+	}
+
+
+
+	public boolean verificarEmpleados() {
 
         return true; 
     }

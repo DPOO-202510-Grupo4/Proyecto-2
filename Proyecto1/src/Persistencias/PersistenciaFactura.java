@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import Tiquetes.Factura;
+import Tiquetes.ItemVenta;
 
 
 public class PersistenciaFactura {
@@ -31,19 +32,31 @@ public class PersistenciaFactura {
         guardarFactura(persistirFactura);
     }
 
-    public void guardarFactura(Factura nombreFactura){
+    public void guardarFactura(Factura factura) {
+        try (BufferedWriter facturaEscrita = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
 
-		
-		try (BufferedWriter tiqueteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
-			String tiqueteFormatoTexto = "Tiquete: " + nombreFactura.getTiquete() + 
-            ", Cliente: " + nombreFactura.getCliente();
-			tiqueteEscrito.newLine();
-            tiqueteEscrito.close();
+            String itemsTexto = "";
+            for (int i = 0; i < factura.getItems().size(); i++) {
+                ItemVenta item = factura.getItems().get(i);
+                itemsTexto += item.getNombre() + ";" + item.getPrecioBase();
+                if (i < factura.getItems().size() - 1) {
+                    itemsTexto += "|";
+                }
+            }
 
-		} catch(IOException e){
-			System.err.println("No se pudo guardar el tiquete del dia");
-		}
-	}
+            String facturaFormatoTexto = factura.getCliente().getLogin() + "," 
+                + factura.getFecha().getTime() + ","                            
+                + itemsTexto + ","                                              
+                + factura.getCosto();
+
+            facturaEscrita.write(facturaFormatoTexto);
+            facturaEscrita.newLine();
+
+        } catch (IOException e) {
+            System.err.println("No se pudo guardar la factura: " + e.getMessage());
+        }
+    }
+
 
 
 }

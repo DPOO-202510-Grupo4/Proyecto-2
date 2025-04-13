@@ -27,6 +27,38 @@ private Double calcularCosto(ArrayList<ItemVenta> items) {
 	return costo;
 }
 
+public ArrayList<ItemVenta> getItems() {
+	return items;
+}
+
+public void setItems(ArrayList<ItemVenta> items) {
+	this.items = items;
+}
+
+public Date getFecha() {
+	return fecha;
+}
+
+public void setFecha(Date fecha) {
+	this.fecha = fecha;
+}
+
+public Cliente getCliente() {
+	return cliente;
+}
+
+public void setCliente(Cliente cliente) {
+	this.cliente = cliente;
+}
+
+public Double getCosto() {
+	return costo;
+}
+
+public void setCosto(Double costo) {
+	this.costo = costo;
+}
+
 
 
 }
