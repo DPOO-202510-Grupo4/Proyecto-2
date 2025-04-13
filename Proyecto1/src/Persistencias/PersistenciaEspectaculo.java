@@ -40,10 +40,7 @@ public class PersistenciaEspectaculo {
 
     public void guardarEspectaculo(Espectaculos atraccion) {
         try (BufferedWriter espectaculoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
-
-            
-
-            
+      
             String espectaculoFormatoTexto =
                 atraccion.getNombre() + "," +
                 atraccion.getEmpresaEncargada() + "," +
