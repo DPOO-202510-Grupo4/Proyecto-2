@@ -2,12 +2,14 @@ package Tiquetes;
 
 import java.util.Date;
 
-public class FastPass {
+public class FastPass extends ItemVenta{
 	private Date fecha;
 	private boolean usado;
 	private String idTiquete;
 
-	public FastPass(Date fecha, boolean usado, String idTiquete) {
+	public FastPass(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio, Date fecha, boolean usado,
+			String idTiquete) {
+		super(nombre, precioBase, estrategiaPrecio);
 		this.fecha = fecha;
 		this.usado = usado;
 		this.idTiquete = idTiquete;
@@ -35,6 +37,12 @@ public class FastPass {
 
 	public void setIdTiquete(String idTiquete) {
 		this.idTiquete = idTiquete;
+	}
+
+	@Override
+	public double calcularPrecio() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
