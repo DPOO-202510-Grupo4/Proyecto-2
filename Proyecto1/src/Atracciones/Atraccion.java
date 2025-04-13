@@ -130,4 +130,15 @@ public abstract class Atraccion {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public String toString() {
+	    return "Atraccion {" +
+	           "nombre: " + nombre +
+	           ", ubicacion: " + ubicacion +
+	           ", cupoMax :" + cupoMax +
+	           ", deTemporada :" + deTemporada +
+	           ", temporada :" + (temporada != null ? temporada.toString() : "N/A") +
+	           ", enFuncionamiento: " + enFuncionamiento +
+	           '}';
+	}
 }

@@ -94,20 +94,32 @@ public class GestorAtracciones {
 
 	}
 	public void crearAtraccionCultural(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
-            int capacidad, int minEmpleados, int edadMin, RestriccionesCultural restricciones) {
+            int capacidad, int minEmpleados, RestriccionesCultural restricciones,
+            Temporada temporada) {
 
-ArrayList<Temporada> disponibilidad = new ArrayList<>();
-AtraccionCultural atraccion = new AtraccionCultural(ubicacion, nombre, deTemporada, disponible,
-capacidad, minEmpleados, edadMin, disponibilidad, restricciones);
+			ArrayList<Temporada> disponibilidad = new ArrayList<>();
+			ArrayList<Empleado> empleadosAsignados = new ArrayList<>();
+			
+			AtraccionCultural atraccion = new AtraccionCultural(
+			nombre, ubicacion, capacidad, minEmpleados, deTemporada,
+			temporada, disponibilidad, restricciones, empleadosAsignados
+			);
+			
+			registrarAtraccionCutlural(atraccion);
+			}
+	public void crearAtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+            int cupoMax, int minEmpleados, String riesgo,
+            RestriccionesMecanica restricciones, Temporada temporada) {
 
-registrarAtraccionCutlural(atraccion);
+			ArrayList<Empleado> empleadosAsignados = new ArrayList<>();
 
+			AtraccionMecanica atraccion = new AtraccionMecanica(
+			nombre, ubicacion, cupoMax, minEmpleados, deTemporada,
+			temporada, riesgo, restricciones, empleadosAsignados
+			);
+
+registrarAtraccionMecanica(atraccion);
 }
-	public void crearAtraccionMecanica(String ubicacion, String nombre, Boolean deTemporada, Boolean diponible, int cupoMax,
-			int minEmpleados, String riesgo, RestriccionesMecanica restricciones) {
-		AtraccionMecanica atraccion = new AtraccionMecanica(ubicacion, nombre, deTemporada, diponible, cupoMax, minEmpleados, riesgo, restricciones);
-		registrarAtraccionMecanica(atraccion);
-	}
 	public ArrayList<Espectaculo> obtenerEspectaculos() {
 		// TODO Auto-generated method stub
 		return null;
