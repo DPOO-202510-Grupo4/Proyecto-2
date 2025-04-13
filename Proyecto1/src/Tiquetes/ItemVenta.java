@@ -3,12 +3,12 @@ package Tiquetes;
 public abstract class ItemVenta {
 	private String nombre;
 	private Double precioBase;
-	private EstrategiaPrecio estrategiaPrecio;
 	
-public ItemVenta(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio) {
+	
+public ItemVenta(String nombre, Double precioBase) {
 		this.nombre = nombre;
 		this.precioBase = precioBase;
-		this.estrategiaPrecio = estrategiaPrecio;
+		
 	}
 
 public String getNombre() {
@@ -25,14 +25,6 @@ public Double getPrecioBase() {
 
 public void setPrecioBase(Double precioBase) {
 	this.precioBase = precioBase;
-}
-
-public EstrategiaPrecio getEstrategiaPrecio() {
-	return estrategiaPrecio;
-}
-
-public void setEstrategiaPrecio(EstrategiaPrecio estrategiaPrecio) {
-	this.estrategiaPrecio = estrategiaPrecio;
 }
 
 public double calcularPrecio() {

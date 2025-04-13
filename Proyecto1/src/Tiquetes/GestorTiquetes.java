@@ -10,9 +10,9 @@ public class GestorTiquetes {
     // ======================
     // Atributos
     // ======================
-    private HashMap<Cliente, List<Tiquete>> tiquetesVendidos;
+    private HashMap<String, List<Tiquete>> tiquetesVendidos;
     private ArrayList<CategoriaTiquete> categoriasDisponibles;
-    private List<Temporada> temporadas;
+    private ArrayList<Temporada> temporadas;
     private static GestorTiquetes instancia;
 
     // ======================
@@ -35,28 +35,49 @@ public class GestorTiquetes {
     // Gestión de TIQUETES
     // ======================
 
-    public Tiquete crearTiqueteTemporada(Cliente cliente, String tipoCategoria, Temporada temporada) {
-        CategoriaTiquete categoria = buscarCategoria(tipoCategoria);
-        if (categoria == null) return null;
 
-        TiqueteTemporada t = new TiqueteTemporada(
-            UUID.randomUUID().toString(),
-            categoria,
-            false,
-            temporada
-        );
+    public Tiquete crearTiqueteTemporada(Cliente cliente, String nombreCategoria, Temporada temporada ) {
+    	ArrayList<CategoriaTiquete> categorias = getCategoriasDisponibles();
+        CategoriaTiquete categoria = null;
+        for (CategoriaTiquete c : categorias) {
+            if (c.getNombre().equalsIgnoreCase(nombreCategoria)) {
+                categoria = c;
+                break;
+            }
+        }
+
+        if (categoria == null) {
+            System.out.println("Categoría no encontrada: " + nombreCategoria);
+            return null;
+        }
+    	
+        TiqueteTemporada t = new TiqueteTemporada("Tiquete " + categoria.getNombre(), categoria.getPrecioBase() , UUID.randomUUID().toString(), categoria, false,cliente, temporada);
 
         agregarTiqueteACliente(cliente, t);
         return t;
     }
 
-    public Tiquete crearTiqueteDia(Cliente cliente, String tipoCategoria, Date fecha) {
-        CategoriaTiquete categoria = buscarCategoria(tipoCategoria);
-        if (categoria == null) return null;
+
+    public Tiquete crearTiqueteRegular(Cliente cliente, String nombreCategoria, Date fecha) {
+ 
+        ArrayList<CategoriaTiquete> categorias = getCategoriasDisponibles();
+        CategoriaTiquete categoria = null;
+        for (CategoriaTiquete c : categorias) {
+            if (c.getNombre().equalsIgnoreCase(nombreCategoria)) {
+                categoria = c;
+                break;
+            }
+        }
+
+        if (categoria == null) {
+            System.out.println("Categoría no encontrada: " + nombreCategoria);
+            return null;
+        }
 
         TiqueteDia t = new TiqueteDia(
+            "Tiquete " + categoria.getNombre(),
+            categoria.getPrecioBase(),
             UUID.randomUUID().toString(),
-            null, null, tipoCategoria,
             categoria,
             false,
             cliente,
@@ -140,6 +161,16 @@ public class GestorTiquetes {
     }
 
     private void agregarTiqueteACliente(Cliente cliente, Tiquete tiquete) {
-        tiquetesVendidos.computeIfAbsent(cliente, k -> new ArrayList<>()).add(tiquete);
+        cliente.agregarTiquete(tiquete);
     }
+
+	public ArrayList<Temporada> getTemporadas() {
+		return temporadas;
+	}
+
+
+	public HashMap<String, List<Tiquete>> getTiquetesVendidos() {
+		return tiquetesVendidos;
+	}
+    
 }

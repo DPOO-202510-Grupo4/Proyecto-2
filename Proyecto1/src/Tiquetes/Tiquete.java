@@ -9,9 +9,9 @@ public abstract class Tiquete extends ItemVenta{
 
 	private Cliente cliente;
 	
-	public Tiquete(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio, String idTiquete,
+	public Tiquete(String nombre, Double precioBase, String idTiquete,
 			CategoriaTiquete categoria, boolean usado, Cliente cliente) {
-		super(nombre, precioBase, estrategiaPrecio);
+		super(nombre, precioBase);
 		this.idTiquete = idTiquete;
 		this.categoria = categoria;
 		this.usado = usado;

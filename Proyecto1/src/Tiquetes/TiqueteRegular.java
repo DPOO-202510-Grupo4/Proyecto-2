@@ -7,9 +7,9 @@ import Persona.Cliente;
 public class TiqueteRegular extends Tiquete{
 	private Date fecha;
 
-	public TiqueteRegular(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio, String idTiquete,
+	public TiqueteRegular(String nombre, Double precioBase, String idTiquete,
 			CategoriaTiquete categoria, boolean usado, Cliente cliente, Date fecha) {
-		super(nombre, precioBase, estrategiaPrecio, idTiquete, categoria, usado, cliente);
+		super(nombre, precioBase, idTiquete, categoria, usado, cliente);
 		this.fecha = fecha;
 	}
 

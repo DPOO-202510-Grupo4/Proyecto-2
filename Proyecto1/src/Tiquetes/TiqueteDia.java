@@ -9,9 +9,9 @@ public class TiqueteDia extends Tiquete {
 
 	
 
-	public TiqueteDia(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio, String idTiquete,
+	public TiqueteDia(String nombre, Double precioBase,  String idTiquete,
 			CategoriaTiquete categoria, boolean usado, Cliente cliente, Date fecha) {
-		super(nombre, precioBase, estrategiaPrecio, idTiquete, categoria, usado, cliente);
+		super(nombre, precioBase, idTiquete, categoria, usado, cliente);
 		Fecha = fecha;
 	}
 

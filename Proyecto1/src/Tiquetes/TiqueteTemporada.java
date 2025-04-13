@@ -4,9 +4,9 @@ import restricciones.Temporada;
 
 public class TiqueteTemporada extends Tiquete {
 	private Temporada temporada;
-	public TiqueteTemporada(String nombre, Double precioBase, EstrategiaPrecio estrategiaPrecio, String idTiquete,
+	public TiqueteTemporada(String nombre, Double precioBase,  String idTiquete,
 			CategoriaTiquete categoria, boolean usado, Cliente cliente, Temporada temporada) {
-		super(nombre, precioBase, estrategiaPrecio, idTiquete, categoria, usado, cliente);
+		super(nombre, precioBase, idTiquete, categoria, usado, cliente);
 		this.temporada = temporada;
 	}
 

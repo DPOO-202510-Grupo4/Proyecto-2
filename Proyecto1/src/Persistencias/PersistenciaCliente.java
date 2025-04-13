@@ -13,7 +13,7 @@ public class PersistenciaCliente {
 
     private static final String NOMBREARCHIVO = "persistencia/personas/clientes.txt";
 
-    public void crearArchivo(String nombreArchivo){
+    public static void crearArchivo(String nombreArchivo){
 
         try {
             Files.createDirectories(Paths.get("persistencia"));
@@ -28,14 +28,14 @@ public class PersistenciaCliente {
 
 	}
 
-    public void persistencia(String nombre, Persona persistirPersona){
+    public static void persistencia(String nombre, Persona persistirPersona){
 
 		crearArchivo(nombre);
 		guardarCliente(persistirPersona);
 
 	}
 
-	public void guardarCliente(Persona nombreCliente){
+	public static void guardarCliente(Persona nombreCliente){
 
 		
 		try (BufferedWriter clienteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
