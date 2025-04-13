@@ -3,6 +3,8 @@ package Tiquetes;
 import java.util.*;
 
 import Atracciones.Atraccion;
+import Persistencias.PersistenciaTiqueteRegular;
+import Persistencias.PersistenciaTiqueteTemporada;
 import Persona.*;
 import restricciones.Temporada;
 
@@ -10,7 +12,7 @@ public class GestorTiquetes {
     // ======================
     // Atributos
     // ======================
-    private HashMap<String, List<Tiquete>> tiquetesVendidos;
+    private HashMap<String, ArrayList<Tiquete>> tiquetesVendidos;
     private ArrayList<CategoriaTiquete> categoriasDisponibles;
     private ArrayList<Temporada> temporadas;
     private static GestorTiquetes instancia;
@@ -52,7 +54,8 @@ public class GestorTiquetes {
         }
     	
         TiqueteTemporada t = new TiqueteTemporada("Tiquete " + categoria.getNombre(), categoria.getPrecioBase() , UUID.randomUUID().toString(), categoria, false,cliente, temporada);
-
+        
+        PersistenciaTiqueteTemporada.persistencia(t);
         agregarTiqueteACliente(cliente, t);
         return t;
     }
@@ -74,7 +77,7 @@ public class GestorTiquetes {
             return null;
         }
 
-        TiqueteDia t = new TiqueteDia(
+        TiqueteRegular t = new TiqueteRegular(
             "Tiquete " + categoria.getNombre(),
             categoria.getPrecioBase(),
             UUID.randomUUID().toString(),
@@ -83,7 +86,7 @@ public class GestorTiquetes {
             cliente,
             fecha
         );
-
+        PersistenciaTiqueteRegular.persistencia(t);
         agregarTiqueteACliente(cliente, t);
         return t;
     }
@@ -161,6 +164,8 @@ public class GestorTiquetes {
     }
 
     private void agregarTiqueteACliente(Cliente cliente, Tiquete tiquete) {
+    	ArrayList<Tiquete> tiquetesUsuario = tiquetesVendidos.get(cliente.getLogin());
+    	tiquetesUsuario.add(tiquete);
         cliente.agregarTiquete(tiquete);
     }
 
