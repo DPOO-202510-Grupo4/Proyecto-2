@@ -11,15 +11,20 @@ public class AtraccionMecanica extends Atraccion {
 
     private String riesgo;
     private RestriccionesMecanica restricciones;
+    private ArrayList<Empleado> empleadosAsignados;
+
+    
 
     public AtraccionMecanica(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada,
-                             Temporada temporada, String riesgo, RestriccionesMecanica restricciones) {
-        super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
-        this.riesgo = riesgo;
-        this.restricciones = restricciones;
-    }
+			Temporada temporada, String riesgo, RestriccionesMecanica restricciones,
+			ArrayList<Empleado> empleadosAsignados) {
+		super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
+		this.riesgo = riesgo;
+		this.restricciones = restricciones;
+		this.empleadosAsignados = empleadosAsignados;
+	}
 
-    public String getRiesgo() {
+	public String getRiesgo() {
         return riesgo;
     }
 
@@ -35,8 +40,12 @@ public class AtraccionMecanica extends Atraccion {
         this.restricciones = restricciones;
     }
 
+    public ArrayList<Empleado> getEmpleadosAsignados() {
+		return empleadosAsignados;
+	}
 
-    public boolean validarTiquete(Tiquete tiquete) {
+
+	public boolean validarTiquete(Tiquete tiquete) {
         if (restricciones == null) return true;
         return restricciones.permiteTiquete(tiquete.getCategoria(), this);
     }
@@ -53,10 +62,6 @@ public class AtraccionMecanica extends Atraccion {
         return cantidadEmpleadosActuales >= getMinEmpleados();
     }
 
-    private int getMinEmpleados() {
-		
-		return this.minEmpleados;
-	}
 
 	public boolean usarAtraccion(Tiquete tiquete, String clima, int altura, int peso, int numEmpleados) {
         return validarTiquete(tiquete) &&
@@ -78,11 +83,6 @@ public class AtraccionMecanica extends Atraccion {
         return getEmpleadosAsignados() != null && getEmpleadosAsignados().size() >= getMinEmpleados();
     }
 
-    @Override
-    protected ArrayList<Empleado> getEmpleadosAsignados() {
-    //TODO empleados
-        return new ArrayList<>();
-    }
 
     @Override
     public String toString() {
