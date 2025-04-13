@@ -2,6 +2,9 @@ package restricciones;
 
 import java.util.ArrayList;
 
+import Atracciones.Atraccion;
+import Tiquetes.CategoriaTiquete;
+
 public class RestriccionesCultural extends Restricciones {
 	private int edad;
 
@@ -17,6 +20,12 @@ public class RestriccionesCultural extends Restricciones {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
+
+	public boolean permiteTiquete(CategoriaTiquete categoria, Atraccion atraccion) {
+	    return categoria.getAtraccionesDisponibles().contains(atraccion);
+	}
+
+
 	
 
 }

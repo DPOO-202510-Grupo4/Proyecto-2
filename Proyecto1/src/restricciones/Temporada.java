@@ -30,5 +30,8 @@ public class Temporada {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public boolean estaDentroDeTemporada(Date fecha) {
+	    return !fecha.before(fechaInicio) && !fecha.after(fechaFinal);
+	}
  
 }

@@ -19,6 +19,13 @@ public class CategoriaTiquete {
 	public String getNombre() {
 		return nombre;
 	}
+
+	public ArrayList<Atraccion> getAtraccionesDisponibles() {
+		return atraccionesDisponibles;
+	}
+
+
+	
 	
 
 }

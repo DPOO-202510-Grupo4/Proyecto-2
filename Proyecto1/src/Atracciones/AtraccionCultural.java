@@ -1,108 +1,99 @@
 package Atracciones;
 
-
 import java.time.LocalDate;
-import java.util.*;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 
 import Persona.Empleado;
 import Persona.Persona;
+import Tiquetes.CategoriaTiquete;
+import Tiquetes.Tiquete;
 import restricciones.RestriccionesCultural;
 import restricciones.Temporada;
 
-public class AtraccionCultural extends Atraccion{
-	
-	private ArrayList<Temporada> disponibilidad;
-	private RestriccionesCultural restricciones;
-	
-	public AtraccionCultural(String ubicacion, String nombre, Boolean deTemporada, Boolean diponible, int cupoMax,
-			int minEmpleados, int edadMin, ArrayList<Temporada> disponibilidad, RestriccionesCultural restricciones) {
-		super(ubicacion, nombre, deTemporada, diponible, cupoMax, minEmpleados);
-		this.disponibilidad = disponibilidad;
-		this.restricciones = restricciones;
-	}
+public class AtraccionCultural extends Atraccion {
 
-	
-	public ArrayList<Temporada> getDisponibilidad() {
-		return disponibilidad;
-	}
+    private ArrayList<Temporada> disponibilidad;
+    private RestriccionesCultural restricciones;
+    private ArrayList<Empleado> empleadosAsignados;
 
+    public AtraccionCultural(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada,
+                             Temporada temporada, ArrayList<Temporada> disponibilidad,
+                             RestriccionesCultural restricciones, ArrayList<Empleado> empleadosAsignados) {
+        super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
+        this.disponibilidad = disponibilidad;
+        this.restricciones = restricciones;
+        this.empleadosAsignados = empleadosAsignados;
+    }
 
-	public void setDisponibilidad(ArrayList<Temporada> disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
+    @Override
+    public boolean esDisponible(Date fecha) {
+        if (!enFuncionamiento) return false;
 
+        if (deTemporada && temporada != null) {
+            return temporada.estaDentroDeTemporada(fecha);
+        }
 
-	public RestriccionesCultural getRestricciones() {
-		return restricciones;
-	}
+        // Si no es de temporada, revisa si la fecha está en alguna temporada disponible
+        for (Temporada t : disponibilidad) {
+            if (t.estaDentroDeTemporada(fecha)) {
+                return true;
+            }
+        }
 
+        return false;
+    }
 
-	public void setRestricciones(RestriccionesCultural restricciones) {
-		this.restricciones = restricciones;
-	}
+    @Override
+    public boolean verificarEmpleados() {
+        return empleadosAsignados != null && empleadosAsignados.size() >= minEmpleados;
+    }
 
+    public boolean validarRestricciones(Persona persona, Tiquete tiquete) {
+        return validarEdad(persona) && validarTiquete(tiquete);
+    }
 
-	//@Override
-	public boolean validarRestricciones() {
-		
-		return true;
-	}
-	
-	//@Override
-	public boolean validarTiquete(String tipoTiquete) {
-		
-		switch (getExclusividad()) {
-			case "Familiar":
-				return !tipoTiquete.equals("Básico");
-			case "Oro":
-				return tipoTiquete.equals("Oro") || tipoTiquete.equals("Diamante");
-			case "Diamante":
-				return tipoTiquete.equals("Diamante");
-			default:
-				return false;
-				
-			}
-		}
-		
-	public boolean validarEdad(Persona persona) {
+    public boolean validarEdad(Persona persona) {
+        if (restricciones == null) return true;
 
-		LocalDate fechaHoy = LocalDate.now();
-		
-		int restaEdades = fechaHoy.getYear() - persona.getFechaNacimiento().getYear();
+        LocalDate fechaNacimiento = persona.getFechaNacimiento();
+        int edad = LocalDate.now().getYear() - fechaNacimiento.getYear();
 
-		if (restaEdades >= edadMin) {
-			return true;
-		}
-		
-		return false;
-		
-	}
-	
-	
-	
+        return edad >= restricciones.getEdad();
+    }
 
-	@Override
-	public String toString() {
-		return "AtraccionCultural [" + super.toString() + ", fecha = " + fecha + ", horario = " +  horario + "]";
-	}
+    public boolean validarTiquete(Tiquete tiquete) {
+        if (restricciones == null) return true;
+        return restricciones.permiteTiquete(tiquete.getCategoria(), this);
+    }
 
-	public boolean estaDisponible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public ArrayList<Temporada> getDisponibilidad() {
+        return disponibilidad;
+    }
 
-	@Override
-	protected boolean verificarMinimoEmpleados(Date fecha) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public void setDisponibilidad(ArrayList<Temporada> disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
 
-	@Override
-	protected ArrayList<Empleado> getEmpleadosAsignados() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+    public RestriccionesCultural getRestricciones() {
+        return restricciones;
+    }
 
-	
+    public void setRestricciones(RestriccionesCultural restricciones) {
+        this.restricciones = restricciones;
+    }
+
+    public ArrayList<Empleado> getEmpleadosAsignados() {
+        return empleadosAsignados;
+    }
+
+    public void setEmpleadosAsignados(ArrayList<Empleado> empleadosAsignados) {
+        this.empleadosAsignados = empleadosAsignados;
+    }
+
+    @Override
+    public String toString() {
+        return "AtraccionCultural [" + nombre + ", ubicación = " + ubicacion + "]";
+    }
 }
