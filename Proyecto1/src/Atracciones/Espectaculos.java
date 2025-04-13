@@ -1,32 +1,59 @@
 package Atracciones;
-import restricciones.Temporada;
-import java.util.ArrayList;
+
+import java.util.Date;
 
 public class Espectaculos {
-    private ArrayList<Temporada> horario;
+    private Date fecha;
+    private Date horaInicio;
+    private Date horaFinalizacion;
     private String empresaEncargada;
+    private String nombre;
 
-	public ArrayList<Temporada> getHorario() {
-		return horario;
-	}
+    public Espectaculos(Date fecha, Date horaInicio, Date horaFinalizacion, String empresaEncargada, String nombre) {
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaFinalizacion = horaFinalizacion;
+        this.empresaEncargada = empresaEncargada;
+        this.nombre = nombre;
+    }
 
-	public void setHorario(ArrayList<Temporada> horario) {
-		this.horario = horario;
-	}
+    public Date getFecha() {
+        return fecha;
+    }
 
-	public String getEmpresaEncargada() {
-		return empresaEncargada;
-	}
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
-	public void setEmpresaEncargada(String empresaEncargada) {
-		this.empresaEncargada = empresaEncargada;
-	}
+    public Date getHoraInicio() {
+        return horaInicio;
+    }
 
-	public Espectaculos(ArrayList<Temporada> horario, String empresaEncargada) {
-		this.horario = horario;
-		this.empresaEncargada = empresaEncargada;
-	}
-    
-    
+    public void setHoraInicio(Date horaInicio) {
+        this.horaInicio = horaInicio;
+    }
 
+    public Date getHoraFinalizacion() {
+        return horaFinalizacion;
+    }
+
+    public void setHoraFinalizacion(Date horaFinalizacion) {
+        this.horaFinalizacion = horaFinalizacion;
+    }
+
+    public String getEmpresaEncargada() {
+        return empresaEncargada;
+    }
+
+    public void setEmpresaEncargada(String empresaEncargada) {
+        this.empresaEncargada = empresaEncargada;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

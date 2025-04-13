@@ -6,12 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
+import Atracciones.AtraccionMecanica;
 import Atracciones.Espectaculos;
+import Persona.Empleado;
 
 public class PersistenciaEspectaculo {
 
-    private static final String NOMBREARCHIVO = "persistencia/espectaculos.txt";
+    private static final String NOMBREARCHIVO = "persistencia/atracciones/espectaculos.txt";
 
     public void crearArchivo(String nombreArchivo){
 
@@ -35,25 +38,26 @@ public class PersistenciaEspectaculo {
 		guardarEspectaculo(persistirEspectaculo);
 	}
 
-	public void guardarEspectaculo(Espectaculos nombreEspectaculo){
+    public void guardarEspectaculo(Espectaculos atraccion) {
+        try (BufferedWriter espectaculoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
 
-		
-		try (BufferedWriter atraccionEscrita = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
-			String atraccionFormatoTexto = nombreEspectaculo.getHorario() + "," + nombreEspectaculo.getEmpresaEncargada();
-			atraccionEscrita.write(atraccionFormatoTexto);
-			atraccionEscrita.newLine();
-            atraccionEscrita.close();
+            
 
-		} catch(IOException e){
-			System.err.println("No se pudo guardar el espectáculo");
-		}
+            
+            String espectaculoFormatoTexto =
+                atraccion.getNombre() + "," +
+                atraccion.getEmpresaEncargada() + "," +
+                atraccion.getFecha() + "," +
+                atraccion.getHoraInicio() + "," +
+                atraccion.getHoraFinalizacion();
 
-	}
-	
+            espectaculoEscrito.write(espectaculoFormatoTexto);
+            espectaculoEscrito.newLine();
 
-
-
-
+        } catch (IOException e) {
+            System.err.println("No se pudo guardar la atraccion: " + e.getMessage());
+        }
+    }
 
 
 }
