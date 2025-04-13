@@ -11,7 +11,7 @@ import Persona.Persona;
 
 public class PersistenciaCliente {
 
-    private static final String NOMBREARCHIVO = "persistencia/clientes.txt";
+    private static final String NOMBREARCHIVO = "persistencia/personas/clientes.txt";
 
     public void crearArchivo(String nombreArchivo){
 
