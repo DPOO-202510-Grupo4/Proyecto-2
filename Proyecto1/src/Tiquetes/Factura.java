@@ -1,21 +1,32 @@
 package Tiquetes;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import Persona.Cliente;
 
 public class Factura {
+private ArrayList<ItemVenta> items;
+private Date fecha;
+private Cliente cliente;
+private Double costo;
 
-    protected Tiquete tiquete;
-    protected Cliente cliente;
+public Factura(ArrayList<ItemVenta> items, Date fecha, Cliente cliente, Double costo) {
+	
+	this.items = items;
+	this.fecha = fecha;
+	this.cliente = cliente;
+	this.costo = calcularCosto(items);
+}
 
-    public Factura(Tiquete tiquete, Cliente cliente) {
-        this.tiquete = tiquete;
-    }
+private Double calcularCosto(ArrayList<ItemVenta> items) {
+	Double costo = 0.0;
+	for (ItemVenta i : items) {
+		costo += i.getPrecioBase();
+	}
+	return costo;
+}
 
-    public Tiquete getTiquete() {
-        return tiquete;
-    }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
+
 }

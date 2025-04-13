@@ -11,6 +11,30 @@ public ItemVenta(String nombre, Double precioBase, EstrategiaPrecio estrategiaPr
 		this.estrategiaPrecio = estrategiaPrecio;
 	}
 
-public abstract double calcularPrecio();
+public String getNombre() {
+	return nombre;
+}
+
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+
+public Double getPrecioBase() {
+	return precioBase;
+}
+
+public void setPrecioBase(Double precioBase) {
+	this.precioBase = precioBase;
+}
+
+public EstrategiaPrecio getEstrategiaPrecio() {
+	return estrategiaPrecio;
+}
+
+public void setEstrategiaPrecio(EstrategiaPrecio estrategiaPrecio) {
+	this.estrategiaPrecio = estrategiaPrecio;
+}
+
+
 
 }

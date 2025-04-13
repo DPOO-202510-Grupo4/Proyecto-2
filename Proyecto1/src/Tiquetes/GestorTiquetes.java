@@ -1,64 +1,69 @@
 package Tiquetes;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
 
+import java.util.*;
 import Persona.*;
 import restricciones.Temporada;
 
 public class GestorTiquetes {
-	private HashMap<Tiquete, Cliente> tiquetesVendidos;
-	private ArrayList<CategoriaTiquete> categoriasDisponibles;
-	public GestorTiquetes(HashMap<Tiquete, Cliente> tiquetesVendidos,
-			ArrayList<CategoriaTiquete> categoriasDisponibles) {
-		this.tiquetesVendidos = tiquetesVendidos;
-		this.categoriasDisponibles = categoriasDisponibles;
-	}
-	
-	public Tiquete crearTiqueteTemporada(Cliente cliente, String tipoCategoria, Temporada temporada) {
-	    CategoriaTiquete categoria = null;
-	    for (CategoriaTiquete cat : categoriasDisponibles) {
-	        if (cat.getNombre().equals(tipoCategoria)) {
-	            categoria = cat;
-	            break;
-	        }
-	    }
-	    if (categoria == null) return null;
-	    Boolean usado = false;
+    private HashMap<Cliente, List<Tiquete>> tiquetesVendidos;
+    private ArrayList<CategoriaTiquete> categoriasDisponibles;
 
-	    TiqueteTemporada t = new TiqueteTemporada(UUID.randomUUID().toString(), categoria, usado, temporada );
-	    tiquetesVendidos.put(t, cliente);
-	    return t;
-	}
+    public GestorTiquetes(HashMap<Cliente, List<Tiquete>> tiquetesVendidos,
+                          ArrayList<CategoriaTiquete> categoriasDisponibles) {
+        this.tiquetesVendidos = tiquetesVendidos;
+        this.categoriasDisponibles = categoriasDisponibles;
+    }
 
-	public Tiquete crearTiqueteDia(Cliente cliente, String tipoCategoria, Date fecha) {
-	    CategoriaTiquete categoria = null;
-	    for (CategoriaTiquete cat : categoriasDisponibles) {
-	        if (cat.getNombre().equals(tipoCategoria)) {
-	            categoria = cat;
-	            break;
-	        }
-	    }
-	    if (categoria == null) return null;
-	    Boolean usado = false;
+    public Tiquete crearTiqueteTemporada(Cliente cliente, String tipoCategoria, Temporada temporada) {
+        CategoriaTiquete categoria = buscarCategoria(tipoCategoria);
+        if (categoria == null) return null;
 
-	    TiqueteDia t = new TiqueteDia(UUID.randomUUID().toString(), categoria, usado, fecha);
-	    tiquetesVendidos.put(t, cliente);
-	    return t;
-	}
+        TiqueteTemporada t = new TiqueteTemporada(
+            UUID.randomUUID().toString(),
+            categoria,
+            false,
+            temporada
+        );
 
-	public void UsarTiquete(Tiquete tiquete) {
-	    tiquete.marcarComoUsado();
-	}
-	public ArrayList<Tiquete> getTiquetesDeCliente(Cliente cliente) {
-	    ArrayList<Tiquete> resultado = new ArrayList<>();
-	    for (Tiquete t : tiquetesVendidos.keySet()) {
-	        if (tiquetesVendidos.get(t).equals(cliente)) {
-	            resultado.add(t);
-	        }
-	    }
-	    return resultado;
-	}
+        agregarTiqueteACliente(cliente, t);
+        return t;
+    }
 
+    public Tiquete crearTiqueteDia(Cliente cliente, String tipoCategoria, Date fecha) {
+        CategoriaTiquete categoria = buscarCategoria(tipoCategoria);
+        if (categoria == null) return null;
+
+        TiqueteDia t = new TiqueteDia(
+            UUID.randomUUID().toString(),
+            null, null, tipoCategoria,
+            categoria,
+            false,
+            cliente,
+            fecha
+        );
+
+        agregarTiqueteACliente(cliente, t);
+        return t;
+    }
+
+    public void usarTiquete(Tiquete tiquete) {
+        tiquete.marcarComoUsado();
+    }
+
+    public ArrayList<Tiquete> getTiquetesDeCliente(Cliente cliente) {
+        return new ArrayList<>(tiquetesVendidos.getOrDefault(cliente, new ArrayList<>()));
+    }
+
+    private CategoriaTiquete buscarCategoria(String tipoCategoria) {
+        for (CategoriaTiquete cat : categoriasDisponibles) {
+            if (cat.getNombre().equalsIgnoreCase(tipoCategoria)) {
+                return cat;
+            }
+        }
+        return null;
+    }
+
+    private void agregarTiqueteACliente(Cliente cliente, Tiquete tiquete) {
+        tiquetesVendidos.computeIfAbsent(cliente, k -> new ArrayList<>()).add(tiquete);
+    }
 }
