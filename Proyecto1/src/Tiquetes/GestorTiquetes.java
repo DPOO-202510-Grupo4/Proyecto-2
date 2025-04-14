@@ -98,6 +98,16 @@ public class GestorTiquetes {
     public ArrayList<Tiquete> getTiquetesDeCliente(Cliente cliente) {
         return new ArrayList<>(tiquetesVendidos.getOrDefault(cliente, new ArrayList<>()));
     }
+    public Tiquete buscarTiquetePorId(String id) {
+        for (ArrayList<Tiquete> listaTiquetes : tiquetesVendidos.values()) {
+            for (Tiquete t : listaTiquetes) {
+                if (t.getId().equals(id)) {
+                    return t;
+                }
+            }
+        }
+        return null;
+    }
 
     // ======================
     // Gestión de CATEGORÍAS de TIQUETE

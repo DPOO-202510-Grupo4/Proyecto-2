@@ -8,11 +8,8 @@ import Tiquetes.CategoriaTiquete;
 import Tiquetes.Factura;
 import Tiquetes.GestorTiquetes;
 import restricciones.Temporada;
-import Atracciones.Atraccion;
 import Atracciones.AtraccionCultural;
 import Atracciones.AtraccionMecanica;
-//import Espectaculos.Espectaculo;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,30 +31,30 @@ public class consolaCliente {
             int opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
-            case 1:
-                crearCuentaCliente(scanner);
-                break;
-            case 2:
-                comprarTiquete(scanner);
-                break;
-            case 3:
-                consultarHistorial(scanner);
-                break;
-            case 4:
-                //consultarEspectaculos();
-                break;
-            case 5:
-                consultarAtracciones(scanner);
-                break;
-            case 6:
-                volver = true;
-                break;
-            default:
-                System.out.println("Opción no válida. Intente nuevamente.");
-        }
+                case 1:
+                    crearCuentaCliente(scanner);
+                    break;
+                case 2:
+                    comprarTiquete(scanner);
+                    break;
+                case 3:
+                    consultarHistorial(scanner);
+                    break;
+                case 4:
+                    // consultarEspectaculos();
+                    break;
+                case 5:
+                    consultarAtracciones();
+                    break;
+                case 6:
+                    volver = true;
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
         }
     }
-    
+
     private static void crearCuentaCliente(Scanner scanner) {
         System.out.println("\n--- CREAR CUENTA DE CLIENTE ---");
 
@@ -77,13 +74,11 @@ public class consolaCliente {
             return;
         }
 
-        
         gestorPersonas.registrarCliente(nombre, login, contrasena);
-
         System.out.println("¡Cuenta creada exitosamente!");
     }
 
-    private static void comprarTiquete(Scanner scanner) {
+    static void comprarTiquete(Scanner scanner) {
         System.out.println("¿Desea un tiquete regular (1) o de temporada (2)?");
         int opcion = Integer.parseInt(scanner.nextLine());
 
@@ -93,7 +88,7 @@ public class consolaCliente {
         System.out.println("Ingrese el login del cliente:");
         String login = scanner.nextLine();
 
-        Cliente cliente = gestorPersonas.buscarCliente(login); 
+        Cliente cliente = gestorPersonas.buscarCliente(login);
         if (cliente == null) {
             System.out.println("Cliente no encontrado.");
             return;
@@ -105,7 +100,7 @@ public class consolaCliente {
             return;
         }
 
-        System.out.println("Escoja una categoría: ");
+        System.out.println("Escoja una categoría:");
         for (int i = 0; i < categorias.size(); i++) {
             System.out.println((i + 1) + ". " + categorias.get(i).getNombre());
         }
@@ -117,7 +112,6 @@ public class consolaCliente {
         }
 
         String nombreCategoria = categorias.get(indiceCategoria).getNombre();
-        double precioBase = categorias.get(indiceCategoria).getPrecioBase();
 
         if (opcion == 1) {
             System.out.println("Ingrese la fecha del tiquete (formato: dd/MM/yyyy):");
@@ -131,7 +125,6 @@ public class consolaCliente {
             } catch (Exception e) {
                 System.out.println("Formato de fecha inválido.");
             }
-
         } else if (opcion == 2) {
             ArrayList<Temporada> temporadas = gestorTiquetes.getTemporadas();
             if (temporadas.isEmpty()) {
@@ -139,7 +132,7 @@ public class consolaCliente {
                 return;
             }
 
-            System.out.println("Escoja una temporada: ");
+            System.out.println("Escoja una temporada:");
             for (int i = 0; i < temporadas.size(); i++) {
                 System.out.println((i + 1) + ". " + temporadas.get(i).getName());
             }
@@ -157,8 +150,6 @@ public class consolaCliente {
             System.out.println("Opción inválida.");
         }
     }
-
-        
 
     private static void consultarHistorial(Scanner scanner) {
         System.out.print("Ingrese el login del cliente: ");
@@ -180,46 +171,32 @@ public class consolaCliente {
         }
 
         System.out.println("\n--- HISTORIAL DE COMPRAS DE " + cliente.getNombre() + " ---");
-        int i = 1;
-        for (Factura factura : historial) {
-            System.out.println(i + ". " + factura.toString());
-            i++;
+        for (int i = 0; i < historial.size(); i++) {
+            System.out.println((i + 1) + ". " + historial.get(i).toString());
         }
     }
 
-    /*private static void consultarEspectaculos() {
-        System.out.println("\n--- ESPECTÁCULOS DISPONIBLES ---");
-        GestorAtracciones gestor = GestorAtracciones.getInstancia();
-
-        ArrayList<Espectaculos> espectaculos = gestor.obtenerEspectaculos();
-        if (espectaculos.isEmpty()) {
-            System.out.println("No hay espectáculos disponibles en este momento.");
-        } else {
-            for (Espectaculo e : espectaculos) {
-                System.out.println(e.toString());
-            }
-        }
-    }*/
-
-
-        private static void consultarAtracciones(Scanner scanner) {
+    private static void consultarAtracciones() {
         System.out.println("\n--- TODAS LAS ATRACCIONES DEL PARQUE ---");
-        int i = 1;
+
         GestorAtracciones gestor = GestorAtracciones.getInstancia();
         ArrayList<AtraccionMecanica> atraccionesMecanicas = gestor.getAtraccionesMecanicas();
         ArrayList<AtraccionCultural> atraccionesCulturales = gestor.getAtraccionesCulturales();
 
+        int contador = 1;
+
         if (atraccionesMecanicas.isEmpty() && atraccionesCulturales.isEmpty()) {
             System.out.println("No hay atracciones registradas en el sistema.");
         } else {
-            for (AtraccionMecanica am : atraccionesMecanicas) {
-                System.out.println(i + "." + am.toString());
-                i++;
-            for (AtraccionMecanica ac : atraccionesMecanicas) {
-                System.out.println(i + "." + ac.toString());
-                i++;
-                }    
+            for (int i = 0; i < atraccionesMecanicas.size(); i++) {
+                System.out.println(contador + ". " + atraccionesMecanicas.get(i).toString());
+                contador++;
+            }
+
+            for (int i = 0; i < atraccionesCulturales.size(); i++) {
+                System.out.println(contador + ". " + atraccionesCulturales.get(i).toString());
+                contador++;
+            }
         }
-      }
     }
- }
+}

@@ -17,9 +17,12 @@ public class Main {
                     consolaCliente.menuCliente(scanner);
                     break;
                 case 2:
-                    consolaAdministrador.menuAdministrador(scanner);
+                    consolaEmpleado.menuEmpleado(scanner);
                     break;
                 case 3:
+                    consolaAdministrador.menuAdministrador(scanner);
+                    break;
+                case 4:
                     System.out.println("¡Gracias por visitar el parque!");
                     salir = true;
                     break;
@@ -32,8 +35,9 @@ public class Main {
     private static void mostrarMenuPrincipal() {
         System.out.println("\n===== PARQUE TEMÁTICO =====");
         System.out.println("1. Soy cliente");
-        System.out.println("2. Soy trabajador");
-        System.out.println("3. Salir");
+        System.out.println("2. Soy empleado");
+        System.out.println("3. Soy administrador");
+        System.out.println("4. Salir");
         System.out.print("Seleccione una opción: ");
     }
 }

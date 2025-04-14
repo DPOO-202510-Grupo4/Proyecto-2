@@ -7,8 +7,7 @@ public class FastPass extends ItemVenta{
 	private boolean usado;
 	private String idTiquete;
 
-	public FastPass(String nombre, Double precioBase,  Date fecha, boolean usado,
-			String idTiquete) {
+	public FastPass(String nombre, Double precioBase, Date fecha, boolean usado, String idTiquete) {
 		super(nombre, precioBase);
 		this.fecha = fecha;
 		this.usado = usado;

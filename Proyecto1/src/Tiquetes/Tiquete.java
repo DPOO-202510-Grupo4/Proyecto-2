@@ -43,22 +43,6 @@ public abstract class Tiquete extends ItemVenta{
 	}
 	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	public String getId() {
 		return idTiquete;
