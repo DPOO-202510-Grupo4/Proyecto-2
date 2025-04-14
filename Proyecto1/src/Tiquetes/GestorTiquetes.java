@@ -177,5 +177,18 @@ public class GestorTiquetes {
 	public HashMap<String, ArrayList<Tiquete>> getTiquetesVendidos() {
 		return tiquetesVendidos;
 	}
+	
+	public Temporada buscarTemporada(String temporadaIn) {
+	    
+	    ArrayList<Temporada> temporadas = getTemporadas();
+
+	    for (Temporada t : temporadas) {
+	        if (t.getName().equalsIgnoreCase(temporadaIn)) {
+	            return t;
+	        }
+	    }
+
+	    return null; // No se encontró la temporada
+	}
     
 }

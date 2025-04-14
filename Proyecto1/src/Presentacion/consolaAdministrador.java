@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Atracciones.Atraccion;
+import Atracciones.AtraccionCultural;
+import Atracciones.AtraccionMecanica;
 import Atracciones.GestorAtracciones;
 import Persona.GestorPersonas;
 import Persona.Rol;
@@ -270,10 +272,11 @@ public class consolaAdministrador {
 
         System.out.print("Mínimo de empleados: ");
         int minEmpleados = Integer.parseInt(scanner.nextLine());
+        System.out.print("Temporada: ");
+        String temporada = scanner.nextLine();
 
         System.out.println("--- RESTRICCIONES ---");
 
-        ArrayList<String> salud = new ArrayList<>();
         ArrayList<String> clima = new ArrayList<>();
 
         System.out.print("Exclusividad: ");
@@ -281,18 +284,6 @@ public class consolaAdministrador {
 
         System.out.print("Edad mínima: ");
         int edadMin = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("¿Desea agregar condiciones de salud? (y/n): ");
-        if (scanner.nextLine().equalsIgnoreCase("y")) {
-            String condicion;
-            do {
-                System.out.print("Condición de salud (escriba 'fin' para terminar): ");
-                condicion = scanner.nextLine();
-                if (!condicion.equalsIgnoreCase("fin")) {
-                    salud.add(condicion);
-                }
-            } while (!condicion.equalsIgnoreCase("fin"));
-        }
 
         System.out.print("¿Desea agregar condiciones climáticas? (y/n): ");
         if (scanner.nextLine().equalsIgnoreCase("y")) {
@@ -309,7 +300,7 @@ public class consolaAdministrador {
         RestriccionesCultural restricciones = new RestriccionesCultural(clima ,exclusividad, edadMin);
 
         GestorAtracciones gestor = GestorAtracciones.getInstancia();
-        gestor.crearAtraccionCultural(ubicacion, nombre, deTemporada, disponible, capacidad, minEmpleados, edadMin, restricciones);
+        gestor.crearAtraccionCultural(ubicacion, nombre, deTemporada, disponible, capacidad, minEmpleados, restricciones, temporada);
 
         System.out.println("Atracción cultural registrada con éxito.");
     }
@@ -339,6 +330,8 @@ public class consolaAdministrador {
         if (disp.equalsIgnoreCase("y")) {
         	disponible = true;
         }
+        System.out.print("Temporada: ");
+        String temporada = scanner.nextLine();
 
 	    System.out.print("Capacidad máxima: ");
 	    int capacidad = Integer.parseInt(scanner.nextLine());
@@ -351,17 +344,17 @@ public class consolaAdministrador {
 	    System.out.print("Exclusividad: ");
 	    String exclusividad = scanner.nextLine();
 	    System.out.print("altura máxima: ");
-	    int alturaMax = Integer.parseInt(scanner.nextLine());
+	    Double alturaMax = Double.parseDouble(scanner.nextLine());
 	    System.out.print("altura minima: ");
-	    int alturaMin = Integer.parseInt(scanner.nextLine());
+	    Double alturaMin = Double.parseDouble(scanner.nextLine());
 	    System.out.print("peso máximo: ");
-	    int pesoMax = Integer.parseInt(scanner.nextLine());
+	    Double pesoMax = Double.parseDouble(scanner.nextLine());
 	    System.out.print("peso minimo: ");
-	    int pesoMin = Integer.parseInt(scanner.nextLine());
+	    Double pesoMin = Double.parseDouble(scanner.nextLine());
 	    RestriccionesMecanica restricciones = new RestriccionesMecanica(clima, exclusividad, alturaMin, alturaMax,pesoMin,pesoMax,salud );
 	    
 	    GestorAtracciones gestor = GestorAtracciones.getInstancia();
-	    gestor.crearAtraccionMecanica(ubicacion, nombre, deTemporada, disponible, capacidad, minEmpleados, riesgo, restricciones);
+	    gestor.crearAtraccionMecanica(ubicacion, nombre, deTemporada, disponible, capacidad, minEmpleados, riesgo, restricciones, temporada);
 	    System.out.println("Atracción mecánica registrada con éxito.");
 	
 		
@@ -380,24 +373,58 @@ public class consolaAdministrador {
     }
 
     private static void crearCategoriaTiquete() {
-    	Scanner scanner = new Scanner(System.in);
-    	System.out.println("Ingrese el nombre de la categoría de tiquete:");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese el nombre de la categoría de tiquete:");
         String nombre = scanner.nextLine();
-        System.out.println("Ingrese el precio base del tiquete:");
-        Double precioBase = null;
-        GestorAtracciones gestor = GestorAtracciones.getInstancia();
+
+        System.out.println("Ingrese el precio base de la categoría de tiquete:");
+        double precioBase = Double.parseDouble(scanner.nextLine());
+
+        GestorAtracciones gestorAtracciones = GestorAtracciones.getInstancia();
         ArrayList<Atraccion> atraccionesSeleccionadas = new ArrayList<>();
-        System.out.println("Seleccione las atracciones mecanicas que incluirá en esta categoría:");
-        for (int i = 0; i < gestor.getAtraccionesMecanicas().size(); i++) {
-            Atraccion a = gestor.getAtraccionesMecanicas().get(i);
-            System.out.println((i + 1) + ". " + a.getNombre());
+
+        ArrayList<AtraccionMecanica> mecanicas = gestorAtracciones.getAtraccionesMecanicas();
+        if (!mecanicas.isEmpty()) {
+            System.out.println("Seleccione las atracciones mecánicas (separe los números por coma):");
+            for (int i = 0; i < mecanicas.size(); i++) {
+                System.out.println((i + 1) + ". " + mecanicas.get(i).getNombre());
+            }
+            String[] indicesMecanicas = scanner.nextLine().split(",");
+            for (String indice : indicesMecanicas) {
+                try {
+                    int idx = Integer.parseInt(indice.trim()) - 1;
+                    if (idx >= 0 && idx < mecanicas.size()) {
+                        atraccionesSeleccionadas.add(mecanicas.get(idx));
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrada inválida: " + indice);
+                }
+            }
         }
-        System.out.println("Seleccione las atracciones culturales que incluirá en esta categoría:");
-        for (int i = 0; i < gestor.getAtraccionesCulturales().size(); i++) {
-            Atraccion a = gestor.getAtraccionesCulturales().get(i);
-            System.out.println((i + 1) + ". " + a.getNombre());
+
+        ArrayList<AtraccionCultural> culturales = gestorAtracciones.getAtraccionesCulturales();
+        if (!culturales.isEmpty()) {
+            System.out.println("Seleccione las atracciones culturales (separe los números por coma):");
+            for (int i = 0; i < culturales.size(); i++) {
+                System.out.println((i + 1) + ". " + culturales.get(i).getNombre());
+            }
+            String[] indicesCulturales = scanner.nextLine().split(",");
+            for (String indice : indicesCulturales) {
+                try {
+                    int idx = Integer.parseInt(indice.trim()) - 1;
+                    if (idx >= 0 && idx < culturales.size()) {
+                        atraccionesSeleccionadas.add(culturales.get(idx));
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrada inválida: " + indice);
+                }
+            }
         }
-        
+
+        GestorTiquetes.getInstancia().crearCategoriaTiquete(nombre, atraccionesSeleccionadas, precioBase );
+
+        System.out.println("Categoría de tiquete creada exitosamente.");
     }
 
     private static void consultarCategoriasTiquete() {

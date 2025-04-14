@@ -1,62 +1,45 @@
 package Persistencias;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import Persona.Persona;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import Persona.Persona;
-
 public class PersistenciaCliente {
 
-    private static final String NOMBREARCHIVO = "persistencia/personas/clientes.txt";
+    private static final String NOMBREARCHIVO = "persistencia/personas/clientes.csv";
 
-    public static void crearArchivo(String nombreArchivo){
-
+    public static void crearArchivo() {
         try {
-            Files.createDirectories(Paths.get("persistencia"));
-            File archivo = new File(nombreArchivo);
-            if (!archivo.exists()){
+            Files.createDirectories(Paths.get("persistencia/personas"));
+            File archivo = new File(NOMBREARCHIVO);
+            if (!archivo.exists()) {
                 archivo.createNewFile();
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+                    writer.write("nombre,login,password");
+                    writer.newLine();
+                }
             }
-
-        } catch(IOException e){
-            System.err.println("Error al crear el archivo: " + nombreArchivo + " " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al crear el archivo: " + NOMBREARCHIVO + " " + e.getMessage());
         }
+    }
 
-	}
+    public static void persistencia(Persona cliente) {
+        crearArchivo();
+        guardarCliente(cliente);
+    }
 
-    public static void persistencia(String nombre, Persona persistirPersona){
-
-		crearArchivo(nombre);
-		guardarCliente(persistirPersona);
-
-	}
-
-	public static void guardarCliente(Persona nombreCliente){
-
-		
-		try (BufferedWriter clienteEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))){
-			String clienteFormatoTexto = "Nombre: " + nombreCliente.getNombre() + ", Login: " + nombreCliente.getLogin()
-            + ", Password: " + nombreCliente.getPassword();
-			clienteEscrito.write(clienteFormatoTexto);
-			clienteEscrito.newLine();
-            clienteEscrito.close();
-
-		} catch(IOException e){
-			System.err.println("No se pudo guardar el cliente");
-		}
-	}
-
-
-
-
-
-
-
-
-
-
+    public static void guardarCliente(Persona cliente) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
+            String lineaCSV = cliente.getNombre() + "," +
+                              cliente.getLogin() + "," +
+                              cliente.getPassword();
+            writer.write(lineaCSV);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("No se pudo guardar el cliente: " + e.getMessage());
+        }
+    }
 }

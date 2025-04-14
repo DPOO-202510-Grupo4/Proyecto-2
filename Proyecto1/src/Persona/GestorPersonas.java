@@ -143,7 +143,7 @@ public class GestorPersonas {
     public void registrarCliente(String nombre, String login,String contrasena) {
     	Cliente nuevoCliente = new Cliente(nombre, login, contrasena);
         clientes.put(nuevoCliente.getLogin(), nuevoCliente);
-        PersistenciaCliente.persistencia("si", nuevoCliente);
+        PersistenciaCliente.persistencia(nuevoCliente);
     }
 
     public Cliente buscarCliente(String login) {

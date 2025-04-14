@@ -8,14 +8,14 @@ import Tiquetes.CategoriaTiquete;
 
 public class RestriccionesMecanica extends Restricciones {
 
-    private int alturaMin;
-    private int alturaMax;
-    private int pesoMin;
-    private int pesoMax;
+    private Double alturaMin;
+    private Double alturaMax;
+    private Double pesoMin;
+    private Double pesoMax;
     private ArrayList<String> salud;
 
-    public RestriccionesMecanica(ArrayList<String> clima, String exclusividad, int alturaMin, int alturaMax,
-                                 int pesoMin, int pesoMax, ArrayList<String> salud) {
+    public RestriccionesMecanica(ArrayList<String> clima, String exclusividad, Double alturaMin, Double alturaMax,
+    		Double pesoMin, Double pesoMax, ArrayList<String> salud) {
         super(clima, exclusividad);
         this.alturaMin = alturaMin;
         this.alturaMax = alturaMax;
@@ -24,35 +24,35 @@ public class RestriccionesMecanica extends Restricciones {
         this.salud = salud;
     }
 
-    public int getAlturaMin() {
+    public Double getAlturaMin() {
         return alturaMin;
     }
 
-    public void setAlturaMin(int alturaMin) {
+    public void setAlturaMin(Double alturaMin) {
         this.alturaMin = alturaMin;
     }
 
-    public int getAlturaMax() {
+    public Double getAlturaMax() {
         return alturaMax;
     }
 
-    public void setAlturaMax(int alturaMax) {
+    public void setAlturaMax(Double alturaMax) {
         this.alturaMax = alturaMax;
     }
 
-    public int getPesoMin() {
+    public Double getPesoMin() {
         return pesoMin;
     }
 
-    public void setPesoMin(int pesoMin) {
+    public void setPesoMin(Double pesoMin) {
         this.pesoMin = pesoMin;
     }
 
-    public int getPesoMax() {
+    public Double getPesoMax() {
         return pesoMax;
     }
 
-    public void setPesoMax(int pesoMax) {
+    public void setPesoMax(Double pesoMax) {
         this.pesoMax = pesoMax;
     }
 
