@@ -13,12 +13,10 @@ public class GestorPersonas {
 
     private ArrayList<Administrador> administradores;
     private ArrayList<Empleado> empleados;
-    private ArrayList<Turno> turnos;
     private HashMap<String, Cliente> clientes;
 
     private GestorPersonas() {
         this.empleados = new ArrayList<>();
-        this.turnos = new ArrayList<>();
         this.clientes = new HashMap<>();
     }
 

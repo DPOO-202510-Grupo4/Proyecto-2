@@ -24,6 +24,31 @@ public String getLugarTrabajo() {
     return lugarTrabajo;
 }
 
+
+public Boolean getTurnoApertura() {
+	return turnoApertura;
+}
+
+public void setTurnoApertura(Boolean turnoApertura) {
+	this.turnoApertura = turnoApertura;
+}
+
+public Boolean getTurnoCierre() {
+	return turnoCierre;
+}
+
+public void setTurnoCierre(Boolean turnoCierre) {
+	this.turnoCierre = turnoCierre;
+}
+
+public void setFecha(Date fecha) {
+	this.fecha = fecha;
+}
+
+public void setLugarTrabajo(String lugarTrabajo) {
+	this.lugarTrabajo = lugarTrabajo;
+}
+
 @Override
 public String toString() {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

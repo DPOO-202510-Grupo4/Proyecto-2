@@ -5,8 +5,7 @@ import java.util.Set;
 public class Rol {
     private String nombre;
     private Set<String> permisosPermitidos;
- 
-//IDEA DE QUITAR LUGAR TRABAJO DE ROL
+
     public Rol(String nombre, Set<String> permisosPermitidos) {
         this.nombre = nombre;
         this.permisosPermitidos = permisosPermitidos;
