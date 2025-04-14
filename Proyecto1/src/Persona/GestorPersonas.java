@@ -94,16 +94,6 @@ public class GestorPersonas {
         return new ArrayList<>(empleado.getTurnos());
     }
 
-    public ArrayList<Empleado> empleadosConCapacitacion(Capacitaciones capacitacion) {
-        ArrayList<Empleado> empleadosCapacitacion = new ArrayList<>();
-        for (Empleado empleado : this.empleados.values()) {
-            if (empleado.getCapacitaciones().contains(capacitacion)) {
-                empleadosCapacitacion.add(empleado);
-            }
-        }
-        return empleadosCapacitacion;
-    }
-
     public void asignarTarea(String login, String tarea) {
         Empleado empleado = this.empleados.get(login);
         if (empleado != null) {

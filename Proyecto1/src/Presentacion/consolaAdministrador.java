@@ -10,6 +10,7 @@ import java.util.Date;
 import Atracciones.Atraccion;
 import Atracciones.AtraccionCultural;
 import Atracciones.AtraccionMecanica;
+import Atracciones.Espectaculos;
 import Atracciones.GestorAtracciones;
 import Persona.GestorPersonas;
 import Persona.Rol;
@@ -20,6 +21,8 @@ import restricciones.RestriccionesCultural;
 import restricciones.RestriccionesMecanica;
 
 public class consolaAdministrador {
+    private static final SimpleDateFormat formatoHoraCompleta = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private static final SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void menuAdministrador(Scanner scanner) {
         boolean salir = false;
@@ -34,21 +37,16 @@ public class consolaAdministrador {
 
             int opcion = Integer.parseInt(scanner.nextLine());
 
-            switch (opcion) {
-                case 1:
-                    menuEmpleados(scanner);
-                    break;
-                case 2:
-                    menuAtracciones(scanner);
-                    break;
-                case 3:
-                    menuTiquetesTemporadas(scanner);
-                    break;
-                case 4:
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
+            if (opcion == 1) {
+                menuEmpleados(scanner);
+            } else if (opcion == 2) {
+                menuAtracciones(scanner);
+            } else if (opcion == 3) {
+                menuTiquetesTemporadas(scanner);
+            } else if (opcion == 4) {
+                salir = true;
+            } else {
+                System.out.println("Opción no válida.");
             }
         }
     }
@@ -68,14 +66,20 @@ public class consolaAdministrador {
             System.out.print("Seleccione una opción: ");
             int opcion = Integer.parseInt(scanner.nextLine());
 
-            switch (opcion) {
-                case 1 -> registrarEmpleado();
-                case 2 -> eliminarEmpleado();
-                case 3 -> consultarEmpleados();
-                case 4 -> asignarTurno();
-                case 5 -> asignarTarea();
-                case 6 -> volver = true;
-                default -> System.out.println("Opción no válida.");
+            if (opcion == 1) {
+                registrarEmpleado();
+            } else if (opcion == 2) {
+                eliminarEmpleado();
+            } else if (opcion == 3) {
+                consultarEmpleados();
+            } else if (opcion == 4) {
+                asignarTurno();
+            } else if (opcion == 5) {
+                asignarTarea();
+            } else if (opcion == 6) {
+                volver = true;
+            } else {
+                System.out.println("Opción no válida.");
             }
         }
     }
@@ -94,13 +98,18 @@ public class consolaAdministrador {
             System.out.print("Seleccione una opción: ");
             int opcion = Integer.parseInt(scanner.nextLine());
 
-            switch (opcion) {
-                case 1 -> registrarAtraccion();
-                case 2 -> modificarAtraccion();
-                case 3 -> modificarRestricciones();
-                case 4 -> verAtracciones();
-                case 5 -> volver = true;
-                default -> System.out.println("Opción no válida.");
+            if (opcion == 1) {
+                registrarAtraccion();
+            } else if (opcion == 2) {
+                modificarAtraccion();
+            } else if (opcion == 3) {
+                modificarRestricciones();
+            } else if (opcion == 4) {
+                verAtracciones();
+            } else if (opcion == 5) {
+                volver = true;
+            } else {
+                System.out.println("Opción no válida.");
             }
         }
     }
@@ -118,12 +127,16 @@ public class consolaAdministrador {
             System.out.print("Seleccione una opción: ");
             int opcion = Integer.parseInt(scanner.nextLine());
 
-            switch (opcion) {
-                case 1 -> crearCategoriaTiquete();
-                case 2 -> consultarCategoriasTiquete();
-                case 3 -> crearTemporada();
-                case 4 -> volver = true;
-                default -> System.out.println("Opción no válida.");
+            if (opcion == 1) {
+                crearCategoriaTiquete();
+            } else if (opcion == 2) {
+                consultarCategoriasTiquete();
+            } else if (opcion == 3) {
+                crearTemporada();
+            } else if (opcion == 4) {
+                volver = true;
+            } else {
+                System.out.println("Opción no válida.");
             }
         }
     }
@@ -244,9 +257,42 @@ public class consolaAdministrador {
          }
     }
 
-    private static void registrarEspectaculo() {
-    	//TODO por implementar
+    
+
+    public static void registrarEspectaculo() {
+    	GestorAtracciones gestorAtracciones = GestorAtracciones.getInstancia();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("--- CREAR ESPECTÁCULO ---");
+
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Empresa encargada: ");
+        String empresa = scanner.nextLine();
+
+        System.out.print("Fecha (dd/MM/yyyy): ");
+        String fechaStr = scanner.nextLine();
+
+        System.out.print("Hora de inicio (HH:mm): ");
+        String horaInicioStr = scanner.nextLine();
+
+        System.out.print("Hora de finalización (HH:mm): ");
+        String horaFinStr = scanner.nextLine();
+
+        try {
+            Date fecha = formatoFecha.parse(fechaStr);
+            Date horaInicio = formatoHoraCompleta.parse(fechaStr + " " + horaInicioStr);
+            Date horaFin = formatoHoraCompleta.parse(fechaStr + " " + horaFinStr);
+
+            
+            gestorAtracciones.crearEspectaculo(fecha, horaInicio, horaFin, empresa, nombre);
+
+            System.out.println("Espectáculo registrado correctamente.");
+        } catch (ParseException e) {
+            System.out.println("Error al interpretar la fecha u hora. Asegúrate de usar el formato correcto.");
+        }
     }
+}
 		
 	
 

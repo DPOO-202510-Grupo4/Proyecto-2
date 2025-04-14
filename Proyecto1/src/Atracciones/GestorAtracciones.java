@@ -3,6 +3,7 @@ package Atracciones;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Persistencias.PersistenciaEspectaculo;
 import Persona.Empleado;
 import Tiquetes.GestorTiquetes;
 import restricciones.RestriccionesCultural;
@@ -93,7 +94,11 @@ public class GestorAtracciones {
     }
 
     // --- MÉTODOS ESPECTÁCULOS ---
-
+    public void crearEspectaculo(Date fecha, Date horaInicio, Date horaFin,String empresa,String nombre) {
+    	Espectaculos nuevoEspectaculo = new Espectaculos(fecha, horaInicio, horaFin, empresa, nombre);
+    	espectaculos.add(nuevoEspectaculo);;
+    	PersistenciaEspectaculo.persistencia(nuevoEspectaculo);
+    }
     public ArrayList<Espectaculos> obtenerEspectaculos() {
         return espectaculos;
     }

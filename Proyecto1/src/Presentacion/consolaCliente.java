@@ -10,6 +10,8 @@ import Tiquetes.GestorTiquetes;
 import restricciones.Temporada;
 import Atracciones.AtraccionCultural;
 import Atracciones.AtraccionMecanica;
+import Atracciones.Espectaculos;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,7 +43,7 @@ public class consolaCliente {
                     consultarHistorial(scanner);
                     break;
                 case 4:
-                    // consultarEspectaculos();
+                    consultarEspectaculos();
                     break;
                 case 5:
                     consultarAtracciones();
@@ -55,7 +57,9 @@ public class consolaCliente {
         }
     }
 
-    private static void crearCuentaCliente(Scanner scanner) {
+ 
+
+	private static void crearCuentaCliente(Scanner scanner) {
         System.out.println("\n--- CREAR CUENTA DE CLIENTE ---");
 
         System.out.print("Ingrese su nombre completo: ");
@@ -196,6 +200,18 @@ public class consolaCliente {
             for (int i = 0; i < atraccionesCulturales.size(); i++) {
                 System.out.println(contador + ". " + atraccionesCulturales.get(i).toString());
                 contador++;
+            }
+        }
+    }
+    private static void consultarEspectaculos() {
+        GestorAtracciones gestorAtracciones = GestorAtracciones.getInstancia();
+        ArrayList<Espectaculos> espectaculos = gestorAtracciones.obtenerEspectaculos();
+        if (espectaculos.isEmpty()) {
+            System.out.println("No hay espectáculos registrados.");
+        } else {
+            System.out.println("--- LISTA DE ESPECTÁCULOS ---");
+            for (Espectaculos espectaculo : espectaculos) {
+                System.out.println("Nombre del Espectáculo: " + espectaculo.getNombre());
             }
         }
     }

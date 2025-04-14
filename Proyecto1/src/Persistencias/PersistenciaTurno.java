@@ -80,7 +80,7 @@ public class PersistenciaTurno {
 
                         Turno turno = new Turno(fecha, turnoApertura, turnoCierre, lugarTrabajo);
                         System.out.println(turno); 
-                });
+                }});
         } catch (IOException e) {
             System.err.println("No se pudo cargar los turnos: " + e.getMessage());
         }

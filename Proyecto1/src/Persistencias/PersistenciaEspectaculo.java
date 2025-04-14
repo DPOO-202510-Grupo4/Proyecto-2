@@ -16,7 +16,7 @@ public class PersistenciaEspectaculo {
 
     private static final String NOMBREARCHIVO = "persistencia/atracciones/espectaculos.txt";
 
-    public void crearArchivo(String nombreArchivo){
+    public static void crearArchivo(String nombreArchivo){
 
     try {
         Files.createDirectories(Paths.get("persistencia"));
@@ -32,13 +32,13 @@ public class PersistenciaEspectaculo {
 
 }
 
-    public void persistencia(String nombre, Espectaculos persistirEspectaculo){
+    public static void persistencia(Espectaculos persistirEspectaculo){
 
-		crearArchivo(nombre);
+		crearArchivo(NOMBREARCHIVO);
 		guardarEspectaculo(persistirEspectaculo);
 	}
 
-    public void guardarEspectaculo(Espectaculos atraccion) {
+    public static void guardarEspectaculo(Espectaculos atraccion) {
         try (BufferedWriter espectaculoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
       
             String espectaculoFormatoTexto =
