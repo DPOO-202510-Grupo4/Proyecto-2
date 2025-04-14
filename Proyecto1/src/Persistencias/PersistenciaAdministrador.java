@@ -10,12 +10,12 @@ import Persona.Administrador;
 
 public class PersistenciaAdministrador {
 
-    private static final String RUTA_ARCHIVO = "persistencia/personas/administradores.txt";
+    private static final String NOMBREARCHIVO = "persistencia/personas/administradores.txt";
 
-    private void crearArchivoSiNoExiste() {
+    public static void crearArchivo() {
         try {
             Files.createDirectories(Paths.get("persistencia/personas"));
-            File archivo = new File(RUTA_ARCHIVO);
+            File archivo = new File(NOMBREARCHIVO);
             if (!archivo.exists()) {
                 archivo.createNewFile();
             }
@@ -24,18 +24,29 @@ public class PersistenciaAdministrador {
         }
     }
 
-    public void guardarAdministrador(Administrador admin) {
-        crearArchivoSiNoExiste();
+    public static void persistencia(Administrador persistirAdministrador) {
+        crearArchivo(); 
+        guardarAdministrador(persistirAdministrador);
+    }
 
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(RUTA_ARCHIVO, true))) {
-            String linea = String.format(
+    public static void guardarAdministrador(Administrador administrador) {
+        if (!(administrador instanceof Administrador)) {
+            System.err.println("El objeto no es un administrador, no se puede guardar.");
+            return;
+        }
+
+        try (BufferedWriter administradorEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
+            String administradorFormatoTexto = String.format(
                 "Nombre: %s, Login: %s, Password: %s, FechaNacimiento: %s",
-                admin.getNombre(), admin.getLogin(), admin.getPassword(), admin.getFechaNacimiento()
+                administrador.getNombre(),
+                administrador.getLogin(),
+                administrador.getPassword(),
+                administrador.getFechaNacimiento()
             );
-            escritor.write(linea);
-            escritor.newLine();
+            administradorEscrito.write(administradorFormatoTexto);
+            administradorEscrito.newLine();
         } catch (IOException e) {
-            System.err.println("Error al guardar el administrador: " + e.getMessage());
+            System.err.println("No se pudo guardar el administrador: " + e.getMessage());
         }
     }
 }

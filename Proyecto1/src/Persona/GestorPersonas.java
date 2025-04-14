@@ -11,11 +11,9 @@ public class GestorPersonas {
 
     private static GestorPersonas instanciaUnica;
 
-    // Empleados
+    private ArrayList<Administrador> administradores;
     private ArrayList<Empleado> empleados;
     private ArrayList<Turno> turnos;
-
-    // Clientes
     private HashMap<String, Cliente> clientes;
 
     private GestorPersonas() {
@@ -156,6 +154,44 @@ public class GestorPersonas {
 
     //------------------------ ADMINISTRADORES ------------------------
 
-    // Puedes agregar aquí métodos para crear, registrar o autenticar administradores si los vas a manejar como un tipo de persona
+    public Administrador crearAdministrador(String nombre, String login, String password, LocalDate fechaNacimiento) {
+        Administrador nuevoAdministrador = new Administrador(nombre, login, password, fechaNacimiento);
+        registrarAdministrador(nuevoAdministrador);
+        return nuevoAdministrador;
+    }
 
+    public void registrarAdministrador(Administrador administrador) {
+        this.administradores.add(administrador);
+        PersistenciaAdministrador.persistencia(administrador);  
+    }
+
+    public void eliminarAdministrador(String login) {
+        Administrador administradorAEliminar = null;
+        for (Administrador administrador : this.administradores) {
+            if (administrador.getLogin().equals(login)) {
+                administradorAEliminar = administrador;
+                break;
+            }
+        }
+        if (administradorAEliminar != null) {
+            this.administradores.remove(administradorAEliminar);
+            System.out.println("Administrador con login '" + login + "' eliminado exitosamente.");
+        } else {
+            System.out.println("Administrador con login '" + login + "' no encontrado.");
+        }
+    }
+
+    public Administrador obtenerAdministradorPorID(String login) {
+        for (Administrador administrador : this.administradores) {
+            if (administrador.getLogin().equals(login)) {
+                return administrador;
+            }
+        }
+        System.out.println("Administrador no encontrado.");
+        return null;
+    }
+
+    public ArrayList<Administrador> getAdministradores() {
+        return administradores;
+    }
 }
