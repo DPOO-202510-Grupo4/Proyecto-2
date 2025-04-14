@@ -60,9 +60,27 @@ public class GestorPersonas {
     }
 
     public ArrayList<Empleado> empleadosPorTipo(String tipo) {
-        ArrayList<Empleado> empleadosTipo = new ArrayList<>();
-        // TODO: Implementar filtro por tipo
-        return empleadosTipo;
+
+        HashMap<String, ArrayList> empleadosTipo = new HashMap<>();
+
+		ArrayList<Empleado> cocineros = new ArrayList<>();
+		ArrayList<Empleado> cajeros = new ArrayList<>();
+
+        
+		for(Empleado empleado : this.empleados.values()){
+			Capacitaciones capacitaciones = empleado.getCapacitaciones();
+			if(capacitaciones.getEsCocinero() == true){
+				cocineros.add(empleado);
+			}
+			if(capacitaciones.getEsCajero() == true){
+				cajeros.add(empleado);
+			}
+		}
+
+		empleadosTipo.put("Cocinero", cocineros);
+		empleadosTipo.put("Cajero", cajeros);
+		
+        return empleadosTipo.get(tipo);
     }
 
     public ArrayList<Empleado> empleadosDisponibles(LocalDate fecha, String lugar) {
