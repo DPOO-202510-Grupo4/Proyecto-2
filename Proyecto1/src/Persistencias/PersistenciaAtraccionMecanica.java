@@ -96,6 +96,7 @@ public class PersistenciaAtraccionMecanica {
 
         } catch (IOException e) {
             System.err.println("No se pudo guardar la atraccion: " + e.getMessage());
+            System.err.println("No se pudo guardar la atraccion: " + e.getMessage());
         }
     }
-}
+}//hola
