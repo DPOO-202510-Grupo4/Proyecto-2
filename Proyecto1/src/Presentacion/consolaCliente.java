@@ -1,20 +1,19 @@
-package presentacion;
+package Presentacion;
 
-import java.util.Scanner;
+import Atracciones.AtraccionCultural;
+import Atracciones.AtraccionMecanica;
+import Atracciones.Espectaculos;
 import Atracciones.GestorAtracciones;
 import Persona.Cliente;
 import Persona.GestorPersonas;
 import Tiquetes.CategoriaTiquete;
 import Tiquetes.Factura;
 import Tiquetes.GestorTiquetes;
-import restricciones.Temporada;
-import Atracciones.AtraccionCultural;
-import Atracciones.AtraccionMecanica;
-import Atracciones.Espectaculos;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
+import restricciones.Temporada;
 
 public class consolaCliente {
 
