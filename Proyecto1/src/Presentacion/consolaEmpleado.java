@@ -1,16 +1,14 @@
-package presentacion;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+package Presentacion;
 
 import Atracciones.Atraccion;
 import Persona.Capacitaciones;
-import Persona.Cliente;
 import Persona.Empleado;
 import Persona.GestorPersonas;
 import Persona.Turno;
 import Tiquetes.GestorTiquetes;
 import Tiquetes.Tiquete;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class consolaEmpleado {
 
