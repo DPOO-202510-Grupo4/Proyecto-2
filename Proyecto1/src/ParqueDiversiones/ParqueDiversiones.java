@@ -1,7 +1,10 @@
 package ParqueDiversiones;
 
-import Atracciones.AtraccionMecanica;
-import Persona.Empleado;
+import Atracciones.*;
+import Persona.*;
+import Persistencias.*;
+import restricciones.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,12 +12,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import restricciones.RestriccionesMecanica;
-import restricciones.Temporada;
+
 
 public class ParqueDiversiones {
 
     private ArrayList<AtraccionMecanica> atraccionesMecanicas;
+    private ArrayList<AtraccionCultural> atraccionesCulturales;
 
     public ParqueDiversiones() {
         atraccionesMecanicas = new ArrayList<>();
@@ -27,15 +30,15 @@ public class ParqueDiversiones {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(",");
-
-                String nombre = partes[1];
-                String ubicacion = partes[2];
-                int cupoMax = Integer.parseInt(partes[3]);
-                int minEmpleados = Integer.parseInt(partes[4]);
-                boolean deTemporada = Boolean.parseBoolean(partes[5]);
+                
+                String nombre = partes[0];
+                String ubicacion = partes[1];
+                int cupoMax = Integer.parseInt(partes[2]);
+                int minEmpleados = Integer.parseInt(partes[3]);
+                boolean deTemporada = Boolean.parseBoolean(partes[4]);
 
                 Temporada temporada = null;
-                int i = 6;
+                int i = 5;
                 if (deTemporada) {
                     String nombreTemporada = partes[i++];
                     Date fechaInicio = formatoFecha.parse(partes[i++]);
@@ -82,7 +85,7 @@ public class ParqueDiversiones {
     public static void main(String[] args) {
     
         ParqueDiversiones parque = new ParqueDiversiones();
-        parque.cargarAtraccionesMecanicas("Proyecto1/persistencia/atracciones/mecanica.csv");
+        parque.cargarAtraccionesMecanicas("persistencia/atracciones/mecanicas.csv");
 
         parque.getAtraccionesMecanicas().forEach(System.out::println);
     }
