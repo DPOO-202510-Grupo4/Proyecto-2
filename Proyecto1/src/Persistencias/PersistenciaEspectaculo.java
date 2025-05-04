@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import Atracciones.AtraccionMecanica;
-import Atracciones.Espectaculos;
+import Atracciones.Espectaculo;
 import Persona.Empleado;
 
 public class PersistenciaEspectaculo {
@@ -32,13 +32,13 @@ public class PersistenciaEspectaculo {
 
 }
 
-    public static void persistencia(Espectaculos persistirEspectaculo){
+    public static void persistencia(Espectaculo persistirEspectaculo){
 
 		crearArchivo(NOMBREARCHIVO);
 		guardarEspectaculo(persistirEspectaculo);
 	}
 
-    public static void guardarEspectaculo(Espectaculos atraccion) {
+    public static void guardarEspectaculo(Espectaculo atraccion) {
         try (BufferedWriter espectaculoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
       
             String espectaculoFormatoTexto =

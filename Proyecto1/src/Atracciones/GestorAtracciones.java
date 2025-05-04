@@ -13,7 +13,7 @@ import restricciones.Temporada;
 public class GestorAtracciones {
     private ArrayList<AtraccionMecanica> atraccionesMecanicas;
     private ArrayList<AtraccionCultural> atraccionesCulturales;
-    private ArrayList<Espectaculos> espectaculos;
+    private ArrayList<Espectaculo> espectaculos;
     private static GestorAtracciones instancia;
 
     public GestorAtracciones() {
@@ -95,11 +95,11 @@ public class GestorAtracciones {
 
     // --- MÉTODOS ESPECTÁCULOS ---
     public void crearEspectaculo(Date fecha, Date horaInicio, Date horaFin,String empresa,String nombre) {
-    	Espectaculos nuevoEspectaculo = new Espectaculos(fecha, horaInicio, horaFin, empresa, nombre);
+    	Espectaculo nuevoEspectaculo = new Espectaculo(fecha, horaInicio, horaFin, empresa, nombre);
     	espectaculos.add(nuevoEspectaculo);;
     	PersistenciaEspectaculo.persistencia(nuevoEspectaculo);
     }
-    public ArrayList<Espectaculos> obtenerEspectaculos() {
+    public ArrayList<Espectaculo> obtenerEspectaculos() {
         return espectaculos;
     }
 
@@ -154,7 +154,7 @@ public class GestorAtracciones {
         return atraccionesCulturales;
     }
 
-	public ArrayList<Espectaculos> getEspectaculos() {
+	public ArrayList<Espectaculo> getEspectaculos() {
 		return espectaculos;
 	}
 

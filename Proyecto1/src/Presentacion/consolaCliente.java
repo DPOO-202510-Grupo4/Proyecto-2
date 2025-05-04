@@ -9,6 +9,11 @@ import Persona.GestorPersonas;
 import Tiquetes.CategoriaTiquete;
 import Tiquetes.Factura;
 import Tiquetes.GestorTiquetes;
+import restricciones.Temporada;
+import Atracciones.AtraccionCultural;
+import Atracciones.AtraccionMecanica;
+import Atracciones.Espectaculo;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -204,12 +209,12 @@ public class consolaCliente {
     }
     private static void consultarEspectaculos() {
         GestorAtracciones gestorAtracciones = GestorAtracciones.getInstancia();
-        ArrayList<Espectaculos> espectaculos = gestorAtracciones.obtenerEspectaculos();
+        ArrayList<Espectaculo> espectaculos = gestorAtracciones.obtenerEspectaculos();
         if (espectaculos.isEmpty()) {
             System.out.println("No hay espectáculos registrados.");
         } else {
             System.out.println("--- LISTA DE ESPECTÁCULOS ---");
-            for (Espectaculos espectaculo : espectaculos) {
+            for (Espectaculo espectaculo : espectaculos) {
                 System.out.println("Nombre del Espectáculo: " + espectaculo.getNombre());
             }
         }

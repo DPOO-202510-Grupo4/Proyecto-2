@@ -2,14 +2,14 @@ package Atracciones;
 
 import java.util.Date;
 
-public class Espectaculos {
+public class Espectaculo {
     private Date fecha;
     private Date horaInicio;
     private Date horaFinalizacion;
     private String empresaEncargada;
     private String nombre;
 
-    public Espectaculos(Date fecha, Date horaInicio, Date horaFinalizacion, String empresaEncargada, String nombre) {
+    public Espectaculo(Date fecha, Date horaInicio, Date horaFinalizacion, String empresaEncargada, String nombre) {
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFinalizacion = horaFinalizacion;
