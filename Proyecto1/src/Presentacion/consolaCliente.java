@@ -1,8 +1,8 @@
-package Presentacion;
+package presentacion;
 
 import Atracciones.AtraccionCultural;
 import Atracciones.AtraccionMecanica;
-import Atracciones.Espectaculos;
+import Atracciones.Espectaculo;
 import Atracciones.GestorAtracciones;
 import Persona.Cliente;
 import Persona.GestorPersonas;
@@ -27,33 +27,29 @@ public class consolaCliente {
 
         while (!volver) {
             System.out.println("\n--- MENÚ CLIENTE ---");
-            System.out.println("1. Crear cuenta");
-            System.out.println("2. Comprar tiquete");
-            System.out.println("3. Consultar historial de compras");
-            System.out.println("4. Consultar espectáculos");
-            System.out.println("5. Consultar atracciones");
-            System.out.println("6. Volver al menú principal");
+            System.out.println("1. Comprar tiquete");
+            System.out.println("2. Consultar historial de compras");
+            System.out.println("3. Consultar espectáculos");
+            System.out.println("4. Consultar atracciones");
+            System.out.println("5. Volver al menú principal");
 
             int opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
                 case 1:
-                    crearCuentaCliente(scanner);
+                	comprarTiquete(scanner);
                     break;
                 case 2:
-                    comprarTiquete(scanner);
+                	consultarHistorial(scanner);
                     break;
                 case 3:
-                    consultarHistorial(scanner);
+                	consultarEspectaculos();
                     break;
                 case 4:
-                    consultarEspectaculos();
+                	consultarAtracciones();
                     break;
                 case 5:
-                    consultarAtracciones();
-                    break;
-                case 6:
-                    volver = true;
+                	volver = true;
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
@@ -63,28 +59,6 @@ public class consolaCliente {
 
  
 
-	private static void crearCuentaCliente(Scanner scanner) {
-        System.out.println("\n--- CREAR CUENTA DE CLIENTE ---");
-
-        System.out.print("Ingrese su nombre completo: ");
-        String nombre = scanner.nextLine();
-
-        System.out.print("Ingrese su login (usuario): ");
-        String login = scanner.nextLine();
-
-        System.out.print("Ingrese su contraseña: ");
-        String contrasena = scanner.nextLine();
-
-        GestorPersonas gestorPersonas = GestorPersonas.getInstance();
-
-        if (gestorPersonas.buscarCliente(login) != null) {
-            System.out.println("Ya existe una cuenta con ese login.");
-            return;
-        }
-
-        gestorPersonas.registrarCliente(nombre, login, contrasena);
-        System.out.println("¡Cuenta creada exitosamente!");
-    }
 
     static void comprarTiquete(Scanner scanner) {
         System.out.println("¿Desea un tiquete regular (1) o de temporada (2)?");

@@ -26,6 +26,13 @@ public class GestorPersonas {
         }
         return instanciaUnica;
     }
+    public enum TipoUsuario {
+        ADMINISTRADOR,
+        EMPLEADO,
+        CLIENTE,
+        NO_ENCONTRADO
+    }
+
 
     //------------------------ EMPLEADOS ------------------------
 
@@ -54,7 +61,6 @@ public class GestorPersonas {
         if (empleado != null) {
             return empleado;
         } else {
-            System.out.println("Empleado con login '" + login + "' no encontrado.");
             return null;
         }
     }
@@ -179,17 +185,34 @@ public class GestorPersonas {
         }
     }
 
-    public Administrador obtenerAdministradorPorID(String login) {
+    public Administrador obtenerAdministrador(String login) {
         for (Administrador administrador : this.administradores) {
             if (administrador.getLogin().equals(login)) {
                 return administrador;
             }
         }
-        System.out.println("Administrador no encontrado.");
         return null;
     }
 
     public ArrayList<Administrador> getAdministradores() {
         return administradores;
+    }
+    public TipoUsuario validarLogin(String login, String contraseña) {
+        Administrador admin = obtenerAdministrador(login);
+        if (admin != null && admin.getPassword().equals(contraseña)) {
+            return TipoUsuario.ADMINISTRADOR;
+        }
+
+        Empleado empleado = obtenerEmpleadoPorLogin(login);
+        if (empleado != null && empleado.getPassword().equals(contraseña)) {
+            return TipoUsuario.EMPLEADO;
+        }
+
+        Cliente cliente = buscarCliente(login);
+        if (cliente != null && cliente.getPassword().equals(contraseña)) {
+            return TipoUsuario.CLIENTE;
+        }
+
+        return TipoUsuario.NO_ENCONTRADO;
     }
 }

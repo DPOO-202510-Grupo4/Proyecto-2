@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,7 @@ import java.util.Date;
 import Atracciones.Atraccion;
 import Atracciones.AtraccionCultural;
 import Atracciones.AtraccionMecanica;
-import Atracciones.Espectaculos;
+import Atracciones.Espectaculo;
 import Atracciones.GestorAtracciones;
 import Persona.GestorPersonas;
 import Persona.Rol;
