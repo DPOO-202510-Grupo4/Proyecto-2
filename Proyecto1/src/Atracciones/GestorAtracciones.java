@@ -102,6 +102,10 @@ public class GestorAtracciones {
     public ArrayList<Espectaculo> obtenerEspectaculos() {
         return espectaculos;
     }
+    public void cargarEspectaculo(Date fecha, Date horaInicio, Date horaFin,String empresa,String nombre) {
+    	Espectaculo nuevoEspectaculo = new Espectaculo(fecha, horaInicio, horaFin, empresa, nombre);
+    	espectaculos.add(nuevoEspectaculo);;
+    }
 
     // --- MÉTODOS COMUNES ---
 
