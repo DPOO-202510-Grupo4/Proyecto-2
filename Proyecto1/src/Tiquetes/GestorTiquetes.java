@@ -91,6 +91,7 @@ public class GestorTiquetes {
         agregarTiqueteACliente(cliente, t);
         return t;
     }
+    
 
     public void usarTiquete(Tiquete tiquete) {
         tiquete.marcarComoUsado();
