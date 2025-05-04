@@ -3,6 +3,7 @@ package Tiquetes;
 import java.util.*;
 
 import Atracciones.Atraccion;
+import Persistencias.PersistenciaTemporada;
 import Persistencias.PersistenciaTiqueteRegular;
 import Persistencias.PersistenciaTiqueteTemporada;
 import Persona.*;
@@ -127,10 +128,10 @@ public class GestorTiquetes {
         return categoriasDisponibles;
     }
 
+
     // ======================
     // Gestión de TEMPORADAS
     // ======================
-
     public void crearTemporada(Date fechaInicio, Date fechaFinal, String nombre) {
         if (fechaInicio == null || fechaFinal == null || nombre == null || nombre.isEmpty()) {
             throw new IllegalArgumentException("Los parámetros de la temporada son inválidos.");
@@ -142,6 +143,7 @@ public class GestorTiquetes {
 
         Temporada temporada = new Temporada(fechaInicio, fechaFinal, nombre);
         temporadas.add(temporada);
+        PersistenciaTemporada.guardarTemporada(temporada);
 
         System.out.println("Temporada creada exitosamente: " + temporada.getName());
     }
@@ -158,6 +160,21 @@ public class GestorTiquetes {
                 System.out.println(temporada.getName() + " - Inicio: " + temporada.getFechaInicio() + " - Fin: " + temporada.getFechaFinal());
             }
         }
+    }
+
+    public void cargarTemporada(Date fechaInicio, Date fechaFinal, String nombre) {
+    	if (fechaInicio == null || fechaFinal == null || nombre == null || nombre.isEmpty()) {
+            throw new IllegalArgumentException("Los parámetros de la temporada son inválidos.");
+        }
+
+        if (fechaInicio.after(fechaFinal)) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha final.");
+        }
+
+        Temporada temporada = new Temporada(fechaInicio, fechaFinal, nombre);
+        temporadas.add(temporada);
+
+        System.out.println("Temporada creada exitosamente: " + temporada.getName());
     }
 
     // ======================
