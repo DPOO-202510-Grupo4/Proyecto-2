@@ -292,7 +292,7 @@ public class consolaAdministrador {
             System.out.println("Error al interpretar la fecha u hora. Asegúrate de usar el formato correcto.");
         }
     }
-}
+
 		
 	
 
