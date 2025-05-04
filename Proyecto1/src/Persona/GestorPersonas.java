@@ -147,6 +147,9 @@ public class GestorPersonas {
         clientes.put(nuevoCliente.getLogin(), nuevoCliente);
         PersistenciaCliente.persistencia(nuevoCliente);
     }
+    public void cargarCliente() {
+    	
+    }
 
     public Cliente buscarCliente(String login) {
         return clientes.get(login);
@@ -158,10 +161,14 @@ public class GestorPersonas {
 
     //------------------------ ADMINISTRADORES ------------------------
 
-    public Administrador crearAdministrador(String nombre, String login, String password, LocalDate fechaNacimiento) {
+    public Administrador crearAdministrador(String nombre, String login, String password, String fechaNacimiento) {
         Administrador nuevoAdministrador = new Administrador(nombre, login, password, fechaNacimiento);
         registrarAdministrador(nuevoAdministrador);
         return nuevoAdministrador;
+    }
+    public void cargarAdministrador(String nombre, String login, String password, String fechaNacimiento) {
+    	Administrador administrador = new Administrador(nombre, login, password, fechaNacimiento);
+        this.administradores.add(administrador);  
     }
 
     public void registrarAdministrador(Administrador administrador) {

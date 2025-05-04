@@ -10,14 +10,14 @@ public abstract class Persona {
  protected String nombre;
  protected String login;
  protected String password;
- protected LocalDate fechaNacimiento;
- private static final String PERSONAS_PERSISTENCIA = "persistencia/personas.txt";
+ protected String fechaNacimiento;
+ private static final String PERSONAS_PERSISTENCIA = "persistencia/personas.csv";
 
-public Persona(String nombre, String login, String password, LocalDate fechaNacimiento) {
+public Persona(String nombre, String login, String password, String fechaNacimiento2) {
 	this.nombre = nombre;
 	this.login = login;
 	this.password = password;
-	this.fechaNacimiento = fechaNacimiento;
+	this.fechaNacimiento = fechaNacimiento2;
 }
 
 public String getNombre() {
@@ -44,11 +44,11 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public LocalDate getFechaNacimiento() {
+public String getFechaNacimiento() {
 	return fechaNacimiento;
 }
 
-public void setFechaNacimiento(LocalDate fechaNacimiento) {
+public void setFechaNacimiento(String fechaNacimiento) {
 	this.fechaNacimiento = fechaNacimiento;
 }
  
