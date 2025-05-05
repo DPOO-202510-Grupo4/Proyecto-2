@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import Atracciones.AtraccionMecanica;
+import Atracciones.GestorAtracciones;
 import Persona.Empleado;
 
 public class PersistenciaAtraccionMecanica {
@@ -103,7 +104,7 @@ public class PersistenciaAtraccionMecanica {
     }
     
     public static void cargarDatos() {
-    	//GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
+    	GestorAtracciones gestor = GestorAtracciones.getInstancia(); 
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;
@@ -118,10 +119,9 @@ public class PersistenciaAtraccionMecanica {
                     int cupoMax = Integer.parseInt(partes[4].trim());
                     int minEmpleados = Integer.parseInt(partes[5].trim());
                     String riesgo = partes[6].trim();
-                    //RestriccionesMecanica restricciones = partes[7].trim(); //REVISAR FORMATO DE RESTRICCIONES
-                    String temporadaIn = partes[8].trim();
-                    //gestor.cargarAtraccionMecanica(ubicacion, nombre, deTemporada, disponible,
-                           // cupoMax, minEmpleados, riesgo, restricciones, temporadaIn);
+                    String temporadaIn = partes[7].trim(); //AYUDA CON MANEJO DE TEMPORADA
+                    gestor.cargarAtraccionMecanica(ubicacion, nombre, deTemporada, disponible,
+                           cupoMax, minEmpleados, riesgo, temporadaIn);
                 }
             }
 

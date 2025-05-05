@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import Atracciones.AtraccionCultural;
+import Atracciones.GestorAtracciones;
 import Persona.Empleado;
 import restricciones.Temporada;
 
@@ -86,7 +87,7 @@ public class PersistenciaAtraccionCultural {
     }
     
     public static void cargarDatos() {
-    	//GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
+    	GestorAtracciones gestor = GestorAtracciones.getInstancia(); 
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;
@@ -100,10 +101,10 @@ public class PersistenciaAtraccionCultural {
                     boolean disponible = Boolean.parseBoolean(partes[3].trim());
                     int capacidad = Integer.parseInt(partes[4].trim());
                     int minEmpleados = Integer.parseInt(partes[5].trim());
-                    //RestriccionesCultural restricciones = partes[6].trim(); //REVISAR FORMATO DE RESTRICCIONES
-                    String temporadaIn = partes[8].trim();
-                    //gestor.cargarAtraccionCultural(ubicacion, nombre, deTemporada, disponible,
-                            //capacidad, minEmpleados, restricciones, temporadaIn);
+                    String temporadaIn = partes[6].trim();
+                    String temporada = partes[7].trim().split(","); //AYUDA CON MANEJO DE TEMPORADA
+                    gestor.cargarAtraccionCultural(ubicacion, nombre, deTemporada,
+                            capacidad, minEmpleados, temporadaIn);
                 }
             }
 
