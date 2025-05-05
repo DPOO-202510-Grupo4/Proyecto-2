@@ -1,18 +1,17 @@
 package Persona;
 import java.util.ArrayList;
-import java.util.List;
-import Tiquetes.Tiquete;
-import Tiquetes.FastPass;
+
 import Tiquetes.Factura;
-import java.time.LocalDate;
+import Tiquetes.FastPass;
+import Tiquetes.Tiquete;
 
 public class Cliente extends Persona {
 	public ArrayList<Factura> historialCompras;
 	public ArrayList<Tiquete> tiquetes;
 	public ArrayList<FastPass> fastPass;
 	
-	public Cliente(String nombre, String login, String password) {
-	    super(nombre, login, password, null);
+	public Cliente(String nombre, String login, String password, String fechaNacimiento) {
+	    super(nombre, login, password, fechaNacimiento);
 	    this.historialCompras = new ArrayList<>();
 	    this.tiquetes = new ArrayList<>();
 	    this.fastPass = new ArrayList<>();

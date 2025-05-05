@@ -1,12 +1,16 @@
 package Tiquetes;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 import Atracciones.Atraccion;
 import Persistencias.PersistenciaTemporada;
 import Persistencias.PersistenciaTiqueteRegular;
 import Persistencias.PersistenciaTiqueteTemporada;
-import Persona.*;
+import Persona.Cliente;
 import restricciones.Temporada;
 
 public class GestorTiquetes {
@@ -182,7 +186,7 @@ public class GestorTiquetes {
     // Métodos PRIVADOS auxiliares
     // ======================
 
-    private CategoriaTiquete buscarCategoria(String tipoCategoria) {
+    public CategoriaTiquete buscarCategoria(String tipoCategoria) {
         for (CategoriaTiquete cat : categoriasDisponibles) {
             if (cat.getNombre().equalsIgnoreCase(tipoCategoria)) {
                 return cat;
@@ -219,4 +223,10 @@ public class GestorTiquetes {
 	    return null; // No se encontró la temporada
 	}
     
+    public static GestorTiquetes getInstance() {
+        if (instancia == null) {
+            instancia = new GestorTiquetes();
+        }
+        return instancia;
+    }
 }

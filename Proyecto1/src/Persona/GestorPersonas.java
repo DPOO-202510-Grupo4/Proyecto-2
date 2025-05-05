@@ -150,13 +150,13 @@ public class GestorPersonas {
 
     //------------------------ CLIENTES ------------------------
 
-    public void registrarCliente(String nombre, String login, String contrasena) {
-        Cliente nuevoCliente = new Cliente(nombre, login, contrasena);
+    public void registrarCliente(String nombre, String login, String contrasena, String fechaNacimiento) {
+        Cliente nuevoCliente = new Cliente(nombre, login, contrasena, fechaNacimiento);
         clientes.put(nuevoCliente.getLogin(), nuevoCliente);
         PersistenciaCliente.persistencia(nuevoCliente);
     }
     public void cargarCliente(String nombre, String login, String password, String fechaNacimiento) {
-    	Cliente cliente = new Cliente(nombre, login, password);
+    	Cliente cliente = new Cliente(nombre, login, password, fechaNacimiento);
         this.clientes.put(cliente.getLogin(), cliente);  
     }
 
