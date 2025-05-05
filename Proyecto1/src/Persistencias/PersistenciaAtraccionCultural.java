@@ -83,4 +83,27 @@ public class PersistenciaAtraccionCultural {
             System.err.println("No se pudo guardar la atraccion: " + e.getMessage());
         }
     }
+    
+    public static void cargarDatos() {
+    	GestorAtracciones gestor = GestorAtracciones.getInstance();
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
+            String linea;
+
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 4) {
+                    String nombre = partes[0].trim();
+                    String login = partes[1].trim();
+                    String password = partes[2].trim();
+                    String fechaNacimiento = partes[3].trim();
+                    gestor.cargarAdministrador(nombre, login, password, fechaNacimiento);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error al cargar los administradores: " + e.getMessage());
+        }
+
+    }
 }

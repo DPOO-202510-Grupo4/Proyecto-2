@@ -59,6 +59,13 @@ public class GestorAtracciones {
 
         registrarAtraccionMecanica(atraccion);
     }
+    
+    public void cargarAtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+            int cupoMax, int minEmpleados, String riesgo, RestriccionesMecanica restricciones, String temporadaIn) {
+    	AtraccionMecanica nuevaAtraccionMecanica = new AtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+                int cupoMax, int minEmpleados, String riesgo, RestriccionesMecanica restricciones, String temporadaIn);
+    	atraccionesMecanicas.add(nuevaAtraccionMecanica);
+    }
 
     // --- MÉTODOS ATRACCIONES CULTURALES ---
 
@@ -92,6 +99,13 @@ public class GestorAtracciones {
 
         registrarAtraccionCultural(atraccion);
     }
+    
+    public void cargarAtraccionCultural(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+            int capacidad, int minEmpleados, RestriccionesCultural restricciones,String temporadaIn) {
+    	AtraccionCultural nuevaAtraccionCultural = new AtraccionCultural(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+                int capacidad, int minEmpleados, RestriccionesCultural restricciones,String temporadaIn);
+    	atraccionesCulturales.add(nuevaAtraccionCultural);
+    }
 
     // --- MÉTODOS ESPECTÁCULOS ---
     public void crearEspectaculo(Date fecha, Date horaInicio, Date horaFin,String empresa,String nombre) {
@@ -104,7 +118,7 @@ public class GestorAtracciones {
     }
     public void cargarEspectaculo(Date fecha, Date horaInicio, Date horaFin,String empresa,String nombre) {
     	Espectaculo nuevoEspectaculo = new Espectaculo(fecha, horaInicio, horaFin, empresa, nombre);
-    	espectaculos.add(nuevoEspectaculo);;
+    	espectaculos.add(nuevoEspectaculo);
     }
 
     // --- MÉTODOS COMUNES ---
