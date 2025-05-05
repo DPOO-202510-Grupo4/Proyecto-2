@@ -86,7 +86,15 @@ public class ParqueDiversiones {
     
         ParqueDiversiones parque = new ParqueDiversiones();
         parque.cargarAtraccionesMecanicas("persistencia/atracciones/mecanicas.csv");
+        parque.cargarAtraccionesCulturales("persistencia/atracciones/culturales.csv");
+        parque.cargarEmpleados("persistencia/empleados.csv");
+        parque.cargarClientes("persistencia/clientes.csv");
+        parque.cargarTiquetes("persistencia/tiquetes.csv");
 
         parque.getAtraccionesMecanicas().forEach(System.out::println);
+        parque.getAtraccionesCulturales().forEach(System.out::println);
+        parque.getEmpleados().forEach(System.out::println);
+        parque.getClientes().forEach(System.out::println);
+        parque.getTiquetes().forEach(System.out::println);
     }
 }
