@@ -1,13 +1,11 @@
 package Atracciones;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
 import Persona.Empleado;
 import Persona.Persona;
-import Tiquetes.CategoriaTiquete;
 import Tiquetes.Tiquete;
 import restricciones.RestriccionesCultural;
 import restricciones.Temporada;
@@ -18,13 +16,11 @@ public class AtraccionCultural extends Atraccion {
     private RestriccionesCultural restricciones;
     private ArrayList<Empleado> empleadosAsignados;
 
-    public AtraccionCultural(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada,
-                             Temporada temporada, ArrayList<Temporada> disponibilidad,
-                             RestriccionesCultural restricciones, ArrayList<Empleado> empleadosAsignados) {
+    public AtraccionCultural(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada, Temporada temporada) {
         super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
-        this.disponibilidad = disponibilidad;
-        this.restricciones = restricciones;
-        this.empleadosAsignados = empleadosAsignados;
+        this.disponibilidad = new ArrayList<>();
+        this.restricciones = null;
+        this.empleadosAsignados = new ArrayList<>();
     }
 
     @Override
@@ -56,8 +52,9 @@ public class AtraccionCultural extends Atraccion {
     public boolean validarEdad(Persona persona) {
         if (restricciones == null) return true;
 
-        LocalDate fechaNacimiento = persona.getFechaNacimiento();
-        int edad = LocalDate.now().getYear() - fechaNacimiento.getYear();
+        String fechaNacimiento = persona.getFechaNacimiento();
+        LocalDate formatoFecha = LocalDate.parse(fechaNacimiento);
+        int edad = LocalDate.now().getYear() - formatoFecha.getYear();
 
         return edad >= restricciones.getEdad();
     }
@@ -83,6 +80,7 @@ public class AtraccionCultural extends Atraccion {
         this.restricciones = restricciones;
     }
 
+    @Override
     public ArrayList<Empleado> getEmpleadosAsignados() {
         return empleadosAsignados;
     }

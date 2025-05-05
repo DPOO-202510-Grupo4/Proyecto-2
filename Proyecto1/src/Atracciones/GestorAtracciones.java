@@ -62,7 +62,7 @@ public class GestorAtracciones {
     
     public void cargarAtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
             int cupoMax, int minEmpleados, String riesgo, RestriccionesMecanica restricciones, String temporadaIn) {
-    	AtraccionMecanica nuevaAtraccionMecanica = new AtraccionMecanica(); //LLENAR PARAMETROS
+    	AtraccionMecanica nuevaAtraccionMecanica = new AtraccionMecanica(ubicacion, nombre, cupoMax, minEmpleados, deTemporada, temporadaIn, riesgo, restricciones);
     	atraccionesMecanicas.add(nuevaAtraccionMecanica);
     }
 
