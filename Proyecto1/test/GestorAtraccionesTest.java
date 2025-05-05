@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import Atracciones.AtraccionMecanica;
 import Atracciones.GestorAtracciones;
+import Tiquetes.GestorTiquetes;
+import restricciones.RestriccionesMecanica;
+import restricciones.Temporada;
 
 class GestorAtraccionesTest {
 
@@ -39,6 +42,26 @@ class GestorAtraccionesTest {
 		assertEquals(1, resultado.size());
 		assertTrue(resultado.contains(atraccionMecanica2));
 
+
+	}
+
+	@Test
+	public void testCrearAtraccionMecanica(){
+		RestriccionesMecanica restricciones = mock(RestriccionesMecanica.class);
+        Temporada temporada = mock(Temporada.class);
+
+        try (MockedStatic<GestorTiquetes> mocked = mockStatic(GestorTiquetes.class)) {
+            GestorTiquetes mockTiquetes = mock(GestorTiquetes.class);
+            mocked.when(GestorTiquetes::getInstancia).thenReturn(mockTiquetes);
+            when(mockTiquetes.buscarTemporada("Alta")).thenReturn(temporada);
+
+            gestor.crearAtraccionMecanica("Zona A", "Montaña Rusa", true, true, 20, 5, "Alto", restricciones, "Alta");
+
+            List<AtraccionMecanica> lista = gestor.getAtraccionesMecanicas();
+            assertEquals(1, lista.size());
+            assertEquals("Montaña Rusa", lista.get(0).getNombre());
+        }
+    }
 
 	}
 	
