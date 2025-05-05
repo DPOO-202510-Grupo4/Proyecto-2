@@ -1,16 +1,17 @@
 package Persistencias;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
-import Atracciones.*;
-import restricciones.*;
+import Atracciones.AtraccionCultural;
 import Persona.Empleado;
-import Tiquetes.ItemVenta;
-import java.util.List;
 import restricciones.Temporada;
 
 public class PersistenciaAtraccionCultural {
@@ -85,7 +86,7 @@ public class PersistenciaAtraccionCultural {
     }
     
     public static void cargarDatos() {
-    	GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
+    	//GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;
@@ -99,10 +100,10 @@ public class PersistenciaAtraccionCultural {
                     boolean disponible = Boolean.parseBoolean(partes[3].trim());
                     int capacidad = Integer.parseInt(partes[4].trim());
                     int minEmpleados = Integer.parseInt(partes[5].trim());
-                    RestriccionesCultural restricciones = partes[6].trim(); //REVISAR FORMATO DE RESTRICCIONES
+                    //RestriccionesCultural restricciones = partes[6].trim(); //REVISAR FORMATO DE RESTRICCIONES
                     String temporadaIn = partes[8].trim();
-                    gestor.cargarAtraccionCultural(ubicacion, nombre, deTemporada, disponible,
-                            capacidad, minEmpleados, restricciones, temporadaIn);
+                    //gestor.cargarAtraccionCultural(ubicacion, nombre, deTemporada, disponible,
+                            //capacidad, minEmpleados, restricciones, temporadaIn);
                 }
             }
 

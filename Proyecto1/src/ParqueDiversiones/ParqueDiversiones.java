@@ -1,9 +1,10 @@
 package ParqueDiversiones;
 
 import Atracciones.*;
-import Persona.*;
 import Persistencias.*;
+import Persona.*;
 import restricciones.*;
+import Tiquetes.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

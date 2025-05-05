@@ -45,17 +45,15 @@ public class GestorAtracciones {
         return resultado;
     }
 
-    public void crearAtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
-            int cupoMax, int minEmpleados, String riesgo,
-            RestriccionesMecanica restricciones, String temporadaIn) {
+    public void crearAtraccionMecanica(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada, 
+    Temporada temporada, String riesgo, boolean disponible) {
+        
         GestorTiquetes gestor = GestorTiquetes.getInstancia();
-        Temporada t = gestor.buscarTemporada(temporadaIn);
+        Temporada t = gestor.buscarTemporada(temporada.getName());
         ArrayList<Empleado> empleadosAsignados = new ArrayList<>();
 
-        AtraccionMecanica atraccion = new AtraccionMecanica(
-                nombre, ubicacion, cupoMax, minEmpleados, deTemporada,
-                t, riesgo, restricciones, empleadosAsignados
-        );
+        AtraccionMecanica atraccion = new AtraccionMecanica(nombre, ubicacion, cupoMax, minEmpleados, deTemporada,
+                t, riesgo, disponible);
 
         registrarAtraccionMecanica(atraccion);
     }

@@ -10,18 +10,18 @@ import restricciones.Temporada;
 
 public class AtraccionMecanica extends Atraccion {
 
-    private String riesgo;
-    private RestriccionesMecanica restricciones;
-    private ArrayList<Empleado> empleadosAsignados;
-
-    
+    protected String riesgo;
+    protected boolean disponible;
+    protected RestriccionesMecanica restricciones;
+    protected ArrayList<Empleado> empleadosAsignados;
 
     public AtraccionMecanica(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada,
-			Temporada temporada, String riesgo) {
+			Temporada temporada, String riesgo, boolean disponible) {
 		super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
 		this.riesgo = riesgo;
 		this.restricciones = null;
 		this.empleadosAsignados = new ArrayList<>();
+        this.disponible = disponible;
 	}
 
 	public String getRiesgo() {

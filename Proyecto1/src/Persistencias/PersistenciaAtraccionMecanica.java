@@ -1,12 +1,16 @@
 package Persistencias;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import Atracciones.*;
-import restricciones.*;
+import Atracciones.AtraccionMecanica;
 import Persona.Empleado;
 
 public class PersistenciaAtraccionMecanica {
@@ -99,7 +103,7 @@ public class PersistenciaAtraccionMecanica {
     }
     
     public static void cargarDatos() {
-    	GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
+    	//GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;
@@ -114,10 +118,10 @@ public class PersistenciaAtraccionMecanica {
                     int cupoMax = Integer.parseInt(partes[4].trim());
                     int minEmpleados = Integer.parseInt(partes[5].trim());
                     String riesgo = partes[6].trim();
-                    RestriccionesMecanica restricciones = partes[7].trim(); //REVISAR FORMATO DE RESTRICCIONES
+                    //RestriccionesMecanica restricciones = partes[7].trim(); //REVISAR FORMATO DE RESTRICCIONES
                     String temporadaIn = partes[8].trim();
-                    gestor.cargarAtraccionMecanica(ubicacion, nombre, deTemporada, disponible,
-                            cupoMax, minEmpleados, riesgo, restricciones, temporadaIn);
+                    //gestor.cargarAtraccionMecanica(ubicacion, nombre, deTemporada, disponible,
+                           // cupoMax, minEmpleados, riesgo, restricciones, temporadaIn);
                 }
             }
 
