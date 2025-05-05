@@ -27,11 +27,15 @@ public class ConsolaLogin {
             String contrasena = scanner.nextLine();
             if (contrasena.equals("0")) return;
 
+            System.out.print("Ingrese su fecha de nacimiento (dd/MM/yyyy): ");
+            String fechaNacimiento = scanner.nextLine();
+            if (fechaNacimiento.equals("0")) return;
+
             if (gestorPersonas.buscarCliente(login) != null) {
                 System.out.println("Ya existe una cuenta con ese login.");
                 return;
             } else {
-                gestorPersonas.registrarCliente(nombre, login, contrasena);
+                gestorPersonas.registrarCliente(nombre, login, contrasena, fechaNacimiento);
                 System.out.println("¡Cuenta creada exitosamente!");
                 return;
             }

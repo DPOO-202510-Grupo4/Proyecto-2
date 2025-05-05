@@ -15,9 +15,11 @@ import Atracciones.AtraccionMecanica;
 import Atracciones.Espectaculo;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
 import restricciones.Temporada;
 
 public class consolaCliente {

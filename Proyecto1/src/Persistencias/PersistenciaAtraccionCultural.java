@@ -102,7 +102,7 @@ public class PersistenciaAtraccionCultural {
                     int capacidad = Integer.parseInt(partes[4].trim());
                     int minEmpleados = Integer.parseInt(partes[5].trim());
                     String temporadaIn = partes[6].trim();
-                    String temporada = partes[7].trim().split(","); //AYUDA CON MANEJO DE TEMPORADA
+                    String[] temporadas = partes[7].trim().split(","); //AYUDA CON MANEJO DE TEMPORADA
                     gestor.cargarAtraccionCultural(ubicacion, nombre, deTemporada,
                             capacidad, minEmpleados, temporadaIn);
                 }

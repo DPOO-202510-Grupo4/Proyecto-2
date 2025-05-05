@@ -1,6 +1,6 @@
 package Tiquetes;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -67,7 +67,7 @@ public class GestorTiquetes {
     }
 
 
-    public Tiquete crearTiqueteRegular(Cliente cliente, String nombreCategoria, LocalDate fecha) {
+    public Tiquete crearTiqueteRegular(Cliente cliente, String nombreCategoria, Date fecha) {
  
         ArrayList<CategoriaTiquete> categorias = getCategoriasDisponibles();
         CategoriaTiquete categoria = null;

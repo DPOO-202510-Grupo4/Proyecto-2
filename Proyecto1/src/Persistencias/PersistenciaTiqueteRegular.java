@@ -8,7 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import Persona.Cliente;
 import Persona.GestorPersonas;
@@ -55,9 +57,10 @@ public class PersistenciaTiqueteRegular {
         }
     }
 
-    public static void cargarDatos() {
+    public static void cargarDatos() throws ParseException {
     GestorTiquetes gestorT = GestorTiquetes.getInstance();
     GestorPersonas gestorP = GestorPersonas.getInstance();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
     try (BufferedReader lector = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
         String linea;
@@ -72,7 +75,7 @@ public class PersistenciaTiqueteRegular {
                 String loginCliente = partes[3].trim();
                 String nombre = partes[4].trim();
                 double precioBase = Double.parseDouble(partes[5].trim());
-                LocalDate fecha = LocalDate.parse(partes[6].trim());
+                Date fecha = formatter.parse(partes[6].trim());
 
                 Cliente cliente = gestorP.buscarCliente(loginCliente);
 

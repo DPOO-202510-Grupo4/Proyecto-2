@@ -1,25 +1,25 @@
 package Tiquetes;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import Persona.Cliente;
 
 public class TiqueteRegular extends Tiquete{
-	private LocalDate fecha;
+	private Date fecha;
 
 	public TiqueteRegular(String nombre, Double precioBase, String idTiquete,
-			CategoriaTiquete categoria, boolean usado, Cliente cliente, LocalDate fecha) {
+			CategoriaTiquete categoria, boolean usado, Cliente cliente, Date fecha) {
 		super(nombre, precioBase, idTiquete, categoria, usado, cliente);
 		this.fecha = fecha;
 	}
 
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
