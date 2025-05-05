@@ -99,6 +99,7 @@ public class GestorAtracciones {
     public void cargarAtraccionCultural(String ubicacion, String nombre, boolean deTemporada,
             int capacidad, int minEmpleados,Temporada temporada) {
     	AtraccionCultural nuevaAtraccionCultural = new AtraccionCultural(nombre, ubicacion, capacidad,  minEmpleados, deTemporada, temporada); 
+        atraccionesCulturales.add(nuevaAtraccionCultural);
     }
 
     // --- MÉTODOS ESPECTÁCULOS ---
