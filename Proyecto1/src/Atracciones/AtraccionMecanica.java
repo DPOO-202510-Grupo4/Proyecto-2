@@ -2,6 +2,7 @@ package Atracciones;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import Persona.Empleado;
 import Tiquetes.Tiquete;
 import restricciones.RestriccionesMecanica;
@@ -9,19 +10,18 @@ import restricciones.Temporada;
 
 public class AtraccionMecanica extends Atraccion {
 
-    private String riesgo;
-    private RestriccionesMecanica restricciones;
-    private ArrayList<Empleado> empleadosAsignados;
-
-    
+    protected String riesgo;
+    protected boolean disponible;
+    protected RestriccionesMecanica restricciones;
+    protected ArrayList<Empleado> empleadosAsignados;
 
     public AtraccionMecanica(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada,
-			Temporada temporada, String riesgo, RestriccionesMecanica restricciones,
-			ArrayList<Empleado> empleadosAsignados) {
+			Temporada temporada, String riesgo, boolean disponible) {
 		super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
 		this.riesgo = riesgo;
-		this.restricciones = restricciones;
-		this.empleadosAsignados = empleadosAsignados;
+		this.restricciones = null;
+		this.empleadosAsignados = new ArrayList<>();
+        this.disponible = disponible;
 	}
 
 	public String getRiesgo() {
@@ -40,6 +40,7 @@ public class AtraccionMecanica extends Atraccion {
         this.restricciones = restricciones;
     }
 
+    @Override
     public ArrayList<Empleado> getEmpleadosAsignados() {
 		return empleadosAsignados;
 	}

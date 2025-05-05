@@ -7,7 +7,6 @@ import Persistencias.PersistenciaEspectaculo;
 import Persona.Empleado;
 import Tiquetes.GestorTiquetes;
 import restricciones.RestriccionesCultural;
-import restricciones.RestriccionesMecanica;
 import restricciones.Temporada;
 
 public class GestorAtracciones {
@@ -45,24 +44,22 @@ public class GestorAtracciones {
         return resultado;
     }
 
-    public void crearAtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
-            int cupoMax, int minEmpleados, String riesgo,
-            RestriccionesMecanica restricciones, String temporadaIn) {
+    public void crearAtraccionMecanica(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada, 
+    Temporada temporada, String riesgo, boolean disponible) {
+        
         GestorTiquetes gestor = GestorTiquetes.getInstancia();
-        Temporada t = gestor.buscarTemporada(temporadaIn);
+        Temporada t = gestor.buscarTemporada(temporada.getName());
         ArrayList<Empleado> empleadosAsignados = new ArrayList<>();
 
-        AtraccionMecanica atraccion = new AtraccionMecanica(
-                nombre, ubicacion, cupoMax, minEmpleados, deTemporada,
-                t, riesgo, restricciones, empleadosAsignados
-        );
+        AtraccionMecanica atraccion = new AtraccionMecanica(nombre, ubicacion, cupoMax, minEmpleados, deTemporada,
+                t, riesgo, disponible);
 
         registrarAtraccionMecanica(atraccion);
     }
     
     public void cargarAtraccionMecanica(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
-            int cupoMax, int minEmpleados, String riesgo, RestriccionesMecanica restricciones, String temporadaIn) {
-    	AtraccionMecanica nuevaAtraccionMecanica = new AtraccionMecanica(); //LLENAR PARAMETROS
+            int cupoMax, int minEmpleados, String riesgo, Temporada temporada) {
+    	AtraccionMecanica nuevaAtraccionMecanica = new AtraccionMecanica(ubicacion, nombre, cupoMax, minEmpleados, deTemporada, temporada, riesgo, disponible);
     	atraccionesMecanicas.add(nuevaAtraccionMecanica);
     }
 
@@ -82,27 +79,27 @@ public class GestorAtracciones {
         return resultado;
     }
 
-    public void crearAtraccionCultural(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
+    public void crearAtraccionCultural(String ubicacion, String nombre, boolean deTemporada,
             int capacidad, int minEmpleados, RestriccionesCultural restricciones,
             String temporadaIn) {
         GestorTiquetes gestor = GestorTiquetes.getInstancia();
         Temporada t = gestor.buscarTemporada(temporadaIn);
+        //EDITAR (?)
 
         ArrayList<Temporada> disponibilidad = new ArrayList<>();
         ArrayList<Empleado> empleadosAsignados = new ArrayList<>();
 
         AtraccionCultural atraccion = new AtraccionCultural(
                 nombre, ubicacion, capacidad, minEmpleados, deTemporada,
-                t, disponibilidad, restricciones, empleadosAsignados
-        );
+                t);
 
         registrarAtraccionCultural(atraccion);
     }
     
-    public void cargarAtraccionCultural(String ubicacion, String nombre, boolean deTemporada, boolean disponible,
-            int capacidad, int minEmpleados, RestriccionesCultural restricciones,String temporadaIn) {
-    	AtraccionCultural nuevaAtraccionCultural = new AtraccionCultural(); //LLENAR PARAMETROS
-    	atraccionesCulturales.add(nuevaAtraccionCultural);
+    public void cargarAtraccionCultural(String ubicacion, String nombre, boolean deTemporada,
+            int capacidad, int minEmpleados,Temporada temporada) {
+    	AtraccionCultural nuevaAtraccionCultural = new AtraccionCultural(nombre, ubicacion, capacidad,  minEmpleados, deTemporada, temporada); 
+        atraccionesCulturales.add(nuevaAtraccionCultural);
     }
 
     // --- MÉTODOS ESPECTÁCULOS ---
