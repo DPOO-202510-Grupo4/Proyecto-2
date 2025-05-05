@@ -1,14 +1,12 @@
 package Persistencias;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import Atracciones.AtraccionMecanica;
+import Atracciones.*;
+import restricciones.*;
 import Persona.Empleado;
 
 public class PersistenciaAtraccionMecanica {
@@ -98,5 +96,34 @@ public class PersistenciaAtraccionMecanica {
             System.err.println("No se pudo guardar la atraccion: " + e.getMessage());
             
         }
+    }
+    
+    public static void cargarDatos() {
+    	GestorAtracciones gestor = GestorAtracciones.getInstance(); //??
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
+            String linea;
+
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 4) {
+                    String ubicacion = partes[0].trim();
+                    String nombre = partes[1].trim();
+                    boolean deTemporada = Boolean.parseBoolean(partes[2].trim()); 
+                    boolean disponible = Boolean.parseBoolean(partes[3].trim());
+                    int cupoMax = Integer.parseInt(partes[4].trim());
+                    int minEmpleados = Integer.parseInt(partes[5].trim());
+                    String riesgo = partes[6].trim();
+                    RestriccionesMecanica restricciones = partes[7].trim(); //REVISAR FORMATO DE RESTRICCIONES
+                    String temporadaIn = partes[8].trim();
+                    gestor.cargarAtraccionMecanica(ubicacion, nombre, deTemporada, disponible,
+                            cupoMax, minEmpleados, riesgo, restricciones, temporadaIn);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error al cargar las atracciones mecánicas: " + e.getMessage());
+        }
+
     }
 }

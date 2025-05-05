@@ -11,7 +11,7 @@ public class Empleado extends Persona {
 	private Rol rolActual; 
 	private LugarTrabajo lugarTrabajo;
 
-	public Empleado(String nombre, String login, String password, LocalDate fechaNacimiento) {
+	public Empleado(String nombre, String login, String password, String fechaNacimiento) {
 	    super(nombre, login, password, fechaNacimiento);
 	    this.turnos = new ArrayList<>();
 	    this.tareas = new ArrayList<>();
@@ -21,7 +21,7 @@ public class Empleado extends Persona {
 	}
 
 	@Override
-	public LocalDate getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return super.getFechaNacimiento();
 	}
 

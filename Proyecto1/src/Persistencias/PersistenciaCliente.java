@@ -1,10 +1,16 @@
 package Persistencias;
 
-import Persona.Persona;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import Persona.GestorPersonas;
+import Persona.Persona;
 
 public class PersistenciaCliente {
 
@@ -41,5 +47,28 @@ public class PersistenciaCliente {
         } catch (IOException e) {
             System.err.println("No se pudo guardar el cliente: " + e.getMessage());
         }
+    }
+
+    public static void cargarDatos() {
+    	GestorPersonas gestor = GestorPersonas.getInstance();
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
+            String linea;
+
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 4) {
+                    String nombre = partes[0].trim();
+                    String login = partes[1].trim();
+                    String password = partes[2].trim();
+                    String fechaNacimiento = partes[3].trim();
+                    gestor.cargarCliente(nombre, login, password, fechaNacimiento);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error al cargar los clientes: " + e.getMessage());
+        }
+
     }
 }

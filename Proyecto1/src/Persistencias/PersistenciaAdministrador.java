@@ -1,10 +1,14 @@
 package Persistencias;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
 import Persona.Administrador;
 import Persona.GestorPersonas;
 
@@ -51,8 +55,6 @@ public class PersistenciaAdministrador {
     }
     public static void cargarDatos() {
     	GestorPersonas gestor = GestorPersonas.getInstance();
-
-        
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;

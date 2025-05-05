@@ -1,14 +1,18 @@
 package Persistencias;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import Persona.Empleado;
-import Persona.Capacitaciones;
+
 import Atracciones.Atraccion;
+import Persona.Capacitaciones;
+import Persona.Empleado;
+import Persona.GestorPersonas;
 
 public class PersistenciaEmpleado {
 
@@ -80,6 +84,28 @@ public class PersistenciaEmpleado {
 
         } catch (IOException e) {
             System.err.println("No se pudo guardar el empleado: " + e.getMessage());
+        }
+    }
+
+    public static void cargarDatos() {
+    	GestorPersonas gestor = GestorPersonas.getInstance();
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
+            String linea;
+
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 4) {
+                    String nombre = partes[0].trim();
+                    String login = partes[1].trim();
+                    String password = partes[2].trim();
+                    String fechaNacimiento = partes[3].trim();
+                    gestor.cargarEmpleado(nombre, login, password, fechaNacimiento);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error al cargar los empleados: " + e.getMessage());
         }
     }
 }

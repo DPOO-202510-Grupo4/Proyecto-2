@@ -1,10 +1,13 @@
 package Persona;
 
-import Atracciones.*;
-import Persistencias.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Atracciones.Atraccion;
+import Persistencias.PersistenciaAdministrador;
+import Persistencias.PersistenciaCliente;
+import Persistencias.PersistenciaEmpleado;
 
 public class GestorPersonas {
 
@@ -36,7 +39,7 @@ public class GestorPersonas {
 
     //------------------------ EMPLEADOS ------------------------
 
-    public Empleado crearEmpleadoBasico(String nombre, String login, String password, LocalDate fechaNacimiento) {
+    public Empleado crearEmpleadoBasico(String nombre, String login, String password, String fechaNacimiento) {
         Empleado nuevo = new Empleado(nombre, login, password, fechaNacimiento);
         registrarEmpleado(nuevo);
         return nuevo;
@@ -45,6 +48,11 @@ public class GestorPersonas {
     public void registrarEmpleado(Empleado empleado) {
         this.empleados.put(empleado.getLogin(), empleado);
         PersistenciaEmpleado.persistencia(empleado);
+    }
+
+    public void cargarEmpleado(String nombre, String login, String password, String fechaNacimiento) {
+    	Empleado empleado = new Empleado(nombre, login, password, fechaNacimiento);
+        this.empleados.put(login, empleado);
     }
 
     public void eliminarEmpleado(String login) {
@@ -147,8 +155,9 @@ public class GestorPersonas {
         clientes.put(nuevoCliente.getLogin(), nuevoCliente);
         PersistenciaCliente.persistencia(nuevoCliente);
     }
-    public void cargarCliente() {
-    	
+    public void cargarCliente(String nombre, String login, String password, String fechaNacimiento) {
+    	Cliente cliente = new Cliente(nombre, login, password);
+        this.clientes.put(cliente.getLogin(), cliente);  
     }
 
     public Cliente buscarCliente(String login) {
