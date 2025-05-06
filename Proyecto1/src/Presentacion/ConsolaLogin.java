@@ -2,6 +2,7 @@ package presentacion;
 
 import java.util.Scanner;
 
+import Persistencias.GestorPersistencia;
 import Persona.GestorPersonas;
 import Persona.GestorPersonas.TipoUsuario;
 
@@ -78,6 +79,8 @@ public class ConsolaLogin {
     }
 
     public static void main(String[] args) {
+    	GestorPersistencia gestorPersistencia = GestorPersistencia.getInstance();
+    	gestorPersistencia.gestorCargaDatos();
         boolean volver = false;
         Scanner scanner = new Scanner(System.in);
         ConsolaLogin login = new ConsolaLogin();

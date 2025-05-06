@@ -157,7 +157,7 @@ public class consolaAdministrador {
         String password = scanner.nextLine();
 
         System.out.print("Fecha de nacimiento (YYYY-MM-DD): ");
-        LocalDate fechaNacimiento = LocalDate.parse(scanner.nextLine());
+        String fechaNacimiento = scanner.nextLine();
 
         GestorPersonas gestor = GestorPersonas.getInstance();
 

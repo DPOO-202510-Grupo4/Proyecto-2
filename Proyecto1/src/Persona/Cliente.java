@@ -6,6 +6,7 @@ import Tiquetes.FastPass;
 import Tiquetes.Tiquete;
 
 public class Cliente extends Persona {
+	
 	public ArrayList<Factura> historialCompras;
 	public ArrayList<Tiquete> tiquetes;
 	public ArrayList<FastPass> fastPass;

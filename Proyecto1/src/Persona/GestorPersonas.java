@@ -16,11 +16,15 @@ public class GestorPersonas {
     private ArrayList<Administrador> administradores;
     private HashMap<String, Empleado> empleados;
     private HashMap<String, Cliente> clientes;
+	private ArrayList<Turno> turnos;
+	private ArrayList<String> tareas;
 
     private GestorPersonas() {
         this.empleados = new HashMap<>();
         this.clientes = new HashMap<>();
         this.administradores = new ArrayList<>();
+	    this.turnos = new ArrayList<>();
+	    this.tareas = new ArrayList<>();
     }
 
     public static GestorPersonas getInstance() {
@@ -50,7 +54,7 @@ public class GestorPersonas {
         PersistenciaEmpleado.persistencia(empleado);
     }
 
-    public void cargarEmpleado(String nombre, String login, String password, String fechaNacimiento) {
+    public void cargarEmpleado(String nombre, String login, String password, String fechaNacimiento,String lugarTrabajo, String rol) {
     	Empleado empleado = new Empleado(nombre, login, password, fechaNacimiento);
         this.empleados.put(login, empleado);
     }

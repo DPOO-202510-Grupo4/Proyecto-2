@@ -5,16 +5,14 @@ import java.util.ArrayList;
 
 public class Empleado extends Persona {
 
-	private ArrayList<Turno> turnos;
-	private ArrayList<String> tareas;
+
 	private Capacitaciones capacitaciones;
 	private Rol rolActual; 
 	private LugarTrabajo lugarTrabajo;
 
 	public Empleado(String nombre, String login, String password, String fechaNacimiento) {
 	    super(nombre, login, password, fechaNacimiento);
-	    this.turnos = new ArrayList<>();
-	    this.tareas = new ArrayList<>();
+
 	    this.capacitaciones = null;
 	    this.rolActual = null;
 	    this.lugarTrabajo = null;
@@ -41,7 +39,7 @@ public class Empleado extends Persona {
 	}
 
 	@Override
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		super.setFechaNacimiento(fechaNacimiento);
 	}
 
@@ -61,14 +59,6 @@ public class Empleado extends Persona {
 	}
 
 
-	public ArrayList<Turno> getTurnos() {
-		return this.turnos;
-	}
-
-	public ArrayList<Turno> setTurno(Turno turno) {
-		turnos.add(turno);
-		return this.turnos;
-	}
 
 	public LugarTrabajo getLugarTrabajo() {
 		return this.lugarTrabajo;
@@ -79,13 +69,6 @@ public class Empleado extends Persona {
 		return this.capacitaciones;
 	}
 
-	public ArrayList<String> getTareas() {
-		return tareas;
-	}
-
-	public void setTareas(ArrayList<String> tareas) {
-		this.tareas = tareas;
-	}
 
 	public Rol getRolActual() {
 		return rolActual;

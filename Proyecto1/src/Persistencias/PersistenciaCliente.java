@@ -38,17 +38,25 @@ public class PersistenciaCliente {
     }
 
     public static void guardarCliente(Persona cliente) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
-            String lineaCSV = cliente.getNombre() + "," +
-                              cliente.getLogin() + "," +
-                              cliente.getPassword();
-            writer.write(lineaCSV);
-            writer.newLine();
+        if (cliente == null) {
+            System.err.println("Cliente nulo, no se puede guardar.");
+            return;
+        }
+
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
+            String lineaCSV = String.format(
+                "%s,%s,%s,%s",
+                cliente.getNombre(),
+                cliente.getLogin(),
+                cliente.getPassword(),
+                cliente.getFechaNacimiento()
+            );
+            escritor.write(lineaCSV);
+            escritor.newLine();
         } catch (IOException e) {
             System.err.println("No se pudo guardar el cliente: " + e.getMessage());
         }
     }
-
     public static void cargarDatos() {
     	GestorPersonas gestor = GestorPersonas.getInstance();
 

@@ -14,7 +14,7 @@ import Persona.GestorPersonas;
 
 public class PersistenciaAdministrador {
 
-    private static final String NOMBREARCHIVO = "persistencia/personas/administradores.txt";
+    private static final String NOMBREARCHIVO = "persistencia/personas/administradores.csv";
 
     public static void crearArchivo() {
         try {

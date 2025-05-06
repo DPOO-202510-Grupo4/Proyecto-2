@@ -44,11 +44,12 @@ public class PersistenciaEmpleado {
         Empleado empleado = (Empleado) persona;
 
         try (BufferedWriter empleadoEscrito = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
+
             String empleadoFormatoTexto = empleado.getNombre() + ","
                     + empleado.getLogin() + ","
                     + empleado.getPassword() + ","
-                    + empleado.getTurnos().toString();
-
+                    + empleado.getFechaNacimiento(); 
+            
             if (empleado.getLugarTrabajo() != null) {
                 empleadoFormatoTexto += "," + empleado.getLugarTrabajo().getNombre();
             } else {
@@ -61,24 +62,6 @@ public class PersistenciaEmpleado {
                 empleadoFormatoTexto += ",N/A";
             }
 
-            Capacitaciones capacitaciones = empleado.getCapacitaciones();
-            if (capacitaciones != null) {
-                empleadoFormatoTexto += "," + capacitaciones.getEsCocinero() + ","
-                        + capacitaciones.getEsCajero();
-
-                if (capacitaciones.getCapacitacionAtracciones() != null && !capacitaciones.getCapacitacionAtracciones().isEmpty()) {
-                    StringBuilder atraccionesNombres = new StringBuilder();
-                    for (Atraccion atraccion : capacitaciones.getCapacitacionAtracciones()) {
-                        atraccionesNombres.append(atraccion.getNombre()).append(", ");
-                    }
-                    empleadoFormatoTexto += "," + atraccionesNombres.toString();
-                } else {
-                    empleadoFormatoTexto += ",N/A";
-                }
-            } else {
-                empleadoFormatoTexto += ",N/A,N/A,N/A";
-            }
-
             empleadoEscrito.write(empleadoFormatoTexto);
             empleadoEscrito.newLine();
 
@@ -88,19 +71,31 @@ public class PersistenciaEmpleado {
     }
 
     public static void cargarDatos() {
-    	GestorPersonas gestor = GestorPersonas.getInstance();
+        GestorPersonas gestor = GestorPersonas.getInstance();
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;
 
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.split(",");
-                if (partes.length == 4) {
+
+                if (partes.length >= 4) {
                     String nombre = partes[0].trim();
                     String login = partes[1].trim();
                     String password = partes[2].trim();
                     String fechaNacimiento = partes[3].trim();
-                    gestor.cargarEmpleado(nombre, login, password, fechaNacimiento);
+
+                    String lugarTrabajoStr = "N/A";
+                    String rolActualStr = "N/A"; 
+
+                    if (partes.length >= 5) {
+                        lugarTrabajoStr = partes[4].trim();
+                    }
+                    if (partes.length >= 6) {
+                        rolActualStr = partes[5].trim();
+                    }
+
+                    gestor.cargarEmpleado(nombre, login, password, fechaNacimiento, lugarTrabajoStr, rolActualStr);
                 }
             }
 
