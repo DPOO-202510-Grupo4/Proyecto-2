@@ -9,6 +9,7 @@ public class GestorPersistencia {
 		PersistenciaCliente.cargarDatos();
 		PersistenciaAdministrador.cargarDatos();
 		PersistenciaEmpleado.cargarDatos();
+		PersistenciaCategoriaTiquete.cargarDatos();
 	}
     public static GestorPersistencia getInstance() {
         if (instancia == null) {

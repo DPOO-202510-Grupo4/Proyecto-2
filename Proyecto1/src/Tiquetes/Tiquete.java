@@ -7,7 +7,7 @@ public abstract class Tiquete extends ItemVenta{
 	protected CategoriaTiquete categoria;
 	protected boolean usado;
 
-	private Cliente cliente;
+	private String dueño;
 	
 	public Tiquete(String nombre, Double precioBase, String idTiquete,
 			CategoriaTiquete categoria, boolean usado, Cliente cliente) {
@@ -15,7 +15,7 @@ public abstract class Tiquete extends ItemVenta{
 		this.idTiquete = idTiquete;
 		this.categoria = categoria;
 		this.usado = usado;
-		this.cliente = cliente;
+		this.dueño = cliente.getLogin();
 	}
 
 	public String getIdTiquete() {
@@ -56,8 +56,10 @@ public abstract class Tiquete extends ItemVenta{
 		this.usado = true;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public String getDueño() {
+		return dueño;
 	}
+
+
 	
 }

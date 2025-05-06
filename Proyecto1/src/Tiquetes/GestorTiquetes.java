@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.UUID;
 
 import Atracciones.Atraccion;
+import Persistencias.PersistenciaCategoriaTiquete;
 import Persistencias.PersistenciaTemporada;
 import Persistencias.PersistenciaTiqueteRegular;
 import Persistencias.PersistenciaTiqueteTemporada;
 import Persona.Cliente;
+import Persona.GestorPersonas;
 import restricciones.Temporada;
 
 public class GestorTiquetes {
@@ -66,6 +68,28 @@ public class GestorTiquetes {
         return t;
     }
 
+    public Tiquete cargarTiqueteTemporada(String login, String nombreCategoria, String temporada, String id ) {
+    	GestorPersonas gestor = GestorPersonas.getInstance();
+    	ArrayList<CategoriaTiquete> categorias = getCategoriasDisponibles();
+        CategoriaTiquete categoria = null;
+        for (CategoriaTiquete c : categorias) {
+            if (c.getNombre().equalsIgnoreCase(nombreCategoria)) {
+                categoria = c;
+                break;
+            }
+        }
+        Temporada temp = buscarTemporada(temporada);
+        if (categoria == null) {
+            System.out.println("Categoría no encontrada: " + nombreCategoria);
+            return null;
+        }
+        Cliente cliente = gestor.buscarCliente(login);
+        TiqueteTemporada t = new TiqueteTemporada("Tiquete " + categoria.getNombre(), categoria.getPrecioBase() , id, categoria, false,cliente, temp);
+        
+        PersistenciaTiqueteTemporada.persistencia(t);
+        return t;
+    }    
+
 
     public Tiquete crearTiqueteRegular(Cliente cliente, String nombreCategoria, Date fecha) {
  
@@ -96,6 +120,35 @@ public class GestorTiquetes {
         agregarTiqueteACliente(cliente, t);
         return t;
     }
+    public void cargarTiqueteRegular(String login, String nombreCategoria, Date fecha, String id, boolean usado) {
+    	GestorPersonas gestor = GestorPersonas.getInstance();
+        ArrayList<CategoriaTiquete> categorias = getCategoriasDisponibles();
+        CategoriaTiquete categoria = null;
+        for (CategoriaTiquete c : categorias) {
+            if (c.getNombre().equalsIgnoreCase(nombreCategoria)) {
+                categoria = c;
+                break;
+            }
+        }
+
+        if (categoria == null) {
+            System.out.println("Categoría no encontrada: " + nombreCategoria);
+        }
+        Cliente cliente = gestor.buscarCliente(login);
+        TiqueteRegular t = new TiqueteRegular(
+            "Tiquete " + categoria.getNombre(),
+            categoria.getPrecioBase(),
+            id,
+            categoria,
+            false,
+            cliente,
+            fecha
+        );
+        agregarTiqueteACliente(cliente, t);
+        if (usado == true){
+        	usarTiquete(t);
+        }
+    }
     
 
     public void usarTiquete(Tiquete tiquete) {
@@ -120,13 +173,31 @@ public class GestorTiquetes {
     // Gestión de CATEGORÍAS de TIQUETE
     // ======================
 
-    public boolean crearCategoriaTiquete(String nombre, ArrayList<Atraccion> atraccionesDisponibles, Double precioBase) {
-        if (buscarCategoria(nombre) != null) {
-            return false; 
+    public boolean crearCategoriaTiquete(String nombre, ArrayList<String> atraccionesDisponibles, Double precioBase) {
+    	
+        CategoriaTiquete existente = buscarCategoria(nombre);
+        if (existente != null) {
+            existente.setAtraccionesDisponibles(atraccionesDisponibles);
+            existente.setPrecioBase(precioBase);
+            return true;
         }
 
-        CategoriaTiquete nueva = new CategoriaTiquete(nombre, atraccionesDisponibles, precioBase);
-        categoriasDisponibles.add(nueva);
+        CategoriaTiquete nuevaCategoria = new CategoriaTiquete(nombre, atraccionesDisponibles, precioBase);
+        categoriasDisponibles.add(nuevaCategoria);
+        PersistenciaCategoriaTiquete.persistencia(nuevaCategoria);
+        return true;
+    }
+    public boolean cargarCategoriaTiquete(String nombre, ArrayList<String> atraccionesDisponibles, Double precioBase) {
+    	
+        CategoriaTiquete existente = buscarCategoria(nombre);
+        if (existente != null) {
+            existente.setAtraccionesDisponibles(atraccionesDisponibles);
+            existente.setPrecioBase(precioBase);
+            return true;
+        }
+
+        CategoriaTiquete nuevaCategoria = new CategoriaTiquete(nombre, atraccionesDisponibles, precioBase);
+        categoriasDisponibles.add(nuevaCategoria);
         return true;
     }
 

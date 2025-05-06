@@ -1,11 +1,6 @@
 package Persistencias;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -28,15 +23,19 @@ public class PersistenciaTiqueteRegular {
             File archivo = new File(nombreArchivo);
             if (!archivo.exists()) {
                 archivo.createNewFile();
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+                    writer.write("idTiquete,categoria,usado,loginCliente,fecha");
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
             System.err.println("Error al crear el archivo: " + nombreArchivo + " " + e.getMessage());
         }
     }
 
-    public static void persistencia(TiqueteRegular tiquete) {
+    public static void persistencia(TiqueteRegular t) {
         crearArchivo(NOMBRE_ARCHIVO);
-        guardarTiquete(tiquete);
+        guardarTiquete(t);
     }
 
     public static void guardarTiquete(TiqueteRegular t) {
@@ -45,11 +44,14 @@ public class PersistenciaTiqueteRegular {
             return;
         }
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, true))) {
             String linea = t.getIdTiquete() + "," +
                            t.getCategoria().getNombre() + "," +
                            t.isUsado() + "," +
-                           t.getFecha();
+                           t.getDueño() + "," +
+                           formatter.format(t.getFecha());
             writer.write(linea);
             writer.newLine();
         } catch (IOException e) {
@@ -58,39 +60,30 @@ public class PersistenciaTiqueteRegular {
     }
 
     public static void cargarDatos() throws ParseException {
-    GestorTiquetes gestorT = GestorTiquetes.getInstance();
-    GestorPersonas gestorP = GestorPersonas.getInstance();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        GestorTiquetes gestorT = GestorTiquetes.getInstance();
+        GestorPersonas gestorP = GestorPersonas.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
-    try (BufferedReader lector = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
-        String linea;
-        while ((linea = lector.readLine()) != null) {
-            String[] partes = linea.split(",");
+        try (BufferedReader lector = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
+            String linea;
+            lector.readLine(); 
 
-            if (partes.length == 7) {
-                String idTiquete = partes[0].trim();
-                String categoria = partes[1].trim();
-                CategoriaTiquete categoriaTiquete = gestorT.buscarCategoria(categoria);
-                boolean usado = Boolean.parseBoolean(partes[2].trim());
-                String loginCliente = partes[3].trim();
-                String nombre = partes[4].trim();
-                double precioBase = Double.parseDouble(partes[5].trim());
-                Date fecha = formatter.parse(partes[6].trim());
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",");
 
-                Cliente cliente = gestorP.buscarCliente(loginCliente);
+                if (partes.length == 5) {
+                    String idTiquete = partes[0].trim();
+                    String nombreCategoria = partes[1].trim();
+                    boolean usado = Boolean.parseBoolean(partes[2].trim());
+                    String loginCliente = partes[3].trim();
+                    Date fecha = formatter.parse(partes[4].trim());
 
-                if (cliente != null) {
-                    TiqueteRegular tiquete = new TiqueteRegular(nombre, precioBase, idTiquete, categoriaTiquete, usado, cliente, fecha);
-                    cliente.agregarTiquete(tiquete);
-                } else {
-                    System.err.println("Cliente no encontrado: " + loginCliente);
+                    gestorT.cargarTiqueteRegular(loginCliente, nombreCategoria, fecha, idTiquete, usado);
                 }
             }
-        }
 
-    } 
-    catch (IOException e) {
-        System.err.println("Error al cargar los tiquetes: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al cargar los tiquetes: " + e.getMessage());
+        }
     }
-}
 }

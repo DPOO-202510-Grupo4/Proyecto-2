@@ -1,12 +1,12 @@
 package Persistencias;
 
 import Tiquetes.CategoriaTiquete;
-import Atracciones.Atraccion;
+import Tiquetes.GestorTiquetes;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public class PersistenciaCategoriaTiquete {
 
@@ -35,17 +35,52 @@ public class PersistenciaCategoriaTiquete {
 
     public static void guardarCategoria(CategoriaTiquete categoria) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
-            String atracciones = categoria.getAtraccionesDisponibles()
-                                          .stream()
-                                          .map(Atraccion::getNombre)
-                                          .collect(Collectors.joining(";"));
+            StringBuilder atraccionesBuilder = new StringBuilder();
+            ArrayList<String> atracciones = categoria.getAtraccionesDisponibles();
+
+            for (int i = 0; i < atracciones.size(); i++) {
+                atraccionesBuilder.append(atracciones.get(i));
+                if (i < atracciones.size() - 1) {
+                    atraccionesBuilder.append(";");
+                }
+            }
+
             String lineaCSV = categoria.getNombre() + "," +
                               categoria.getPrecioBase() + "," +
-                              atracciones;
+                              atraccionesBuilder.toString();
+
             writer.write(lineaCSV);
             writer.newLine();
         } catch (IOException e) {
             System.err.println("No se pudo guardar la categoría de tiquete: " + e.getMessage());
+        }
+    }
+
+    public static void cargarDatos() {
+        GestorTiquetes gestor = GestorTiquetes.getInstance();
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
+            String linea;
+            lector.readLine();
+
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",", 3);
+                if (partes.length == 3) {
+                    String nombre = partes[0].trim();
+                    Double precioBase = Double.parseDouble(partes[1].trim());
+                    String[] atraccionesArray = partes[2].trim().split(";");
+                    ArrayList<String> atracciones = new ArrayList<>();
+
+                    for (int i = 0; i < atraccionesArray.length; i++) {
+                        atracciones.add(atraccionesArray[i].trim());
+                    }
+
+                    gestor.cargarCategoriaTiquete(nombre, atracciones, precioBase);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error al cargar las categorías de tiquete: " + e.getMessage());
         }
     }
 }
