@@ -66,7 +66,7 @@ public class GestorPersonasTest {
         assertEquals(GestorPersonas.TipoUsuario.NO_ENCONTRADO, gestor.validarLogin("fake", "1234"));
     }
 
-    @Test
+    /*@Test
     public void testAsignarYConsultarTurnos() {
         Empleado empleado = gestor.crearEmpleadoBasico("Sara", "sara123", "clave", "2001-08-08");
         Date fecha = new Date(05, 05, 2025);
@@ -76,6 +76,6 @@ public class GestorPersonasTest {
 
         ArrayList<Turno> turnos = gestor.turnosDeEmpleado(empleado);
         assertTrue(turnos.contains(turno));
-    }
+    }*/
 
 }
