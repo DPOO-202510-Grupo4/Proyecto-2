@@ -126,7 +126,7 @@ public abstract class Atraccion {
 
 
 
-	protected ArrayList<Empleado> getEmpleadosAsignados() {
+	protected ArrayList<String> getEmpleadosAsignados() {
 		// TODO Auto-generated method stub
 		return null;
 	}

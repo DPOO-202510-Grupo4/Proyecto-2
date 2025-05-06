@@ -13,7 +13,7 @@ import Tiquetes.GestorTiquetes;
 
 public class PersistenciaEspectaculo {
 
-    private static final String NOMBREARCHIVO = "persistencia/atracciones/espectaculos.txt";
+    private static final String NOMBREARCHIVO = "persistencia/atracciones/espectaculos.csv";
     private static final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
     private static final SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
 

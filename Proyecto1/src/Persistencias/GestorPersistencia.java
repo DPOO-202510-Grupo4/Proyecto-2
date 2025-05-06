@@ -16,6 +16,9 @@ public class GestorPersistencia {
 		PersistenciaTiqueteRegular.cargarDatos();
 		PersistenciaTiqueteTemporada.cargarDatos();
 		PersistenciaTiqueteFastPass.cargarDatos();
+		PersistenciaAtraccionCultural.cargarDatos();
+		PersistenciaAtraccionMecanica.cargarDatos();
+		PersistenciaEspectaculo.cargarDatos();
 	}
     public static GestorPersistencia getInstance() {
         if (instancia == null) {

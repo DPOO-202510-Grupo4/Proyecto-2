@@ -14,7 +14,7 @@ public class AtraccionCultural extends Atraccion {
 
     private ArrayList<Temporada> disponibilidad;
     private RestriccionesCultural restricciones;
-    private ArrayList<Empleado> empleadosAsignados;
+    private ArrayList<String> empleadosAsignados;
 
     public AtraccionCultural(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada, Temporada temporada) {
         super(nombre, ubicacion, cupoMax, minEmpleados, deTemporada, temporada);
@@ -81,17 +81,19 @@ public class AtraccionCultural extends Atraccion {
     }
 
     @Override
-    public ArrayList<Empleado> getEmpleadosAsignados() {
+    public ArrayList<String> getEmpleadosAsignados() {
         return empleadosAsignados;
     }
 
-    public void setEmpleadosAsignados(ArrayList<Empleado> empleadosAsignados) {
+    public void setEmpleadosAsignados(ArrayList<String> empleadosAsignados) {
         this.empleadosAsignados = empleadosAsignados;
     }
     
 
     @Override
     public String toString() {
-        return "AtraccionCultural [" + nombre + ", ubicación = " + ubicacion + "]";
+        return "Atracción Cultural: " +
+               "\n  - Nombre: " + getNombre() +
+               "\n  - Ubicación: " + getUbicacion();
     }
 }

@@ -101,7 +101,7 @@ public class GestorPersonas {
         return empleadosTipo.get(tipo);
     }
 
-    public ArrayList<Empleado> empleadosDisponibles(LocalDate fecha, String lugar) {
+    /*public ArrayList<Empleado> empleadosDisponibles(LocalDate fecha, String lugar) {
         ArrayList<Empleado> empleadosDisponibles = new ArrayList<>();
         for (Empleado empleado : this.empleados.values()) {
             for (Turno turno : empleado.getTurnos()) {
@@ -141,7 +141,7 @@ public class GestorPersonas {
         } else {
             System.out.println("Empleado no encontrado para asignar tarea.");
         }
-    }
+    }*/
 
     public boolean verificarMinimosAtraccion(Atraccion atraccion, LocalDate fecha) {
         // TODO: implementar verificación de mínimos
@@ -161,7 +161,7 @@ public class GestorPersonas {
     }
     public void cargarCliente(String nombre, String login, String password, String fechaNacimiento) {
     	Cliente cliente = new Cliente(nombre, login, password, fechaNacimiento);
-        this.clientes.put(cliente.getLogin(), cliente);  
+        this.clientes.put(cliente.getLogin(), cliente);
     }
 
     public Cliente buscarCliente(String login) {

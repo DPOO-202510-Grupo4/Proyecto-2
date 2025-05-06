@@ -13,7 +13,7 @@ public class AtraccionMecanica extends Atraccion {
     protected String riesgo;
     protected boolean disponible;
     protected RestriccionesMecanica restricciones;
-    protected ArrayList<Empleado> empleadosAsignados;
+    protected ArrayList<String> empleadosAsignados;
 
     public AtraccionMecanica(String nombre, String ubicacion, int cupoMax, int minEmpleados, boolean deTemporada,
 			Temporada temporada, String riesgo, boolean disponible) {
@@ -41,7 +41,7 @@ public class AtraccionMecanica extends Atraccion {
     }
 
     @Override
-    public ArrayList<Empleado> getEmpleadosAsignados() {
+    public ArrayList<String> getEmpleadosAsignados() {
 		return empleadosAsignados;
 	}
 
@@ -85,8 +85,13 @@ public class AtraccionMecanica extends Atraccion {
     }
 
 
+
     @Override
     public String toString() {
-        return "AtraccionMecanica [" + super.toString() + ", riesgo=" + riesgo + "]";
-    }
-}
+
+
+        return "Atracción Mecánica: " +
+               "\n  - Nombre: " + getNombre() +
+               "\n  - Ubicación: " + getUbicacion() +
+               "\n  - Riesgo: " + getRiesgo();
+    }}

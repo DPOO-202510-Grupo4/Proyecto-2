@@ -13,13 +13,15 @@ import java.util.List;
 import Atracciones.AtraccionCultural;
 import Atracciones.GestorAtracciones;
 import Persona.Empleado;
+import Persona.GestorPersonas;
+import Tiquetes.GestorTiquetes;
 import restricciones.Temporada;
 
 public class PersistenciaAtraccionCultural {
 
-    private static final String NOMBREARCHIVO = "persistencia/atracciones/atracciones_culturales.txt";
+    private static final String NOMBREARCHIVO = "persistencia/atracciones/atracciones_culturales.csv";
 
-    public void crearArchivo(String nombreArchivo) {
+    public static void crearArchivo(String nombreArchivo) {
         try {
             Files.createDirectories(Paths.get("persistencia/atracciones"));
             File archivo = new File(nombreArchivo);
@@ -31,18 +33,18 @@ public class PersistenciaAtraccionCultural {
         }
     }
 
-    public void persistencia(String nombre, AtraccionCultural persistirAtraccion) {
-        crearArchivo(nombre);
-        guardarAtraccion(persistirAtraccion);
+    public static void persistencia(AtraccionCultural atraccion) {
+        crearArchivo(NOMBREARCHIVO);
+        guardarAtraccion(atraccion);
     }
 
-    public void guardarAtraccion(AtraccionCultural atraccion) {
+    public static void guardarAtraccion(AtraccionCultural atraccion) {
         try (BufferedWriter atraccionEscrita = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true))) {
 
             String empleadosTexto = "";
-            List<Empleado> empleados = atraccion.getEmpleadosAsignados();
+            List<String> empleados = atraccion.getEmpleadosAsignados();
             for (int i = 0; i < empleados.size(); i++) {
-                empleadosTexto += empleados.get(i).getLogin();
+                empleadosTexto += empleados.get(i); 
                 if (i < empleados.size() - 1) {
                     empleadosTexto += ",";
                 }
@@ -57,16 +59,6 @@ public class PersistenciaAtraccionCultural {
                 }
             }
 
-            String restriccionesTexto = "";
-            List<String> climas = atraccion.getRestricciones().getClima();
-            for (int i = 0; i < climas.size(); i++) {
-                restriccionesTexto += climas.get(i);
-                if (i < climas.size() - 1) {
-                    restriccionesTexto += ",";
-                }
-            }
-            restriccionesTexto += ",Edad Minima: " + atraccion.getRestricciones().getEdad();
-
             String atraccionCulturalFormatoTexto =
                 atraccion.getNombre() + "," +
                 atraccion.getUbicacion() + "," +
@@ -74,43 +66,60 @@ public class PersistenciaAtraccionCultural {
                 atraccion.getMinEmpleados() + "," +
                 atraccion.isDeTemporada() + "," +
                 empleadosTexto + "," +
-                temporadasTexto + "," +
-                restriccionesTexto + "," +
-                atraccion.getRestricciones().getExclusividad();
+                temporadasTexto;
 
             atraccionEscrita.write(atraccionCulturalFormatoTexto);
             atraccionEscrita.newLine();
 
         } catch (IOException e) {
-            System.err.println("No se pudo guardar la atraccion: " + e.getMessage());
+            System.err.println("No se pudo guardar la atracción: " + e.getMessage());
         }
     }
-    
+
     public static void cargarDatos() {
-    	GestorAtracciones gestor = GestorAtracciones.getInstancia(); 
+        GestorAtracciones gestor = GestorAtracciones.getInstancia();
+        GestorPersonas gestorP = GestorPersonas.getInstance();
+        GestorTiquetes gestorT = GestorTiquetes.getInstancia(); 
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String linea;
 
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.split(",");
-                if (partes.length == 4) {
-                    String ubicacion = partes[0].trim();
-                    String nombre = partes[1].trim();
-                    boolean deTemporada = Boolean.parseBoolean(partes[2].trim()); 
-                    boolean disponible = Boolean.parseBoolean(partes[3].trim());
-                    int capacidad = Integer.parseInt(partes[4].trim());
-                    int minEmpleados = Integer.parseInt(partes[5].trim());
-                    String temporadaIn = partes[6].trim();
-                    String[] temporadas = partes[7].trim().split(","); //AYUDA CON MANEJO DE TEMPORADA
-                    gestor.cargarAtraccionCultural(ubicacion, nombre, deTemporada,
-                            capacidad, minEmpleados, temporadaIn);
+                if (partes.length >= 7) {  
+                    String nombre = partes[0].trim();
+                    String ubicacion = partes[1].trim();
+                    int cupoMax = Integer.parseInt(partes[2].trim());
+                    int minEmpleados = Integer.parseInt(partes[3].trim());
+                    boolean deTemporada = Boolean.parseBoolean(partes[4].trim());
+
+                    String[] loginsEmpleados = partes[5].trim().split(",");
+                
+                    String[] temporadas = partes[6].trim().split(",");
+
+                    AtraccionCultural atraccion = new AtraccionCultural(
+                            nombre, ubicacion, cupoMax, minEmpleados, deTemporada, null);
+
+                    for (String login : loginsEmpleados) {
+                        Empleado emp = gestorP.obtenerEmpleadoPorLogin(login.trim());
+                        if (emp != null) {
+                            atraccion.getEmpleadosAsignados().add(emp.getLogin());
+                        }
+                    }
+
+                    for (String nombreTemporada : temporadas) {
+                        Temporada temp = gestorT.buscarTemporada(nombreTemporada.trim());
+                        if (temp != null) {
+                            atraccion.getDisponibilidad().add(temp);
+                        }
+                    }
+
+                    gestor.cargarAtraccionCultural(atraccion);
                 }
             }
 
         } catch (IOException e) {
             System.err.println("Error al cargar las atracciones culturales: " + e.getMessage());
         }
-
     }
 }

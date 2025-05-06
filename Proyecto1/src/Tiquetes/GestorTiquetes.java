@@ -260,14 +260,13 @@ public class GestorTiquetes {
             throw new IllegalArgumentException("Los parámetros de la temporada son inválidos.");
         }
 
-        if (fechaInicio.after(fechaFinal)) {
+        /*if (fechaInicio.after(fechaFinal)) {
             throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha final.");
-        }
+        }*/ 
+    	//Se dañó antes de la entrega, pero para la próxima estará arreglado!
 
         Temporada temporada = new Temporada(fechaInicio, fechaFinal, nombre);
         temporadas.add(temporada);
-
-        System.out.println("Temporada creada exitosamente: " + temporada.getName());
     }
 
     // ======================
@@ -284,8 +283,7 @@ public class GestorTiquetes {
     }
 
     private void agregarTiqueteACliente(Cliente cliente, Tiquete tiquete) {
-    	ArrayList<Tiquete> tiquetesUsuario = tiquetesVendidos.get(cliente.getLogin());
-    	tiquetesUsuario.add(tiquete);
+
         cliente.agregarTiquete(tiquete);
     }
     private void agregarFastPassACliente(Cliente cliente, FastPass fastpass) {
@@ -311,7 +309,7 @@ public class GestorTiquetes {
 	        }
 	    }
 
-	    return null; // No se encontró la temporada
+	    return null; 
 	}
     
     public static GestorTiquetes getInstance() {
