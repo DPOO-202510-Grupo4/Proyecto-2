@@ -10,6 +10,7 @@ import java.util.UUID;
 import Atracciones.Atraccion;
 import Persistencias.PersistenciaCategoriaTiquete;
 import Persistencias.PersistenciaTemporada;
+import Persistencias.PersistenciaTiqueteFastPass;
 import Persistencias.PersistenciaTiqueteRegular;
 import Persistencias.PersistenciaTiqueteTemporada;
 import Persona.Cliente;
@@ -149,6 +150,21 @@ public class GestorTiquetes {
         	usarTiquete(t);
         }
     }
+    public FastPass crearFastPass(String nombre, Double precioBase, Date fecha, boolean usado, String idTiquete,String dueño) {
+    	GestorPersonas gestor = GestorPersonas.getInstance();
+        FastPass fastPass = new FastPass(nombre, precioBase, fecha, usado, idTiquete,dueño);
+        Cliente cliente = gestor.buscarCliente(dueño);
+        agregarFastPassACliente(cliente, fastPass);
+        PersistenciaTiqueteFastPass.persistencia(fastPass);
+        return fastPass;
+    }
+    public  void cargarFastPass(String nombre, Double precioBase, Date fecha, boolean usado, String idTiquete,String dueño) {
+    	GestorPersonas gestor = GestorPersonas.getInstance();
+        FastPass fastPass = new FastPass(nombre, precioBase, fecha, usado, idTiquete,dueño);
+        Cliente cliente = gestor.buscarCliente(dueño);
+        agregarFastPassACliente(cliente, fastPass);
+
+    }
     
 
     public void usarTiquete(Tiquete tiquete) {
@@ -271,6 +287,9 @@ public class GestorTiquetes {
     	ArrayList<Tiquete> tiquetesUsuario = tiquetesVendidos.get(cliente.getLogin());
     	tiquetesUsuario.add(tiquete);
         cliente.agregarTiquete(tiquete);
+    }
+    private void agregarFastPassACliente(Cliente cliente, FastPass fastpass) {
+        cliente.agregarFastPass(fastpass);
     }
 
 	public ArrayList<Temporada> getTemporadas() {

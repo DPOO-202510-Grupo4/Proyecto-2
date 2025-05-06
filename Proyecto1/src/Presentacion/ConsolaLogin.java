@@ -1,5 +1,6 @@
 package presentacion;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 import Persistencias.GestorPersistencia;
@@ -78,7 +79,7 @@ public class ConsolaLogin {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
     	GestorPersistencia gestorPersistencia = GestorPersistencia.getInstance();
     	gestorPersistencia.gestorCargaDatos();
         boolean volver = false;

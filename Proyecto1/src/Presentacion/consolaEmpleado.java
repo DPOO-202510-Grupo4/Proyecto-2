@@ -39,7 +39,7 @@ public class consolaEmpleado {
                     consultarTurnos(scanner);
                     break;
                 case 2:
-                    consultarTareas(scanner);
+                    //consultarTareas(scanner);
                     break;
                 case 3:
                     consultarCapacitaciones(scanner);
@@ -90,7 +90,7 @@ public class consolaEmpleado {
         }
     }
 
-    private static void consultarTareas(Scanner scanner) {
+    /*private static void consultarTareas(Scanner scanner) {
         Empleado empleado = obtenerEmpleadoDesdeLogin(scanner);
         if (empleado == null) return;
 
@@ -104,7 +104,7 @@ public class consolaEmpleado {
                 System.out.println("- " + tarea);
             }
         }
-    }
+    } */
 
     private static void consultarCapacitaciones(Scanner scanner) {
         Empleado empleado = obtenerEmpleadoDesdeLogin(scanner);

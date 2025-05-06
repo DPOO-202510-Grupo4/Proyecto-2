@@ -6,8 +6,9 @@ public class FastPass extends ItemVenta{
 	private Date fecha;
 	private boolean usado;
 	private String idTiquete;
+	private String dueño;
 
-	public FastPass(String nombre, Double precioBase, Date fecha, boolean usado, String idTiquete) {
+	public FastPass(String nombre, Double precioBase, Date fecha, boolean usado, String idTiquete, String dueño) {
 		super(nombre, precioBase);
 		this.fecha = fecha;
 		this.usado = usado;
@@ -42,6 +43,10 @@ public class FastPass extends ItemVenta{
 	public double calcularPrecio() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public String getDueño() {
+		return dueño;
 	}
 
 

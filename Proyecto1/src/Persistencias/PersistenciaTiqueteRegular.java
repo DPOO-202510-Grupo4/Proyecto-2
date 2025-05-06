@@ -61,7 +61,6 @@ public class PersistenciaTiqueteRegular {
 
     public static void cargarDatos() throws ParseException {
         GestorTiquetes gestorT = GestorTiquetes.getInstance();
-        GestorPersonas gestorP = GestorPersonas.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
         try (BufferedReader lector = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
