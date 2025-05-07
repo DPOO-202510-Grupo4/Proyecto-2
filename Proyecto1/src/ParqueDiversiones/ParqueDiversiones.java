@@ -5,7 +5,7 @@ import Persistencias.*;
 import Persona.*;
 import restricciones.*;
 import Tiquetes.*;
-import presentacion.ConsolaLogin;
+import Presentacion.ConsolaLogin;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
