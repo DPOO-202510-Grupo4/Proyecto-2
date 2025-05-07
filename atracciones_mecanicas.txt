@@ -1,1 +1,0 @@
-Montaña Rusa,10, 10, [Seguridad], Alta, 5, 10, Montaña Rusa, [Ninguna], true, Alto, 50, 200, 150

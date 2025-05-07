@@ -29,7 +29,7 @@ public class GestorTiquetes {
     // ======================
     // Singleton e inicialización
     // ======================
-    private GestorTiquetes() {
+    public GestorTiquetes() {
         this.tiquetesVendidos = new HashMap<>();
         this.categoriasDisponibles = new ArrayList<>();
         this.temporadas = new ArrayList<>();
