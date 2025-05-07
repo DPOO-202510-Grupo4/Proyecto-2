@@ -8,7 +8,9 @@ import Persona.Cliente;
 import Persona.GestorPersonas;
 import Tiquetes.CategoriaTiquete;
 import Tiquetes.Factura;
+import Tiquetes.FastPass;
 import Tiquetes.GestorTiquetes;
+import Tiquetes.Tiquete;
 import restricciones.Temporada;
 import Atracciones.AtraccionCultural;
 import Atracciones.AtraccionMecanica;
@@ -30,7 +32,7 @@ public class consolaCliente {
         while (!volver) {
             System.out.println("\n--- MENÚ CLIENTE ---");
             System.out.println("1. Comprar tiquete");
-            System.out.println("2. Consultar historial de compras");
+            System.out.println("2. Consultar tiquetes");
             System.out.println("3. Consultar espectáculos");
             System.out.println("4. Consultar atracciones");
             System.out.println("5. Volver al menú principal");
@@ -42,7 +44,7 @@ public class consolaCliente {
                 	comprarTiquete(scanner);
                     break;
                 case 2:
-                	consultarHistorial(scanner);
+                	consultarTiquetes(scanner);
                     break;
                 case 3:
                 	consultarEspectaculos();
@@ -58,9 +60,6 @@ public class consolaCliente {
             }
         }
     }
-
- 
-
 
     static void comprarTiquete(Scanner scanner) {
         System.out.println("¿Desea un tiquete regular (1) o de temporada (2)?");
@@ -135,7 +134,7 @@ public class consolaCliente {
         }
     }
 
-    private static void consultarHistorial(Scanner scanner) {
+   private static void consultarTiquetes(Scanner scanner) {
         System.out.print("Ingrese el login del cliente: ");
         String login = scanner.nextLine();
 
@@ -147,16 +146,30 @@ public class consolaCliente {
             return;
         }
 
-        ArrayList<Factura> historial = cliente.getHistorialCompras();
-
-        if (historial == null || historial.isEmpty()) {
-            System.out.println("El cliente no tiene historial de compras.");
-            return;
+        System.out.println("\n--- TIQUETES DE " + cliente.getNombre() + " ---");
+        
+        ArrayList<Tiquete> tiquetes = cliente.getTiquetes();
+        if (tiquetes.isEmpty()) {
+            System.out.println("No tiene tiquetes normales registrados.");
+        } else {
+            System.out.println("Tiquetes normales:");
+            for (int i = 0; i < tiquetes.size(); i++) {
+                Tiquete t = tiquetes.get(i);
+                System.out.println((i + 1) + ". ID: " + t.getId() +
+                                   ", Categoría: " + t.getCategoria().getNombre());
+            }
         }
 
-        System.out.println("\n--- HISTORIAL DE COMPRAS DE " + cliente.getNombre() + " ---");
-        for (int i = 0; i < historial.size(); i++) {
-            System.out.println((i + 1) + ". " + historial.get(i).toString());
+        ArrayList<FastPass> fastPasses = cliente.getFastPass();
+        if (fastPasses.isEmpty()) {
+            System.out.println("No tiene FastPass registrados.");
+        } else {
+            System.out.println("\nFastPass:");
+            for (int i = 0; i < fastPasses.size(); i++) {
+                FastPass f = fastPasses.get(i);
+                System.out.println((i + 1) + ". ID: " + f.getIdTiquete() +
+                                   ", Fecha: " + f.getFecha());
+            }
         }
     }
 

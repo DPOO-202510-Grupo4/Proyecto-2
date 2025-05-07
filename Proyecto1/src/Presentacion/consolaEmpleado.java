@@ -36,7 +36,7 @@ public class consolaEmpleado {
 
             switch (opcion) {
                 case 1:
-                    consultarTurnos(scanner);
+                    //consultarTurnos(scanner);
                     break;
                 case 2:
                     //consultarTareas(scanner);
@@ -73,7 +73,7 @@ public class consolaEmpleado {
         return empleado;
     }
 
-    private static void consultarTurnos(Scanner scanner) {
+    /*private static void consultarTurnos(Scanner scanner) {
         Empleado empleado = obtenerEmpleadoDesdeLogin(scanner);
         if (empleado == null) return;
 
@@ -88,7 +88,7 @@ public class consolaEmpleado {
                 System.out.println(turno);
             }
         }
-    }
+    }*/
 
     /*private static void consultarTareas(Scanner scanner) {
         Empleado empleado = obtenerEmpleadoDesdeLogin(scanner);
